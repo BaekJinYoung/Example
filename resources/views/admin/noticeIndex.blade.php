@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+@include('admin.components.head')
+<body>
+<div id="wrap">
+    <div class="admin-container">
+        <header id="header">
+            @include('admin.components.snb')
+        </header>
+
+        <div class="admin-wrap table-wrap">
+
+            <div class="title-wrap col-group">
+                <div class="main-title-wrap col-group">
+                    <h2 class="main-title">
+                        논문현황
+                    </h2>
+                    <div class="top-btn-wrap">
+                        <a href="{{route("admin.noticeCreate")}}" class="top-btn">
+                            등록
+                        </a>
+                    </div>
+                </div>
+                <div class="filter_wrap">
+                    <div class="filter_input_wrap">
+                        <select>
+                            <option value="10">1페이지에 10개까지</option>
+                            <option value="20">1페이지에 20개까지</option>
+                            <option value="30">1페이지에 30개까지</option>
+                        </select>
+
+                        <div class="search-wrap col-group">
+                            <input type="text" class="search-input" placeholder="제목을 입력하세요">
+                            <button class="search-btn">
+                                <i class="xi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="admin-table">
+                <colgroup>
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
+                <thead class="admin-thead">
+                <tr class="admin-tr">
+                    <th class="admin-th">제목</th>
+                    <th class="admin-th">저자</th>
+                    <th class="admin-th">발행정보</th>
+                    <th class="admin-th">발행일자</th>
+                    <th class="admin-th">관리</th>
+                </tr>
+                </thead>
+                <tbody class="admin-tbody">
+                @if($notices->isEmpty())
+                    <tr>
+                        <td colspan="9">
+                            <p class="null-txt">
+                                등록된 게시물이 없습니다.
+                            </p>
+                        </td>
+                    </tr>
+                @else
+                    <tr class="admin-tr">
+                        <td class="admin-td"></td>
+                        <td class="admin-td"></td>
+                        <td class="admin-td"></td>
+                        <td class="admin-td"></td>
+                        <td class="admin-td">
+                            <div class="btn-wrap col-group">
+                                <a href="{{route("admin.noticeEdit")}}" class="btn">
+                                    상세
+                                </a>
+                                <form action="" method="post">
+                                    <button type="submit" class="btn del-btn">
+                                        삭제
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endif
+                </tbody>
+            </table>
+
+            <div id="pagination"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
