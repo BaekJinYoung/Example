@@ -28,10 +28,10 @@ class PopupController extends Controller
 
         $this->Popup->create($request);
 
-        return view('admin.popupCreate');
+        return redirect()->route('admin.popupIndex');
     }
 
-    public function edit(){
-        return view('admin.popupEdit');
+    public function edit(Popup $popup){
+        return view('admin.popupEdit', compact('popup'));
     }
 }

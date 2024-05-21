@@ -16,6 +16,7 @@
                 </h2>
             </div>
             <form enctype="multipart/form-data">
+                @csrf
                 <div class="form-wrap row-group">
                     <div class="form-item row-group">
                         <p class="item-default">

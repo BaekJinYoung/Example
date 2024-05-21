@@ -24,11 +24,12 @@
             </div>
 
             <div class="board-wrap col-group">
-                @empty($youtube)
+                @if($youtubes->isEmpty())
                     <div class="null-txt">
                         등록된 게시물이 없습니다.
                     </div>
                 @else
+                    @foreach($youtubes as $key => $youtube)
                     <div class="board-item">
                         <div class="video-box">
                             <iframe src=""
@@ -38,7 +39,7 @@
                         </div>
                         <div class="txt-box row-group">
                             <div class="btn-wrap col-group">
-                                <a href="{{route("admin.youtubeEdit")}}" class="btn">
+                                <a href="{{route("admin.youtubeEdit", $youtube->id)}}" class="btn">
                                     수정
                                 </a>
                                 <form action="" method="post">
@@ -49,7 +50,8 @@
                             </div>
                         </div>
                     </div>
-                @endempty
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

@@ -29,7 +29,9 @@
                         등록된 팝업이 없습니다.
                     </div>
                 @else
+                    @foreach($popups as $key => $popup)
                     <div class="board-item">
+
                         <div class="img-box">
                             <img src="" alt="">
                         </div>
@@ -40,7 +42,7 @@
                                 <a href="" class="btn" target="_blank">링크</a>
                             </p>
                             <div class="btn-wrap col-group">
-                                <a href="{{route("admin.popupEdit")}}" class="btn">
+                                <a href="{{route("admin.popupEdit", $popup->id)}}" class="btn">
                                     수정
                                 </a>
                                 <form action="" method="post">
@@ -59,6 +61,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 @endif
             </div>
         </div>

@@ -19,35 +19,40 @@ Route::controller(PopupController::class)->group(function () {
     Route::get('admin/popups', 'index')->name("admin.popupIndex");
     Route::get('admin/popups/create', 'create')->name("admin.popupCreate");
     Route::post('admin/popups/store', 'store')->name("admin.popupStore");
-    Route::patch('admin/popups/{popup}/edit', 'edit');
+    Route::get('admin/popups/{popup}', 'edit')->name("admin.popupEdit");
 });
 
 Route::controller(BannerController::class)->group(function () {
     Route::get('admin/banners', 'index')->name("admin.bannerIndex");
     Route::get('admin/banners/create', 'create')->name("admin.bannerCreate");
+    Route::post('admin/banners/store', 'store')->name("admin.bannerStore");
     Route::patch('admin/banners/{banner}/edit', 'edit');
 });
 
 Route::controller(YoutubeController::class)->group(function () {
     Route::get('admin/youtube', 'index')->name("admin.youtubeIndex");
     Route::get('admin/youtube/create', 'create')->name("admin.youtubeCreate");
-    Route::patch('admin/youtube/{youtube}/edit', 'edit');
+    Route::post('admin/youtube/store', 'store')->name("admin.youtubeStore");
+    Route::get('admin/youtube/{youtube}/edit', 'edit')->name("admin.youtubeEdit");
 });
 
 Route::controller(HistoryController::class)->group(function () {
     Route::get('admin/histories', 'index')->name("admin.historyIndex");
-    Route::get('admin/histories/create', 'create')->name("admin.createCreate");
-    Route::patch('admin/histories/{history}/edit', 'edit');
+    Route::get('admin/histories/create', 'create')->name("admin.historyCreate");
+    Route::post('admin/histories/store', 'store')->name("admin.historyStore");
+    Route::get('admin/histories/{history}/edit', 'edit');
 });
 
 Route::controller(NoticeController::class)->group(function () {
     Route::get('admin/notices', 'index')->name("admin.noticeIndex");
     Route::get('admin/notices/create', 'create')->name("admin.noticeCreate");
-    Route::patch('admin/notices/{notice}/edit', 'edit');
+    Route::post('admin/notices/store', 'store')->name("admin.noticeStore");
+    Route::get('admin/notices/{notice}/edit', 'edit');
 });
 
 Route::controller(PatentController::class)->group(function () {
     Route::get('admin/patents', 'index')->name("admin.patentIndex");
     Route::get('admin/patents/create', 'create')->name("admin.patentCreate");
-    Route::patch('admin/patents/{patent}/edit', 'edit');
+    Route::post('admin/patents/store', 'store')->name("admin.patentStore");
+    Route::get('admin/patents/{patent}/edit', 'edit');
 });

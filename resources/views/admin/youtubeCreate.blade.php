@@ -15,18 +15,19 @@
                     Youtube 등록
                 </h2>
             </div>
-            <form enctype="multipart/form-data">
+            <form action="{{route('admin.youtubeStore')}}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="form-wrap row-group">
                     <div class="form-item row-group">
                         <p class="item-default">
                             유튜브 링크
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="link" class="form-input"
+                        <input type="text" name="link" id="link" class="form-input"
                                placeholder="https://www.youtube.com/watch?v=">
                     </div>
                 </div>
-            </form>
+
             <div class="form-btn-wrap col-group">
                 <a href="{{route("admin.youtubeIndex")}}" class="form-prev-btn">
                     목록으로
@@ -35,6 +36,7 @@
                     등록
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
