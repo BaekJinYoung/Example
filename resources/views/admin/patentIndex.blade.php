@@ -23,11 +23,14 @@
                 </div>
                 <div class="filter_wrap">
                     <div class="filter_input_wrap">
-                        <select>
-                            <option value="8">1페이지에 8개까지</option>
-                            <option value="16">1페이지에 16개까지</option>
-                            <option value="24">1페이지에 24개까지</option>
-                        </select>
+                        <form method="get" action="{{route("admin.patentIndex")}}" id="pagination-form" >
+                            <select name="per_page" id="per_page" onchange="document.getElementById('pagination-form').submit();">
+                                <option value="8" {{request('per_page') == 8}}>1페이지에 8개까지</option>
+                                <option value="16" {{request('per_page') == 16}}>1페이지에 16개까지</option>
+                                <option value="24" {{request('per_page') == 24}}>1페이지에 24개까지</option>
+                            </select>
+                        </form>
+
 
                         <div class="search-wrap col-group">
                             <input type="text" class="search-input" placeholder="제목을 입력하세요">
@@ -82,5 +85,8 @@
         </div>
     </div>
 </div>
+
+{{ $patents->appends(['per_page' => request('per_page')])->links() }}
+
 </body>
 </html>

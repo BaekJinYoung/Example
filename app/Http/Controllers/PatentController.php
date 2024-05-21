@@ -11,8 +11,9 @@ class PatentController extends Controller
         $this->Patent = $patent;
     }
 
-    public function index(){
-        $patents = $this->Patent->latest()->paginate(10);;
+    public function index(Request $request){
+        $perPage = $request->input('per_page', 8);
+        $patents = $this->Patent->latest()->paginate($perPage);;
         return view('admin.patentIndex', compact('patents'));
     }
 
