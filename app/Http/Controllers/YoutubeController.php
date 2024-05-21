@@ -41,4 +41,9 @@ class YoutubeController extends Controller
         $youtube->update($request);
         return redirect()->route('admin.youtubeIndex');
     }
+
+    public function delete(Youtube $youtube){
+        $youtube->delete();
+        return redirect()->route('admin.youtubeIndex');
+    }
 }

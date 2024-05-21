@@ -38,6 +38,7 @@ Route::controller(YoutubeController::class)->group(function () {
     Route::post('admin/youtube/store', 'store')->name("admin.youtubeStore");
     Route::get('admin/youtube/{youtube}/edit', 'edit')->name("admin.youtubeEdit");
     Route::patch('admin/youtube/{youtube}', 'update')->name("admin.youtubeUpdate");
+    Route::delete('admin/youtube/{youtube}', 'delete')->name("admin.youtubeDelete");
 });
 
 Route::controller(HistoryController::class)->group(function () {
