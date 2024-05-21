@@ -29,6 +29,7 @@
                         등록한 게시물이 없습니다.
                     </div>
                 @else
+                    @foreach($banners as $key => $banner)
                     <ul class="item_list_ul">
                         <li>
                             <div class="img_wrap">
@@ -62,6 +63,7 @@
                             </div>
                         </li>
                     </ul>
+                    @endforeach
                 @endif
             </div>
         </div>
