@@ -36,6 +36,7 @@ Route::controller(YoutubeController::class)->group(function () {
     Route::get('admin/youtube/create', 'create')->name("admin.youtubeCreate");
     Route::post('admin/youtube/store', 'store')->name("admin.youtubeStore");
     Route::get('admin/youtube/{youtube}/edit', 'edit')->name("admin.youtubeEdit");
+    Route::patch('admin/youtube/{youtube}', 'update')->name("admin.youtubeUpdate");
 });
 
 Route::controller(HistoryController::class)->group(function () {

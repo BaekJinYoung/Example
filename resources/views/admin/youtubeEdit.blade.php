@@ -15,7 +15,9 @@
                     Youtube 수정
                 </h2>
             </div>
-            <form enctype="multipart/form-data">
+            <form action="{{route("admin.youtubeUpdate", $youtube)}}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('patch')
                 <div class="form-wrap row-group">
                     <div class="form-item row-group">
                         <p class="item-default">
@@ -23,10 +25,10 @@
                             <span class="red">*</span>
                         </p>
                         <input type="text" name="link" class="form-input"
-                               placeholder="https://www.youtube.com/watch?v=">
+                               placeholder="https://www.youtube.com/watch?v=" value="{{$youtube->link}}">
                     </div>
                 </div>
-            </form>
+
             <div class="form-btn-wrap col-group">
                 <a href="{{route("admin.youtubeIndex")}}" class="form-prev-btn">
                     목록으로
@@ -35,6 +37,7 @@
                     수정
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>

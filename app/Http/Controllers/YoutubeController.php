@@ -30,7 +30,15 @@ class YoutubeController extends Controller
         return redirect()->route('admin.youtubeIndex');
     }
 
-    public function edit(){
-        return view('admin.youtubeEdit');
+    public function edit(Youtube $youtube){
+        return view('admin.youtubeEdit', compact('youtube'));
+    }
+
+    public function update(Request $request, Youtube $youtube){
+        $request = $request->validate([
+            'link' => 'required'
+        ]);
+        $youtube->update($request);
+        return redirect()->route('admin.youtubeIndex');
     }
 }
