@@ -10,6 +10,6 @@ class Popup extends Model
     use HasFactory;
 
     protected $fillable = [
-      'title', 'image'
+      'title', 'image', 'link'
     ];
 }

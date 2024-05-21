@@ -20,13 +20,15 @@ Route::controller(PopupController::class)->group(function () {
     Route::get('admin/popups/create', 'create')->name("admin.popupCreate");
     Route::post('admin/popups/store', 'store')->name("admin.popupStore");
     Route::get('admin/popups/{popup}/edit', 'edit')->name("admin.popupEdit");
+    Route::patch('admin/popups/{popup}', 'update')->name("admin.popupUpdate");
 });
 
 Route::controller(BannerController::class)->group(function () {
     Route::get('admin/banners', 'index')->name("admin.bannerIndex");
     Route::get('admin/banners/create', 'create')->name("admin.bannerCreate");
     Route::post('admin/banners/store', 'store')->name("admin.bannerStore");
-    Route::get('admin/banners/{banner}/edit', 'edit');
+    Route::get('admin/banners/{banner}/edit', 'edit')->name("admin.bannerEdit");
+    Route::patch('admin/banners/{banner}', 'update')->name("admin.bannerUpdate");
 });
 
 Route::controller(YoutubeController::class)->group(function () {
@@ -40,14 +42,14 @@ Route::controller(HistoryController::class)->group(function () {
     Route::get('admin/histories', 'index')->name("admin.historyIndex");
     Route::get('admin/histories/create', 'create')->name("admin.historyCreate");
     Route::post('admin/histories/store', 'store')->name("admin.historyStore");
-    Route::get('admin/histories/{history}/edit', 'edit');
+    Route::get('admin/histories/{history}/edit', 'edit')->name("admin.historyEdit");
 });
 
 Route::controller(NoticeController::class)->group(function () {
     Route::get('admin/notices', 'index')->name("admin.noticeIndex");
     Route::get('admin/notices/create', 'create')->name("admin.noticeCreate");
     Route::post('admin/notices/store', 'store')->name("admin.noticeStore");
-    Route::get('admin/notices/{notice}/edit', 'edit');
+    Route::get('admin/notices/{notice}/edit', 'edit')->name("admin.noticeEdit");
 });
 
 Route::controller(PatentController::class)->group(function () {

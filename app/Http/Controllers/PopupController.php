@@ -24,6 +24,7 @@ class PopupController extends Controller
         $request = $request->validate([
             'title' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'link' => 'nullable'
         ]);
 
         $this->Popup->create($request);
@@ -33,5 +34,15 @@ class PopupController extends Controller
 
     public function edit(Popup $popup){
         return view('admin.popupEdit', compact('popup'));
+    }
+
+    public function update(Request $request, Popup $popup){
+        $request = $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'link' => 'nullable'
+        ]);
+        $popup->update($request);
+        return redirect()->route('admin.popupIndex');
     }
 }
