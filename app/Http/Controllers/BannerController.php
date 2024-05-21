@@ -20,6 +20,27 @@ class BannerController extends Controller
         return view('admin.bannerCreate');
     }
 
+    public function store(Request $request){
+        $store = $request->validate([
+            'title' => 'required',
+            'mobile_title' => 'required',
+            'subtitle' => 'required',
+            'mobile_subtitle' => 'required',
+            'details' => 'required',
+            'mobile_details' => 'required',
+            'image' => 'required',
+            'mobile_image' => 'required',
+        ]);
+
+        $this->Banner->create($store);
+
+        if($request->has('continue')){
+            return redirect()->route('admin.bannerCreate');
+        }
+
+        return redirect()->route('admin.bannerIndex');
+    }
+
     public function edit(){
         return view('admin.bannerEdit');
     }
