@@ -45,4 +45,9 @@ class PatentController extends Controller
         $patent->update($request);
         return redirect()->route('admin.patentIndex');
     }
+
+    public function delete(Patent $patent){
+        $patent->delete();
+        return redirect()->route('admin.patentIndex');
+    }
 }
