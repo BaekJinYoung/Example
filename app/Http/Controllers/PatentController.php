@@ -20,6 +20,17 @@ class PatentController extends Controller
         return view('admin.patentCreate');
     }
 
+    public function store(Request $request){
+        $request = $request->validate([
+            'title' => 'required',
+            'number' => 'required',
+        ]);
+
+        $this->Patent->create($request);
+
+        return redirect()->route('admin.patentIndex');
+    }
+
     public function edit(){
         return view('admin.patentEdit');
     }

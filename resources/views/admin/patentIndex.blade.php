@@ -45,6 +45,7 @@
                         등록된 게시물이 없습니다.
                     </div>
                 @else
+                    @foreach($patents as $key => $patent)
                     <div class="board-item">
                         <div class="img-box">
                             <img src="" alt="">
@@ -52,7 +53,7 @@
                         <div class="txt-box row-group">
                             <p class="title"></p>
                             <div class="btn-wrap col-group">
-                                <a href="{{route("admin.patentEdit")}}" class="btn">
+                                <a href="{{route("admin.patentEdit", $patent->id)}}" class="btn">
                                     수정
                                 </a>
                                 <form action="" method="post">
@@ -71,6 +72,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 @endif
             </div>
 

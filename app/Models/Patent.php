@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Patent extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 'image', 'number'
+    ];
 }
