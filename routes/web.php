@@ -18,6 +18,7 @@ Route::get('/index', [ClientController::class, 'index']);
 Route::controller(PopupController::class)->group(function () {
     Route::get('admin/popups', 'index')->name("admin.popupIndex");
     Route::get('admin/popups/create', 'create')->name("admin.popupCreate");
+    Route::post('admin/popups/store', 'store')->name("admin.popupStore");
     Route::patch('admin/popups/{popup}/edit', 'edit');
 });
 

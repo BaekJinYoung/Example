@@ -15,14 +15,15 @@
                     팝업 등록
                 </h2>
             </div>
-            <form enctype="multipart/form-data">
+            <form action="{{route('admin.popupStore')}}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="form-wrap row-group">
                     <div class="form-item row-group">
                         <p class="item-default">
                             제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="title" class="form-input" placeholder="제목을 입력하세요">
+                        <input type="text" name="title" class="form-input" id="title" placeholder="제목을 입력하세요">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
@@ -30,7 +31,8 @@
                             <span class="red">*</span>
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='popup_file' accept="image/*" name="image">
+                            <!-- <input type='file' id='popup_file' accept="image/*" name="image"> -->
+                            <input type='file' id='image' accept="image/*" name="image">
                             <label for="popup_file" class="file-upload-btn">
                                 파일 업로드
                             </label>
@@ -47,11 +49,10 @@
                         <p class="item-default">
                             링크(선택)
                         </p>
-                        <input type="text" name="link" class="form-input" placeholder="링크를 입력하세요(https:// 포함), 선택사항">
+                        <input type="text" name="link" class="form-input" id="link" placeholder="링크를 입력하세요(https:// 포함), 선택사항">
                     </div>
                 </div>
-            </form>
-            <div class="form-btn-wrap col-group">
+                <div class="form-btn-wrap col-group">
                 <a href="{{route("admin.popupIndex")}}" class="form-prev-btn">
                     목록으로
                 </a>
@@ -61,7 +62,8 @@
                 <button class="form-submit-btn" type="submit">
                     등록 후 계속
                 </button>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

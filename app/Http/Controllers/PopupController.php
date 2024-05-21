@@ -20,6 +20,17 @@ class PopupController extends Controller
         return view('admin.popupCreate');
     }
 
+    public function store(Request $request){
+        $request = $request->validate([
+            'title' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $this->Popup->create($request);
+
+        return view('admin.popupCreate');
+    }
+
     public function edit(){
         return view('admin.popupEdit');
     }
