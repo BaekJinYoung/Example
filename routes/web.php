@@ -21,6 +21,7 @@ Route::controller(PopupController::class)->group(function () {
     Route::post('admin/popups/store', 'store')->name("admin.popupStore");
     Route::get('admin/popups/{popup}/edit', 'edit')->name("admin.popupEdit");
     Route::patch('admin/popups/{popup}', 'update')->name("admin.popupUpdate");
+    Route::delete('admin/popups/{popup}', 'delete')->name("admin.popupDelete");
 });
 
 Route::controller(BannerController::class)->group(function () {

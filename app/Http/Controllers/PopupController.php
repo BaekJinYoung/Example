@@ -45,4 +45,9 @@ class PopupController extends Controller
         $popup->update($request);
         return redirect()->route('admin.popupIndex');
     }
+
+    public function delete(Popup $popup){
+        $popup->delete();
+        return redirect()->route('admin.popupIndex');
+    }
 }
