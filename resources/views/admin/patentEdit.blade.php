@@ -15,14 +15,16 @@
                     특허 및 인증 현황 수정
                 </h2>
             </div>
-            <form enctype="multipart/form-data">
+            <form action="{{route("admin.patentUpdate", $patent)}}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('patch')
                 <div class="form-wrap row-group">
                     <div class="form-item row-group">
                         <p class="item-default">
                             제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="title" class="form-input" placeholder="제목을 입력하세요">
+                        <input type="text" name="title" class="form-input" placeholder="제목을 입력하세요" value="{{$patent->title}}">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
@@ -30,7 +32,7 @@
 
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='image_upload' accept="image/*" name="image">
+                            <input type='file' id='image_upload' accept="image/*" name="image" value="{{$patent->image}}">
                             <label for="image_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
@@ -50,10 +52,10 @@
                             특허번호 or 발급번호
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="number" class="form-input" placeholder="특허번호 또는 발급번호를 입력하세요">
+                        <input type="text" name="number" class="form-input" placeholder="특허번호 또는 발급번호를 입력하세요" value="{{$patent->number}}">
                     </div>
                 </div>
-            </form>
+
             <div class="form-btn-wrap col-group">
                 <a href="{{route("admin.patentIndex")}}" class="form-prev-btn">
                     목록으로
@@ -62,6 +64,7 @@
                     수정
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>

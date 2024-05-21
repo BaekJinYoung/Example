@@ -23,6 +23,7 @@ class PatentController extends Controller
     public function store(Request $request){
         $request = $request->validate([
             'title' => 'required',
+            'image' => 'nullable',
             'number' => 'required',
         ]);
 
@@ -31,7 +32,17 @@ class PatentController extends Controller
         return redirect()->route('admin.patentIndex');
     }
 
-    public function edit(){
-        return view('admin.patentEdit');
+    public function edit(Patent $patent){
+        return view('admin.patentEdit', compact('patent'));
+    }
+
+    public function update(Request $request, Patent $patent){
+        $request = $request->validate([
+            'title' => 'required',
+            'image' => 'nullable',
+            'number' => 'required'
+        ]);
+        $patent->update($request);
+        return redirect()->route('admin.patentIndex');
     }
 }
