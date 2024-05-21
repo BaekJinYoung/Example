@@ -21,13 +21,17 @@ class PopupController extends Controller
     }
 
     public function store(Request $request){
-        $request = $request->validate([
+        $store = $request->validate([
             'title' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'link' => 'nullable'
         ]);
 
-        $this->Popup->create($request);
+        $this->Popup->create($store);
+
+        if($request->has('continue')){
+            return redirect()->route('admin.popupCreate');
+        }
 
         return redirect()->route('admin.popupIndex');
     }
