@@ -21,13 +21,18 @@ class PatentController extends Controller
     }
 
     public function store(Request $request){
-        $request = $request->validate([
+        $store = $request->validate([
             'title' => 'required',
             'image' => 'nullable',
             'number' => 'required',
+            'continue' => 'nullable'
         ]);
 
-        $this->Patent->create($request);
+        $this->Patent->create($store);
+
+        if($request->has('continue')){
+            return redirect()->route('admin.patentCreate');
+        }
 
         return redirect()->route('admin.patentIndex');
     }
