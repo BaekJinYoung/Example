@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 112 112">
+    <defs>
+        <clipPath id="43zlxofjda">
+            <path data-name="사각형 82062" transform="translate(.439 .064)" style="fill:#fff" d="M0 0h66v40H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="그룹 54359" transform="translate(-664 -4524)">
+        <circle data-name="타원 2074" cx="48" cy="48" r="48" transform="translate(672 4532)" style="fill:#009ac2"/>
+        <path data-name="패스 91639" d="M56 1a54.739 54.739 0 0 0-30.75 9.393 55.163 55.163 0 0 0-19.928 24.2 54.926 54.926 0 0 0 5.071 52.157 55.163 55.163 0 0 0 24.2 19.928 54.926 54.926 0 0 0 52.158-5.071 55.163 55.163 0 0 0 19.928-24.2 54.926 54.926 0 0 0-5.071-52.158 55.163 55.163 0 0 0-24.2-19.928A54.655 54.655 0 0 0 56 1m0-1A56 56 0 1 1 0 56 56 56 0 0 1 56 0z" transform="translate(664 4524)" style="fill:#009ac2"/>
+        <g data-name="그룹 89746">
+            <g data-name="그룹 89745" style="clip-path:url(#43zlxofjda)" transform="translate(686.561 4559.937)">
+                <path data-name="패스 91661" d="M48.452 34.726H11a1 1 0 0 1-1-1 19.726 19.726 0 1 1 39.452 0 1 1 0 0 1-1 1zm-36.424-2h35.4a17.726 17.726 0 0 0-35.4 0z" transform="translate(3.713 5.064)" style="fill:#fff"/>
+                <path data-name="타원 2352" d="M9.5-1A10.5 10.5 0 1 1-1 9.5 10.512 10.512 0 0 1 9.5-1zm0 19A8.5 8.5 0 1 0 1 9.5 8.51 8.51 0 0 0 9.5 18z" transform="translate(24.439 1.064)" style="fill:#fff"/>
+                <path data-name="패스 91662" d="M53.95 26.7H38.771v-2H52.9a9.7 9.7 0 0 0-17.73-4.371l-1.67-1.108A11.7 11.7 0 0 1 54.95 25.7a1 1 0 0 1-1 1z" transform="translate(11.591 5.064)" style="fill:#fff"/>
+                <path data-name="타원 2353" d="M5.5-1A6.5 6.5 0 1 1-1 5.5 6.507 6.507 0 0 1 5.5-1zm0 11A4.5 4.5 0 1 0 1 5.5 4.505 4.505 0 0 0 5.5 10z" transform="translate(49.439 9.064)" style="fill:#fff"/>
+                <path data-name="패스 91663" d="M16.179 26.7H1a1 1 0 0 1-1-1 11.7 11.7 0 0 1 21.445-6.48l-1.664 1.11a9.7 9.7 0 0 0-17.73 4.37h14.128z" transform="translate(.338 5.064)" style="fill:#fff"/>
+                <path data-name="타원 2354" d="M5.5-1A6.5 6.5 0 1 1-1 5.5 6.507 6.507 0 0 1 5.5-1zm0 11A4.5 4.5 0 1 0 1 5.5 4.505 4.505 0 0 0 5.5 10z" transform="translate(6.439 9.064)" style="fill:#fff"/>
+            </g>
+        </g>
+    </g>
+</svg>
