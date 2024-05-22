@@ -32,7 +32,7 @@
 
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='image_upload' accept="image/*" name="image" value="{{$patent->image}}">
+                            <input type='file' id='image_upload' accept="image/*" name="image">
                             <label for="image_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
@@ -55,8 +55,7 @@
                         <input type="text" name="number" class="form-input" placeholder="특허번호 또는 발급번호를 입력하세요" value="{{$patent->number}}">
                     </div>
                 </div>
-
-            <div class="form-btn-wrap col-group">
+                <div class="form-btn-wrap col-group">
                 <a href="{{route("admin.patentIndex")}}" class="form-prev-btn">
                     목록으로
                 </a>

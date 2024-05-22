@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Patent;
+use Illuminate\Support\Facades\Storage;
 
 class PatentController extends Controller
 {
@@ -56,14 +57,17 @@ class PatentController extends Controller
             'number' => 'required'
         ]);
 
-        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+        if($request->hasFile('image')) {
+            if ($patent->image) {
+                Storage::disk('public')->delete($patent->image);
+            }
+            $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $update['image'] = $path;
+        }
 
-        $this->Patent->update([
-            'title' => $update['title'],
-            'image' => $path,
-            'number' => $update['number'],
-        ]);
+
+        $patent->update($update);;
 
         return redirect()->route('admin.patentIndex');
     }
