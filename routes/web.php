@@ -60,6 +60,7 @@ Route::controller(NoticeController::class)->group(function () {
     Route::post('admin/notices/store', 'store')->name("admin.noticeStore");
     Route::get('admin/notices/{notice}/edit', 'edit')->name("admin.noticeEdit");
     Route::patch('admin/notices/{notice}', 'update')->name("admin.noticeUpdate");
+    Route::delete('admin/notices/{notice}', 'delete')->name("admin.noticeDelete");
 });
 
 Route::controller(PatentController::class)->group(function () {

@@ -47,6 +47,7 @@ class PopupController extends Controller
             'link' => 'nullable'
         ]);
         $popup->update($request);
+
         return redirect()->route('admin.popupIndex');
     }
 

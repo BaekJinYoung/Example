@@ -77,7 +77,9 @@
                                 <a href="{{route("admin.noticeEdit", $notice->id)}}" class="btn">
                                     상세
                                 </a>
-                                <form action="" method="post">
+                                <form action="{{route("admin.noticeDelete", $notice->id)}}" method="post">
+                                    @csrf
+                                    @method('delete')
                                     <button type="submit" class="btn del-btn">
                                         삭제
                                     </button>
