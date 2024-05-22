@@ -59,4 +59,9 @@ class BannerController extends Controller
         $banner->update($request);
         return redirect()->route('admin.bannerIndex');
     }
+
+    public function delete(Banner $banner){
+        $banner->delete();
+        return redirect()->route('admin.bannerIndex');
+    }
 }

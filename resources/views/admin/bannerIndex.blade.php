@@ -46,7 +46,9 @@
                                     <a href="{{route("admin.bannerEdit", $banner->id)}}" class="btn">
                                         수정
                                     </a>
-                                    <form action="" method="post">
+                                    <form action="{{route("admin.bannerDelete", $banner->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
                                         <button type="submit" class="btn del-btn">
                                             삭제
                                         </button>

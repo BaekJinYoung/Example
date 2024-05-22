@@ -15,6 +15,11 @@ Route::get('/', function () {
 
 Route::get('/index', [ClientController::class, 'index']);
 
+Route::controller(LoginController::class)->group(function () {
+    Route::get('admin', 'index')->name('login');
+    Route::post('admin', 'login');
+});
+
 Route::controller(PopupController::class)->group(function () {
     Route::get('admin/popups', 'index')->name("admin.popupIndex");
     Route::get('admin/popups/create', 'create')->name("admin.popupCreate");
@@ -30,6 +35,7 @@ Route::controller(BannerController::class)->group(function () {
     Route::post('admin/banners/store', 'store')->name("admin.bannerStore");
     Route::get('admin/banners/{banner}/edit', 'edit')->name("admin.bannerEdit");
     Route::patch('admin/banners/{banner}', 'update')->name("admin.bannerUpdate");
+    Route::delete('admin/banners/{banner}', 'delete')->name("admin.bannerDelete");
 });
 
 Route::controller(YoutubeController::class)->group(function () {
