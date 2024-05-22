@@ -40,8 +40,7 @@
                                 800*800px 비율 고해상도 사진 등록
                             </span>
                             <div class="file-preview" id="image">
-                                <p class="file-name">
-                                </p>
+                                <p class="file-name"></p>
                             </div>
                         </div>
                     </div>
@@ -53,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="form-btn-wrap col-group">
+            <div class="form-btn-wrap col-group">
                 <a href="{{route("admin.popupIndex")}}" class="form-prev-btn">
                     목록으로
                 </a>

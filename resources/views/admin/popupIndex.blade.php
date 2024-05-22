@@ -36,7 +36,7 @@
                             <img src="{{asset('storage/'.$popup->image)}}" alt="">
                         </div>
                         <div class="txt-box row-group">
-                            <p class="title">
+                            <p class="title">{{$popup->title}}
                             </p>
                             <p class="date col-group">
                                 <a href="{{$popup->link}}" class="btn" target="_blank">링크</a>

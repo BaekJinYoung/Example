@@ -39,9 +39,9 @@
                                 <img src="{{asset('storage/'.$banner->mobile_image)}}" alt="">
                             </div>
                             <div class="item_txt_wrap">
-                                <p class="title_p"></p>
-                                <p class="title_p"></p>
-                                <p class="subtitle_p"></p>
+                                <p class="title_p">{{$banner->title}}</p>
+                                <p class="title_p">{{$banner->mobile_title}}</p>
+                                <p class="subtitle_p">{{$banner->subtitle}}</p>
                                 <div class="btn-wrap col-group">
                                     <a href="{{route("admin.bannerEdit", $banner->id)}}" class="btn">
                                         수정

@@ -54,7 +54,7 @@
                             <img src="{{asset('storage/'.$patent->image)}}" alt="">
                         </div>
                         <div class="txt-box row-group">
-                            <p class="title"></p>
+                            <p class="title">{{$patent->title}}</p>
                             <div class="btn-wrap col-group">
                                 <a href="{{route("admin.patentEdit", $patent->id)}}" class="btn">
                                     수정
