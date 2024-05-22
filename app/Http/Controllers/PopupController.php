@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Popup;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class PopupController extends Controller
@@ -51,12 +52,12 @@ class PopupController extends Controller
     public function update(Request $request, Popup $popup){
         $update = $request->validate([
             'title' => 'required',
-            'image' => 'required',
+            'image' => 'nullable',
             'link' => 'nullable'
         ]);
 
-        if($request->hasFile('image')){
-            if($popup->image) {
+        if($request->hasFile('image')) {
+            if ($popup->image) {
                 Storage::disk('public')->delete($popup->image);
             }
             $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
@@ -64,7 +65,8 @@ class PopupController extends Controller
             $update['image'] = $path;
         }
 
-        $popup->update($update);
+        Log::info('Popup update data: ', $update);
+        $popup->update($update);;
 
         return redirect()->route('admin.popupIndex');
     }
