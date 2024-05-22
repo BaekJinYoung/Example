@@ -51,7 +51,31 @@ class NoticeController extends Controller
         return redirect()->route('admin.noticeIndex');
     }
 
-    public function edit(){
-        return view('admin.noticeEdit');
+    public function edit(Notice $notice){
+        return view('admin.noticeEdit', compact('notice'));
+    }
+
+    public function update(Request $request, Notice $notice){
+        $update = $request->validate([
+            'title' => 'required',
+            'details' => 'required',
+            'summary' => 'required',
+            'writer' => 'required',
+            'information' => 'required',
+            'registered_at' => 'required',
+            'url' => 'nullable',
+        ]);
+
+        $notice->update([
+            'title' => $update['title'],
+            'details' => $update['details'],
+            'summary' => $update['summary'],
+            'writer' => $update['writer'],
+            'information' => $update['information'],
+            'date' => $update['registered_at'],
+            'url' => $update['url'],
+        ]);
+
+        return redirect()->route('admin.noticeIndex');
     }
 }
