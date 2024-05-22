@@ -33,10 +33,10 @@
                     <ul class="item_list_ul">
                         <li>
                             <div class="img_wrap">
-                                <img src="" alt="">
+                                <img src="{{asset('storage/'.$banner->image)}}" alt="">
                             </div>
                             <div class="img_wrap">
-                                <img src="" alt="">
+                                <img src="{{asset('storage/'.$banner->mobile_image)}}" alt="">
                             </div>
                             <div class="item_txt_wrap">
                                 <p class="title_p"></p>

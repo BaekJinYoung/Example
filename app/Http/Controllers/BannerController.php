@@ -32,7 +32,21 @@ class BannerController extends Controller
             'mobile_image' => 'required',
         ]);
 
-        $this->Banner->create($store);
+        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+        $mobile_fileName = time().'_'.$request -> file('mobile_image') -> getClientOriginalName();
+        $mobile_path = $request->file('mobile_image')->storeAs('images', $mobile_fileName, 'public');
+
+        $this->Banner->create([
+            'title' => 'required',
+            'mobile_title' => 'required',
+            'subtitle' => 'required',
+            'mobile_subtitle' => 'required',
+            'details' => 'required',
+            'mobile_details' => 'required',
+            'image' => $path,
+            'mobile_image' => $mobile_path,
+        ]);
 
         if($request->has('continue')){
             return redirect()->route('admin.bannerCreate');
