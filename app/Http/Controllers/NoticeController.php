@@ -78,4 +78,9 @@ class NoticeController extends Controller
 
         return redirect()->route('admin.noticeIndex');
     }
+
+    public function delete(Notice $notice){
+        $notice->delete();
+        return redirect()->route('admin.noticeIndex');
+    }
 }
