@@ -33,13 +33,13 @@
                     <div class="board-item">
 
                         <div class="img-box">
-                            <img src="" alt="">
+                            <img src="{{asset('storage/'.$popup->image)}}" alt="{{asset($popup->image)}}">
                         </div>
                         <div class="txt-box row-group">
                             <p class="title">
                             </p>
                             <p class="date col-group">
-                                <a href="" class="btn" target="_blank">링크</a>
+                                <a href="{{$popup->link}}" class="btn" target="_blank">링크</a>
                             </p>
                             <div class="btn-wrap col-group">
                                 <a href="{{route("admin.popupEdit", $popup->id)}}" class="btn">

@@ -27,7 +27,14 @@ class PopupController extends Controller
             'link' => 'nullable'
         ]);
 
-        $this->Popup->create($store);
+        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+
+        $this->Popup->create([
+            'title' => $store['title'],
+            'image' => $path,
+            'link' => $store['link'],
+        ]);
 
         if($request->has('continue')){
             return redirect()->route('admin.popupCreate');
@@ -41,12 +48,20 @@ class PopupController extends Controller
     }
 
     public function update(Request $request, Popup $popup){
-        $request = $request->validate([
+        $update = $request->validate([
             'title' => 'required',
             'image' => 'required',
             'link' => 'nullable'
         ]);
-        $popup->update($request);
+
+        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+
+        $this->Popup->update([
+            'title' => $update['title'],
+            'image' => $path,
+            'link' => $update['link'],
+        ]);
 
         return redirect()->route('admin.popupIndex');
     }
