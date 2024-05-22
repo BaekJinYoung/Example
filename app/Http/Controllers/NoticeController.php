@@ -20,6 +20,37 @@ class NoticeController extends Controller
         return view('admin.noticeCreate');
     }
 
+    public function store(Request $request){
+//        if ($request){
+//            dd($request);
+//        }
+        $store = $request->validate([
+            'title' => 'required',
+            'details' => 'required',
+            'summary' => 'required',
+            'writer' => 'required',
+            'information' => 'required',
+            'registered_at' => 'required',
+            'url' => 'nullable',
+        ]);
+
+        $this->Notice->create([
+            'title' => $store['title'],
+            'details' => $store['details'],
+            'summary' => $store['summary'],
+            'writer' => $store['writer'],
+            'information' => $store['information'],
+            'date' => $store['registered_at'],
+            'url' => $store['url'],
+        ]);
+
+        if($request->has('continue')){
+            return redirect()->route('admin.noticeIndex');
+        }
+
+        return redirect()->route('admin.noticeIndex');
+    }
+
     public function edit(){
         return view('admin.noticeEdit');
     }
