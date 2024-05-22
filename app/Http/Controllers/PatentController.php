@@ -13,7 +13,7 @@ class PatentController extends Controller
 
     public function index(Request $request){
         $perPage = $request->input('per_page', 8);
-        $patents = $this->Patent->latest()->paginate($perPage);;
+        $patents = $this->Patent->latest()->paginate($perPage);
         return view('admin.patentIndex', compact('patents'));
     }
 
@@ -29,7 +29,14 @@ class PatentController extends Controller
             'continue' => 'nullable'
         ]);
 
-        $this->Patent->create($store);
+        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+
+        $this->Patent->create([
+            'title' => $store['title'],
+            'image' => $path,
+            'number' => $store['number'],
+        ]);
 
         if($request->has('continue')){
             return redirect()->route('admin.patentCreate');
@@ -43,12 +50,21 @@ class PatentController extends Controller
     }
 
     public function update(Request $request, Patent $patent){
-        $request = $request->validate([
+        $update = $request->validate([
             'title' => 'required',
             'image' => 'nullable',
             'number' => 'required'
         ]);
-        $patent->update($request);
+
+        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+
+        $this->Patent->update([
+            'title' => $update['title'],
+            'image' => $path,
+            'number' => $update['number'],
+        ]);
+
         return redirect()->route('admin.patentIndex');
     }
 

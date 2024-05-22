@@ -33,7 +33,7 @@
                     <div class="board-item">
 
                         <div class="img-box">
-                            <img src="{{asset('storage/'.$popup->image)}}" alt="{{asset($popup->image)}}">
+                            <img src="{{asset('storage/'.$popup->image)}}" alt="">
                         </div>
                         <div class="txt-box row-group">
                             <p class="title">

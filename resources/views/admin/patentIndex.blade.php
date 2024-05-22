@@ -51,7 +51,7 @@
                     @foreach($patents as $key => $patent)
                     <div class="board-item">
                         <div class="img-box">
-                            <img src="" alt="">
+                            <img src="{{asset('storage/'.$patent->image)}}" alt="">
                         </div>
                         <div class="txt-box row-group">
                             <p class="title"></p>
@@ -81,12 +81,12 @@
                 @endif
             </div>
 
-            <div id="pagination"></div>
+            <div id="pagination">
+            </div>
         </div>
     </div>
 </div>
-
-{{ $patents->appends(['per_page' => request('per_page')])->links() }}
+{!! $patents->links() !!}
 
 </body>
 </html>

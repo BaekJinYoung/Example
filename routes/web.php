@@ -15,11 +15,6 @@ Route::get('/', function () {
 
 Route::get('/index', [ClientController::class, 'index']);
 
-Route::controller(LoginController::class)->group(function () {
-    Route::get('admin', 'index')->name('login');
-    Route::post('admin', 'login');
-});
-
 Route::controller(PopupController::class)->group(function () {
     Route::get('admin/popups', 'index')->name("admin.popupIndex");
     Route::get('admin/popups/create', 'create')->name("admin.popupCreate");

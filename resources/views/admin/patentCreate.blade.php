@@ -31,7 +31,7 @@
                         </p>
                         <div class="file-upload-wrap">
                             <!--<input type='file' id='image_upload' accept="image/*" name="image">-->
-                            <input type='file' id='image' accept="image/*" name="image">
+                            <input type='file' id='image_upload' accept="image/*" name="image">
                             <label for="image_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
