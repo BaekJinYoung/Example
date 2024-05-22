@@ -67,8 +67,8 @@
                         </p>
                         <div class="file-upload-wrap">
                             <!-- <input type='file' id='popup_file' accept="image/*" name="image"> -->
-                            <input type='file' id='image' accept="image/*" name="image">
-                            <label for="popup_file" class="file-upload-btn">
+                            <input type='file' id='pc_file_upload' accept="image/*" name="image">
+                            <label for="pc_file_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
                             <span class="guide-txt">
@@ -87,8 +87,8 @@
                         </p>
                         <div class="file-upload-wrap">
                             <!-- <input type='file' id='popup_file' accept="image/*" name="image"> -->
-                            <input type='file' id='mobile_image' accept="image/*" name="mobile_image">
-                            <label for="popup_file" class="file-upload-btn">
+                            <input type='file' id='mb_file_upload' accept="image/*" name="mobile_image">
+                            <label for="mb_file_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
                             <span class="guide-txt">

@@ -41,7 +41,22 @@ class BannerController extends Controller
         return redirect()->route('admin.bannerIndex');
     }
 
-    public function edit(){
-        return view('admin.bannerEdit');
+    public function edit(Banner $banner){
+        return view('admin.bannerEdit', compact('banner'));
+    }
+
+    public function update(Request $request, Banner $banner){
+        $request = $request->validate([
+            'title' => 'required',
+            'mobile_title' => 'required',
+            'subtitle' => 'required',
+            'mobile_subtitle' => 'required',
+            'details' => 'required',
+            'mobile_details' => 'required',
+            'image' => 'required',
+            'mobile_image' => 'required',
+        ]);
+        $banner->update($request);
+        return redirect()->route('admin.bannerIndex');
     }
 }
