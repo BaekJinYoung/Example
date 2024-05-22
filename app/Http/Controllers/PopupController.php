@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Popup;
+use Illuminate\Support\Facades\Storage;
 
 class PopupController extends Controller
 {
@@ -54,14 +55,16 @@ class PopupController extends Controller
             'link' => 'nullable'
         ]);
 
-        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+        if($request->hasFile('image')){
+            if($popup->image) {
+                Storage::disk('public')->delete($popup->image);
+            }
+            $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $update['image'] = $path;
+        }
 
-        $this->Popup->update([
-            'title' => $update['title'],
-            'image' => $path,
-            'link' => $update['link'],
-        ]);
+        $popup->update($update);
 
         return redirect()->route('admin.popupIndex');
     }

@@ -32,17 +32,18 @@
                             <span class="red">*</span>
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='popup_file' accept="image/*" name="image" value="{{$popup->image}}">
+                            <input type='file' id='popup_file' accept="image/*" name="image">
                             <label for="popup_file" class="file-upload-btn">
                                 파일 업로드
                             </label>
                             <span class="guide-txt">
                                 800*800px 비율 고해상도 사진 등록
                             </span>
-
-                            <div class="file-preview" id="image" >
-                                <p class="file-name"></p>
+                            <div class="file-preview" id="image">
+                                <p class="file-name">
+                                </p>
                             </div>
+
                         </div>
                     </div>
                     <div class="form-item row-group">
@@ -53,7 +54,7 @@
                     </div>
                 </div>
 
-            <div class="form-btn-wrap col-group">
+                <div class="form-btn-wrap col-group">
                 <a href="{{route("admin.popupIndex")}}" class="form-prev-btn">
                     목록으로
                 </a>
