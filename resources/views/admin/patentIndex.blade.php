@@ -28,12 +28,15 @@
                                 <option value="24">1페이지에 24개까지</option>
                             </select>
                         </form>
-                        <div class="search-wrap col-group">
-                            <input type="text" class="search-input" placeholder="제목을 입력하세요">
-                            <button class="search-btn">
-                                <i class="xi-search"></i>
-                            </button>
-                        </div>
+                        <form action="{{route("admin.patentIndex")}}" method="get">
+                            <div class="search-wrap col-group">
+                                <input type="text" name="search" class="search-input" placeholder="제목을 입력하세요">
+                                <button type="submit" class="search-btn">
+                                    <i class="xi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

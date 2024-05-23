@@ -13,9 +13,17 @@ class PatentController extends Controller
         $this->Patent = $patent;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $patents = $this->Patent->orderBy('order', 'desc')->get();
+        $query = Patent::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('title', 'like', '%' . $searchTerm . '%');
+        }
+
+        $patents = $query->orderBy('order', 'desc')->get();
+
         return view('admin.patentIndex', compact('patents'));
     }
 
