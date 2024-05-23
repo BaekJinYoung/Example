@@ -12,8 +12,15 @@ class Banner extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'mobile_title', 'subtitle', 'mobile_subtitle', 'details', 'mobile_details', 'image', 'mobile_image'
+        'title', 'mobile_title', 'subtitle', 'mobile_subtitle', 'details', 'mobile_details', 'image', 'mobile_image', 'order'
     ];
 
     protected $dates = ['deleted_at'];
+
+    protected static function booted(){
+        static::creating(function ($banner) {
+            $maxOrder = Banner::max('order');
+            $banner->order = $maxOrder + 1;
+        });
+    }
 }

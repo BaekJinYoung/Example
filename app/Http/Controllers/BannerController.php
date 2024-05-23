@@ -13,8 +13,27 @@ class BannerController extends Controller
     }
 
     public function index(){
-        $banners = $this->Banner->latest()->paginate(10);
+        $banners = $this->Banner->orderBy('order', 'desc')->get();
         return view('admin.bannerIndex', compact('banners'));
+    }
+
+    public function move(Banner $banner, $direction){
+        if($direction == 'up'){
+            $previousBanner = Banner::where('order', '>', $banner->order)->orderBy('order', 'asc')->first();
+        } elseif ($direction == 'down') {
+            $previousBanner = Banner::where('order', '<', $banner->order)->orderBy('order', 'desc')->first();
+        }
+
+        if ($previousBanner) {
+            $tempOrder = $banner->order;
+            $banner->order = $previousBanner->order;
+            $previousBanner->order = $tempOrder;
+
+            $banner->save();
+            $previousBanner->save();
+        }
+
+        return redirect()->back();
     }
 
     public function create(){

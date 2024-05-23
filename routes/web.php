@@ -32,6 +32,7 @@ Route::controller(BannerController::class)->group(function () {
     Route::get('admin/banners/{banner}/edit', 'edit')->name("admin.bannerEdit");
     Route::patch('admin/banners/{banner}', 'update')->name("admin.bannerUpdate");
     Route::delete('admin/banners/{banner}', 'delete')->name("admin.bannerDelete");
+    Route::post('admin/banners/{banner}/move/{direction}', 'move')->name("admin.bannerMove");
 });
 
 Route::controller(YoutubeController::class)->group(function () {

@@ -55,10 +55,12 @@
                                     </form>
                                 </div>
                                 <div class="order_btn_wrap">
-                                    <form action="" method="post">
+                                    <form action="{{route("admin.bannerMove", ['banner' => $banner->id, 'direction' => 'up'])}}" method="post">
+                                        @csrf
                                         <button type="submit"><i class="xi-arrow-up"></i></button>
                                     </form>
-                                    <form action="" method="post">
+                                    <form action="{{route("admin.bannerMove", ['banner' => $banner->id, 'direction' => 'down'])}}" method="post">
+                                        @csrf
                                         <button type="submit"><i class="xi-arrow-down"></i></button>
                                     </form>
                                 </div>
