@@ -47,11 +47,11 @@
                     @foreach($histories as $key => $history)
                         <div class="board-item">
                             <div class="img-box">
-                                <img src="" alt="">
+                                <img src="{{asset('storage/'.$history->image)}}" alt="">
                             </div>
                             <div class="txt-box row-group">
-                                <p class="title"></p>
-                                <p class="title"></p>
+                                <p class="title">{{date('Y-m', strtotime($history->date))}}</p>
+                                <p class="title">{{$history->details}}</p>
                                 <div class="btn-wrap col-group">
                                     <a href="{{route("admin.historyEdit", $history->id)}}" class="btn">
                                         수정
