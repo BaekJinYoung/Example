@@ -12,8 +12,15 @@ class Popup extends Model
     use softDeletes;
 
     protected $fillable = [
-      'title', 'image', 'link'
+      'title', 'image', 'link', 'order'
     ];
 
     protected $dates = ['deleted_at'];
+
+    protected static function booted(){
+        static::creating(function($popup){
+            $maxOrder = Popup::max('order');
+            $popup->order = $maxOrder + 1;
+        });
+    }
 }

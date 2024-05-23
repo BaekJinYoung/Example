@@ -14,8 +14,27 @@ class PopupController extends Controller
     }
 
     public function index(){
-        $popups = $this->Popup->latest()->paginate(10);;
+        $popups = $this->Popup->orderBy('order', 'desc')->get();
         return view('admin.popupIndex', compact('popups'));
+    }
+
+    public function move(Popup $popup, $direction){
+        if($direction == 'left'){
+            $previousPopup = Popup::where('order', '>', $popup->order)->orderBy('order', 'asc')->first();
+        } elseif ($direction == 'right') {
+            $previousPopup = Popup::where('order', '<', $popup->order)->orderBy('order', 'desc')->first();
+        }
+
+        if ($previousPopup) {
+            $tempOrder = $popup->order;
+            $popup->order = $previousPopup->order;
+            $previousPopup->order = $tempOrder;
+
+            $popup->save();
+            $previousPopup->save();
+        }
+
+        return redirect()->back();
     }
 
     public function create(){

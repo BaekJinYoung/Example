@@ -54,10 +54,12 @@
                                 </form>
                             </div>
                             <div class="order_btn_wrap">
-                                <form action="" method="post">
+                                <form action="{{route("admin.popupMove", ['popup' => $popup->id, 'direction' => 'left'])}}" method="post">
+                                    @csrf
                                     <button type="submit"><i class="xi-arrow-left"></i></button>
                                 </form>
-                                <form action="" method="post">
+                                <form action="{{route("admin.popupMove", ['popup' => $popup->id, 'direction' => 'right'])}}" method="post">
+                                    @csrf
                                     <button type="submit"><i class="xi-arrow-right"></i></button>
                                 </form>
                             </div>
