@@ -50,6 +50,7 @@ Route::controller(HistoryController::class)->group(function () {
     Route::post('admin/histories/store', 'store')->name("admin.historyStore");
     Route::get('admin/histories/{history}/edit', 'edit')->name("admin.historyEdit");
     Route::patch('admin/histories/{history}', 'update')->name("admin.historyUpdate");
+    Route::delete('admin/histories/{history}', 'delete')->name("admin.historyDelete");
 });
 
 Route::controller(NoticeController::class)->group(function () {

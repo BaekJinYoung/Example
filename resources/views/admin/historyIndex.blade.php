@@ -56,7 +56,9 @@
                                     <a href="{{route("admin.historyEdit", $history->id)}}" class="btn">
                                         수정
                                     </a>
-                                    <form action="" method="post">
+                                    <form action="{{route("admin.historyDelete", $history->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
                                         <button type="submit" class="btn del-btn">
                                             삭제
                                         </button>
