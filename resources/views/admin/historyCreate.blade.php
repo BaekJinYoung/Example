@@ -59,7 +59,8 @@
                             이미지
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='image_upload' accept="image/*" name="image">
+                            <input type='file' id='image_upload' accept="image/*" name="image"
+                                   onchange="displayFileName(this, 'fileName')">
                             <label for="image_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
@@ -68,7 +69,7 @@
                             </span>
                             <div class='file-preview-wrap col-group'>
                                 <div class="file-preview " id="image" style="display: none">
-                                    <p class="file-name"></p>
+                                    <p class="file-name" id="fileName"></p>
                                     <button type="button" class="file-del-btn" name="image">
                                         <i class="xi-close"></i>
                                     </button>
@@ -92,5 +93,11 @@
         </div>
     </div>
 </div>
+<script>
+    function displayFileName(input, fileNameElementId) {
+        var fileName = input.files[0].name;
+        document.getElementById(fileNameElementId).textContent = fileName;
+    }
+</script>
 </body>
 </html>

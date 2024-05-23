@@ -59,6 +59,17 @@ class HistoryController extends Controller
         return view('admin.historyCreate');
     }
 
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('admin.popupUpload'), $fileName);
+        }
+
+        return back();
+    }
+
     public function edit(History $history)
     {
         return view('admin.historyEdit', compact('history'));
@@ -66,7 +77,6 @@ class HistoryController extends Controller
 
     public function update(Request $request, History $history)
     {
-        //dd($request);
         $update = $request->validate(['main' => 'required', 'registered_at' => 'required', 'content' => 'required', 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
 
         $update['date'] = Carbon::parse($request['registered_at']);

@@ -79,7 +79,6 @@
                             <span class="guide-txt">
                                 800*800px 비율 고해상도 사진 등록
                             </span>
-
                             <div class="file-preview">
                                 <p class="file-name" id="fileName">{{$banner->image}}</p>
                             </div>
@@ -99,7 +98,6 @@
                             <span class="guide-txt">
                                 800*800px 비율 고해상도 사진 등록
                             </span>
-
                             <div class="file-preview">
                                 <p class="file-name" id="mobile_fileName">{{$banner->mobile_image}}</p>
                             </div>
