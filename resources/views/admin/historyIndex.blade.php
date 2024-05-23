@@ -21,19 +21,20 @@
                 </div>
                 <div class="filter_wrap">
                     <div class="filter_input_wrap">
-                        <select id="pageCount" onchange="updatePageCount()">
+                        <select id="pageCount">
                             <option value="8" {{ $perPage == 8 ? 'selected' : '' }}>1페이지에 8개까지</option>
-                            <option value="16" {{ $perPage == 16 ? 'selected' : '' }}>1페이지에 16개까지
-                            </option>
-                            <option value="24" {{ $perPage == 24 ? 'selected' : '' }}>1페이지에 24개까지
-                            </option>
+                            <option value="16" {{ $perPage == 16 ? 'selected' : '' }}>1페이지에 16개까지</option>
+                            <option value="24" {{ $perPage == 24 ? 'selected' : '' }}>1페이지에 24개까지</option>
                         </select>
-                        <select id="year">
+                        <select id="yearFilter">
                             <option value="">전체보기</option>
-                            <option value="">2024</option>
+                            @foreach($years as $year)
+                                <option
+                                    value="{{ $year }}" {{ $selectedYear == $year ? 'selected' : '' }}>{{ $year }}</option>
+                            @endforeach
                         </select>
                         <div class="search-wrap col-group">
-                            <button class="search-btn">
+                            <button class="search-btn" onclick="filterHistories()">
                                 <i class="xi-search"></i>
                             </button>
                         </div>
@@ -53,7 +54,7 @@
                                     <img src="{{asset('storage/'.$history->image)}}" alt="">
                                 @endif
                             </div>
-                            <div class="txt-box row-group">
+                            <div class="txt-box row-group" data-year="{{ date('Y', strtotime($history->date)) }}">
                                 <p class="title">{{date('Y-m', strtotime($history->date))}}</p>
                                 <p class="title">{{$history->details}}</p>
                                 <div class="btn-wrap col-group">
@@ -73,14 +74,15 @@
                     @endforeach
                 @endif
             </div>
-            <div id="pagination"> {{ $histories->appends(['perPage' => $perPage])->links() }} </div>
+            <div> {{ $histories->appends(['perPage' => $perPage, 'yearFilter' => $selectedYear])->links() }} </div>
         </div>
     </div>
 </div>
 <script>
-    function updatePageCount() {
+    function filterHistories() {
+        var selectedYear = document.getElementById('yearFilter').value;
         var pageCount = document.getElementById('pageCount').value;
-        window.location.href = '?perPage=' + pageCount;
+        window.location.href = '{{ route("admin.historyIndex") }}?yearFilter=' + selectedYear + '&perPage=' + pageCount;
     }
 </script>
 </body>

@@ -17,28 +17,26 @@ class HistoryController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->query('perPage', 8);
-        $histories = $this->History->latest()->paginate($perPage);
+        $selectedYear = $request->query('yearFilter', '');
+        $histories = $this->History->latest();
 
-        return view('admin.historyIndex', compact('histories', 'perPage'));
-    }
+        if ($selectedYear) {
+            $histories->whereYear('date', $selectedYear);
+        }
+        $histories = $histories->paginate($perPage);
 
-    public function create()
-    {
-        return view('admin.historyCreate');
+        $years = $this->History->selectRaw('YEAR(date) as year')->distinct()->pluck('year')->toArray();
+
+        return view('admin.historyIndex', compact('histories', 'perPage', 'years', 'selectedYear'));
     }
 
     public function store(Request $request)
     {
-        $store = $request->validate([
-            'main' => 'required|boolean',
-            'registered_at' => 'required',
-            'content' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
+        $store = $request->validate(['main' => 'required|boolean', 'registered_at' => 'required', 'content' => 'required', 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
 
         $store['details'] = $store['content'];
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('images', $fileName, 'public');
             $store['image'] = $path;
@@ -56,6 +54,11 @@ class HistoryController extends Controller
         return redirect()->route('admin.historyIndex');
     }
 
+    public function create()
+    {
+        return view('admin.historyCreate');
+    }
+
     public function edit(History $history)
     {
         return view('admin.historyEdit', compact('history'));
@@ -64,12 +67,7 @@ class HistoryController extends Controller
     public function update(Request $request, History $history)
     {
         //dd($request);
-        $update = $request->validate([
-            'main' => 'required',
-            'registered_at' => 'required',
-            'content' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
+        $update = $request->validate(['main' => 'required', 'registered_at' => 'required', 'content' => 'required', 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
 
         $update['date'] = Carbon::parse($request['registered_at']);
         $update['details'] = $request['content'];
@@ -88,7 +86,8 @@ class HistoryController extends Controller
         return redirect()->route('admin.historyIndex');
     }
 
-    public function delete(History $history){
+    public function delete(History $history)
+    {
         $history->delete();
         return redirect()->route('admin.historyIndex');
     }
