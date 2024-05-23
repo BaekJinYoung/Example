@@ -7,9 +7,7 @@
         <header id="header">
             @include('admin.components.snb')
         </header>
-
         <div class="admin-wrap">
-
             <div class="title-wrap col-group">
                 <h2 class="main-title">
                     팝업 수정
@@ -32,15 +30,15 @@
                             <span class="red">*</span>
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='popup_file' accept="image/*" name="image">
+                            <input type='file' id='popup_file' accept="image/*" name="image" onchange="displayFileName(this, 'fileName')">
                             <label for="popup_file" class="file-upload-btn">
                                 파일 업로드
                             </label>
                             <span class="guide-txt">
                                 800*800px 비율 고해상도 사진 등록
                             </span>
-                            <div class="file-preview" id="image">
-                                <p class="file-name"></p>
+                            <div class="file-preview">
+                                <p class="file-name" id="fileName">{{$popup->image}}</p>
                             </div>
                         </div>
                     </div>
@@ -51,18 +49,23 @@
                         <input type="text" name="link" class="form-input" value="{{$popup->link}}" placeholder='링크를 입력하세요(https:// 포함), 선택사항'>
                     </div>
                 </div>
-
-            <div class="form-btn-wrap col-group">
-                <a href="{{route("admin.popupIndex")}}" class="form-prev-btn">
-                    목록으로
-                </a>
-                <button class="form-submit-btn" type="submit">
-                    수정
-                </button>
-            </div>
+                <div class="form-btn-wrap col-group">
+                    <a href="{{route("admin.popupIndex")}}" class="form-prev-btn">
+                        목록으로
+                    </a>
+                    <button class="form-submit-btn" type="submit">
+                        수정
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    function displayFileName(input, fileNameElementId) {
+        var fileName = input.files[0].name;
+        document.getElementById(fileNameElementId).textContent = fileName;
+    }
+</script>
 </body>
 </html>

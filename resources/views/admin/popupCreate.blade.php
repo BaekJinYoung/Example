@@ -31,15 +31,14 @@
                             <span class="red">*</span>
                         </p>
                         <div class="file-upload-wrap">
-                            <!-- <input type='file' id='popup_file' accept="image/*" name="image"> -->
-                            <input type='file' id='popup_file' accept="image/*" name="image">
+                            <input type='file' id='popup_file' accept="image/*" name="image" onchange="displayFileName(this, 'fileName')">
                             <label for="popup_file" class="file-upload-btn">
                                 파일 업로드
                             </label>
                             <span class="guide-txt">
                                 800*800px 비율 고해상도 사진 등록
                             </span>
-                            <div class="file-preview" id="filePreview">
+                            <div class="file-preview">
                                 <p class="file-name" id="fileName"></p>
                             </div>
                         </div>
@@ -66,5 +65,11 @@
         </div>
     </div>
 </div>
+<script>
+    function displayFileName(input, fileNameElementId) {
+        var fileName = input.files[0].name;
+        document.getElementById(fileNameElementId).textContent = fileName;
+    }
+</script>
 </body>
 </html>

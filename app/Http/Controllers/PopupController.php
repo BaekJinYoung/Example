@@ -41,6 +41,16 @@ class PopupController extends Controller
         return view('admin.popupCreate');
     }
 
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('admin.popupUpload'), $fileName);
+        }
+
+        return back();
+    }
     public function store(Request $request){
         $store = $request->validate([
             'title' => 'required',
