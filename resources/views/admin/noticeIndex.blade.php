@@ -7,9 +7,7 @@
         <header id="header">
             @include('admin.components.snb')
         </header>
-
         <div class="admin-wrap table-wrap">
-
             <div class="title-wrap col-group">
                 <div class="main-title-wrap col-group">
                     <h2 class="main-title">
@@ -28,17 +26,17 @@
                             <option value="20">1페이지에 20개까지</option>
                             <option value="30">1페이지에 30개까지</option>
                         </select>
-
-                        <div class="search-wrap col-group">
-                            <input type="text" class="search-input" placeholder="제목을 입력하세요">
-                            <button class="search-btn">
-                                <i class="xi-search"></i>
-                            </button>
-                        </div>
+                        <form action="{{route("admin.noticeIndex")}}" method="get">
+                            <div class="search-wrap col-group">
+                                <input type="text" name="search" class="search-input" placeholder="제목을 입력하세요">
+                                <button type="submit" class="search-btn">
+                                    <i class="xi-search"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
             <table class="admin-table">
                 <colgroup>
                     <col width="20%">
@@ -91,7 +89,6 @@
                 @endif
                 </tbody>
             </table>
-
             <div id="pagination"></div>
         </div>
     </div>

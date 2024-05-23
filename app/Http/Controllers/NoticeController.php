@@ -7,20 +7,32 @@ use Illuminate\Http\Request;
 
 class NoticeController extends Controller
 {
-    public function __construct(Notice $notice){
+    public function __construct(Notice $notice)
+    {
         $this->Notice = $notice;
     }
 
-    public function index(){
-        $notices = $this->Notice->latest()->paginate(10);;
+    public function index(Request $request)
+    {
+        $query = $this->Notice->query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        $notices = $query->latest()->paginate(10);
+
         return view('admin.noticeIndex', compact('notices'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin.noticeCreate');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 //        if ($request){
 //            dd($request);
 //        }
@@ -44,18 +56,20 @@ class NoticeController extends Controller
             'url' => $store['url'],
         ]);
 
-        if($request->has('continue')){
+        if ($request->has('continue')) {
             return redirect()->route('admin.noticeIndex');
         }
 
         return redirect()->route('admin.noticeIndex');
     }
 
-    public function edit(Notice $notice){
+    public function edit(Notice $notice)
+    {
         return view('admin.noticeEdit', compact('notice'));
     }
 
-    public function update(Request $request, Notice $notice){
+    public function update(Request $request, Notice $notice)
+    {
         $update = $request->validate([
             'title' => 'required',
             'details' => 'required',
@@ -79,7 +93,8 @@ class NoticeController extends Controller
         return redirect()->route('admin.noticeIndex');
     }
 
-    public function delete(Notice $notice){
+    public function delete(Notice $notice)
+    {
         $notice->delete();
         return redirect()->route('admin.noticeIndex');
     }

@@ -15,11 +15,11 @@ class PatentController extends Controller
 
     public function index(Request $request)
     {
-        $query = Patent::query();
+        $query = $this->Patent->query();
 
         if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where('title', 'like', '%' . $searchTerm . '%');
+            $search = $request->input('search');
+            $query->where('title', 'like', '%' . $search . '%');
         }
 
         $patents = $query->orderBy('order', 'desc')->get();
