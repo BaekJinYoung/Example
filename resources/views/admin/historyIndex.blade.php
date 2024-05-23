@@ -22,10 +22,10 @@
                 <div class="filter_wrap">
                     <div class="filter_input_wrap">
                         <select id="pageCount" onchange="updatePageCount()">
-                            <option value="8" name="perPage" {{ $perPage == 8 ? 'selected' : '' }}>1페이지에 8개까지</option>
-                            <option value="16" name="perPage" {{ $perPage == 16 ? 'selected' : '' }}>1페이지에 16개까지
+                            <option value="8" {{ $perPage == 8 ? 'selected' : '' }}>1페이지에 8개까지</option>
+                            <option value="16" {{ $perPage == 16 ? 'selected' : '' }}>1페이지에 16개까지
                             </option>
-                            <option value="24" name="perPage" {{ $perPage == 24 ? 'selected' : '' }}>1페이지에 24개까지
+                            <option value="24" {{ $perPage == 24 ? 'selected' : '' }}>1페이지에 24개까지
                             </option>
                         </select>
                         <select id="year">
@@ -73,7 +73,7 @@
                     @endforeach
                 @endif
             </div>
-            <div id="pagination"> {{ $histories->appends(['per_page' => $perPage])->links() }} </div>
+            <div id="pagination"> {{ $histories->appends(['perPage' => $perPage])->links() }} </div>
         </div>
     </div>
 </div>

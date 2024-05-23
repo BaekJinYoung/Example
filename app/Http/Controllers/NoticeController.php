@@ -21,9 +21,10 @@ class NoticeController extends Controller
             $query->where('title', 'like', '%' . $search . '%');
         }
 
-        $notices = $query->latest()->paginate(10);
+        $perPage = $request->query('perPage', 10);
+        $notices = $query->latest()->paginate($perPage);
 
-        return view('admin.noticeIndex', compact('notices'));
+        return view('admin.noticeIndex', compact('notices', 'perPage'));
     }
 
     public function create()

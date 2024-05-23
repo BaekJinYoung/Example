@@ -21,10 +21,10 @@
                 </div>
                 <div class="filter_wrap">
                     <div class="filter_input_wrap">
-                        <select>
-                            <option value="10">1페이지에 10개까지</option>
-                            <option value="20">1페이지에 20개까지</option>
-                            <option value="30">1페이지에 30개까지</option>
+                        <select id="pageCount" onchange="updatePageCount()">
+                            <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>1페이지에 10개까지</option>
+                            <option value="20" {{ $perPage == 20 ? 'selected' : '' }}>1페이지에 20개까지</option>
+                            <option value="30" {{ $perPage == 30 ? 'selected' : '' }}>1페이지에 30개까지</option>
                         </select>
                         <form action="{{route("admin.noticeIndex")}}" method="get">
                             <div class="search-wrap col-group">
@@ -89,9 +89,15 @@
                 @endif
                 </tbody>
             </table>
-            <div id="pagination"></div>
+            <div id="pagination"> {{ $notices->appends(['perPage' => $perPage])->links() }}</div>
         </div>
     </div>
 </div>
+<script>
+    function updatePageCount() {
+        var pageCount = document.getElementById('pageCount').value;
+        window.location.href = '?perPage=' + pageCount;
+    }
+</script>
 </body>
 </html>
