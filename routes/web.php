@@ -67,4 +67,5 @@ Route::controller(PatentController::class)->group(function () {
     Route::get('admin/patents/{patent}/edit', 'edit')->name("admin.patentEdit");
     Route::patch('admin/patents/{patent}', 'update')->name("admin.patentUpdate");
     Route::delete('admin/patents/{patent}', 'delete')->name("admin.patentDelete");
+    Route::post('admin/patents/{patent}/move/{direction}', 'move')->name("admin.patentMove");
 });

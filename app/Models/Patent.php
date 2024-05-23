@@ -12,8 +12,15 @@ class Patent extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'image', 'number'
+        'title', 'image', 'number', 'order'
     ];
 
     protected $dates = ['deleted_at'];
+
+    protected static function booted(){
+        static::creating(function($patent){
+            $maxOrder = Patent::max('order');
+            $patent->order = $maxOrder + 1;
+        });
+    }
 }

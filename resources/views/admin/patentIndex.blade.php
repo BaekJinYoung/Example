@@ -7,9 +7,7 @@
         <header id="header">
             @include('admin.components.snb')
         </header>
-
         <div class="admin-wrap admin_photo_gallery">
-
             <div class="title-wrap col-group">
                 <div class="main-title-wrap col-group">
                     <h2 class="main-title">
@@ -23,15 +21,13 @@
                 </div>
                 <div class="filter_wrap">
                     <div class="filter_input_wrap">
-                        <form method="get" action="{{route("admin.patentIndex")}}" id="pagination-form" >
-                            <select name="per_page" id="per_page" onchange="document.getElementById('pagination-form').submit();">
-                                <option value="8" {{request('per_page') == 8}}>1페이지에 8개까지</option>
-                                <option value="16" {{request('per_page') == 16}}>1페이지에 16개까지</option>
-                                <option value="24" {{request('per_page') == 24}}>1페이지에 24개까지</option>
+                        <form method="get" action="" id="pagination-form">
+                            <select name="per_page" id="per_page">
+                                <option value="8">1페이지에 8개까지</option>
+                                <option value="16">1페이지에 16개까지</option>
+                                <option value="24">1페이지에 24개까지</option>
                             </select>
                         </form>
-
-
                         <div class="search-wrap col-group">
                             <input type="text" class="search-input" placeholder="제목을 입력하세요">
                             <button class="search-btn">
@@ -41,7 +37,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="board-wrap col-group">
                 @if($patents->isEmpty())
                     <div class="null-txt">
@@ -49,44 +44,47 @@
                     </div>
                 @else
                     @foreach($patents as $key => $patent)
-                    <div class="board-item">
-                        <div class="img-box">
-                            <img src="{{asset('storage/'.$patent->image)}}" alt="">
-                        </div>
-                        <div class="txt-box row-group">
-                            <p class="title">{{$patent->title}}</p>
-                            <div class="btn-wrap col-group">
-                                <a href="{{route("admin.patentEdit", $patent->id)}}" class="btn">
-                                    수정
-                                </a>
-                                <form action="{{route("admin.patentDelete", $patent->id)}}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn del-btn">
-                                        삭제
-                                    </button>
-                                </form>
+                        <div class="board-item">
+                            <div class="img-box">
+                                <img src="{{asset('storage/'.$patent->image)}}" alt="">
                             </div>
-                            <div class="order_btn_wrap">
-                                <form action="" method="post">
-                                    <button type="submit"><i class="xi-arrow-left"></i></button>
-                                </form>
-                                <form action="" method="post">
-                                    <button type="submit"><i class="xi-arrow-right"></i></button>
-                                </form>
+                            <div class="txt-box row-group">
+                                <p class="title">{{$patent->title}}</p>
+                                <div class="btn-wrap col-group">
+                                    <a href="{{route("admin.patentEdit", $patent->id)}}" class="btn">
+                                        수정
+                                    </a>
+                                    <form action="{{route("admin.patentDelete", $patent->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn del-btn">
+                                            삭제
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="order_btn_wrap">
+                                    <form
+                                        action="{{route("admin.patentMove", ['patent' => $patent->id, 'direction' => 'left'])}}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit"><i class="xi-arrow-left"></i></button>
+                                    </form>
+                                    <form
+                                        action="{{route("admin.patentMove", ['patent' => $patent->id, 'direction' => 'right'])}}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit"><i class="xi-arrow-right"></i></button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 @endif
             </div>
-
             <div id="pagination">
             </div>
         </div>
     </div>
 </div>
-{!! $patents->links() !!}
-
 </body>
 </html>
