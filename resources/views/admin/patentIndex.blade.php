@@ -21,13 +21,11 @@
                 </div>
                 <div class="filter_wrap">
                     <div class="filter_input_wrap">
-                        <form method="get" action="" id="pagination-form">
-                            <select name="per_page" id="per_page">
-                                <option value="8">1페이지에 8개까지</option>
-                                <option value="16">1페이지에 16개까지</option>
-                                <option value="24">1페이지에 24개까지</option>
-                            </select>
-                        </form>
+                        <select id="pageCount" onchange="updatePageCount()">
+                            <option value="8" {{ $perPage == 8 ? 'selected' : '' }}>1페이지에 8개까지</option>
+                            <option value="16" {{ $perPage == 16 ? 'selected' : '' }}>1페이지에 16개까지</option>
+                            <option value="24" {{ $perPage == 24 ? 'selected' : '' }}>1페이지에 24개까지</option>
+                        </select>
                         <form action="{{route("admin.patentIndex")}}" method="get">
                             <div class="search-wrap col-group">
                                 <input type="text" name="search" class="search-input" placeholder="제목을 입력하세요">
@@ -49,7 +47,7 @@
                         <div class="board-item">
                             <div class="img-box">
                                 @if($patent->image)
-                                <img src="{{asset('storage/'.$patent->image)}}" alt="">
+                                    <img src="{{asset('storage/'.$patent->image)}}" alt="">
                                 @endif
                             </div>
                             <div class="txt-box row-group">
@@ -86,9 +84,16 @@
                 @endif
             </div>
             <div id="pagination">
+                {{ $patents->appends(['perPage' => $perPage])->links() }}
             </div>
         </div>
     </div>
 </div>
+<script>
+    function updatePageCount() {
+        var pageCount = document.getElementById('pageCount').value;
+        window.location.href = '?perPage=' + pageCount;
+    }
+</script>
 </body>
 </html>

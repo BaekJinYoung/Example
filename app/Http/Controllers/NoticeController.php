@@ -34,9 +34,6 @@ class NoticeController extends Controller
 
     public function store(Request $request)
     {
-//        if ($request){
-//            dd($request);
-//        }
         $store = $request->validate([
             'title' => 'required',
             'details' => 'required',

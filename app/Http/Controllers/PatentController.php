@@ -22,9 +22,10 @@ class PatentController extends Controller
             $query->where('title', 'like', '%' . $search . '%');
         }
 
-        $patents = $query->orderBy('order', 'desc')->get();
+        $perPage = $request->query('perPage', 8);
+        $patents = $query->orderBy('order', 'desc')->paginate($perPage);
 
-        return view('admin.patentIndex', compact('patents'));
+        return view('admin.patentIndex', compact('patents', 'perPage'));
     }
 
     public function move(Patent $patent, $direction)
