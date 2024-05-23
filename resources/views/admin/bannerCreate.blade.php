@@ -66,8 +66,7 @@
                             <span class="red">*</span>
                         </p>
                         <div class="file-upload-wrap">
-                            <!-- <input type='file' id='popup_file' accept="image/*" name="image"> -->
-                            <input type='file' id='pc_file_upload' accept="image/*" name="image">
+                            <input type='file' id='pc_file_upload' accept="image/*" name="image" onchange="displayFileName(this, 'fileName')">
                             <label for="pc_file_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
@@ -75,8 +74,8 @@
                                 800*800px 비율 고해상도 사진 등록
                             </span>
 
-                            <div class="file-preview" id="image">
-                                <p class="file-name"></p>
+                            <div class="file-preview">
+                                <p class="file-name" id="fileName"></p>
                             </div>
                         </div>
                     </div>
@@ -86,8 +85,7 @@
                             <span class="red">*</span>
                         </p>
                         <div class="file-upload-wrap">
-                            <!-- <input type='file' id='popup_file' accept="image/*" name="image"> -->
-                            <input type='file' id='mb_file_upload' accept="image/*" name="mobile_image">
+                            <input type='file' id='mb_file_upload' accept="image/*" name="mobile_image" onchange="displayFileName(this, 'mobile_fileName')">
                             <label for="mb_file_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
@@ -95,8 +93,8 @@
                                 800*800px 비율 고해상도 사진 등록
                             </span>
 
-                            <div class="file-preview" id="mobile_image">
-                                <p class="file-name"></p>
+                            <div class="file-preview">
+                                <p class="file-name" id="mobile_fileName"></p>
                             </div>
                         </div>
                     </div>
@@ -116,5 +114,11 @@
         </div>
     </div>
 </div>
+<script>
+    function displayFileName(input, fileNameElementId) {
+        var fileName = input.files[0].name;
+        document.getElementById(fileNameElementId).textContent = fileName;
+    }
+</script>
 </body>
 </html>
