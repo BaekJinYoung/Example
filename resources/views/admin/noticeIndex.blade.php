@@ -67,26 +67,26 @@
                     </tr>
                 @else
                     @foreach($notices as $key => $notice)
-                    <tr class="admin-tr">
-                        <td class="admin-td">{{$notice->title}}</td>
-                        <td class="admin-td">{{$notice->writer}}</td>
-                        <td class="admin-td">{{$notice->information}}</td>
-                        <td class="admin-td">{{$notice->date}}</td>
-                        <td class="admin-td">
-                            <div class="btn-wrap col-group">
-                                <a href="{{route("admin.noticeEdit", $notice->id)}}" class="btn">
-                                    상세
-                                </a>
-                                <form action="{{route("admin.noticeDelete", $notice->id)}}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn del-btn">
-                                        삭제
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr class="admin-tr">
+                            <td class="admin-td">{{$notice->title}}</td>
+                            <td class="admin-td">{{$notice->writer}}</td>
+                            <td class="admin-td">{{$notice->information}}</td>
+                            <td class="admin-td">{{date('Y-m-d', strtotime($notice->date))}}</td>
+                            <td class="admin-td">
+                                <div class="btn-wrap col-group">
+                                    <a href="{{route("admin.noticeEdit", $notice->id)}}" class="btn">
+                                        상세
+                                    </a>
+                                    <form action="{{route("admin.noticeDelete", $notice->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn del-btn">
+                                            삭제
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
                     @endforeach
                 @endif
                 </tbody>
