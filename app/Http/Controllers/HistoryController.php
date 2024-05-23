@@ -14,10 +14,12 @@ class HistoryController extends Controller
         $this->History = $history;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $histories = $this->History->latest()->paginate(10);
-        return view('admin.historyIndex', compact('histories'));
+        $perPage = $request->query('perPage', 8);
+        $histories = $this->History->latest()->paginate($perPage);
+
+        return view('admin.historyIndex', compact('histories', 'perPage'));
     }
 
     public function create()
@@ -34,17 +36,18 @@ class HistoryController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+        $store['details'] = $store['content'];
+
+        if($request->hasFile('image')){
+            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $store['image'] = $path;
+        }
 
         $date = Carbon::parse($store['registered_at']);
+        $store['date'] = $date->format('Y-m-d');
 
-        $this->History->create([
-            'main' => $store['main'],
-            'date' => $date,
-            'details' => $store['content'],
-            'image' => $path
-        ]);
+        $this->History->create($store);
 
         if ($request->has('continue')) {
             return redirect()->route('admin.historyIndex');

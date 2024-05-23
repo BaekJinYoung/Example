@@ -39,9 +39,8 @@
                             <span class="guide-txt">
                                 800*800px 비율 고해상도 사진 등록
                             </span>
-
-                            <div class="file-preview" id="image">
-                                <p class="file-name"></p>
+                            <div class="file-preview" id="filePreview">
+                                <p class="file-name" id="fileName"></p>
                             </div>
                         </div>
                     </div>

@@ -21,10 +21,12 @@
                 </div>
                 <div class="filter_wrap">
                     <div class="filter_input_wrap">
-                        <select id="pageCount">
-                            <option value="8">1페이지에 8개까지</option>
-                            <option value="16">1페이지에 16개까지</option>
-                            <option value="24">1페이지에 24개까지</option>
+                        <select id="pageCount" onchange="updatePageCount()">
+                            <option value="8" name="perPage" {{ $perPage == 8 ? 'selected' : '' }}>1페이지에 8개까지</option>
+                            <option value="16" name="perPage" {{ $perPage == 16 ? 'selected' : '' }}>1페이지에 16개까지
+                            </option>
+                            <option value="24" name="perPage" {{ $perPage == 24 ? 'selected' : '' }}>1페이지에 24개까지
+                            </option>
                         </select>
                         <select id="year">
                             <option value="">전체보기</option>
@@ -47,7 +49,9 @@
                     @foreach($histories as $key => $history)
                         <div class="board-item">
                             <div class="img-box">
-                                <img src="{{asset('storage/'.$history->image)}}" alt="">
+                                @if($history->image)
+                                    <img src="{{asset('storage/'.$history->image)}}" alt="">
+                                @endif
                             </div>
                             <div class="txt-box row-group">
                                 <p class="title">{{date('Y-m', strtotime($history->date))}}</p>
@@ -69,9 +73,15 @@
                     @endforeach
                 @endif
             </div>
-            <div id="pagination"></div>
+            <div id="pagination"> {{ $histories->appends(['per_page' => $perPage])->links() }} </div>
         </div>
     </div>
 </div>
+<script>
+    function updatePageCount() {
+        var pageCount = document.getElementById('pageCount').value;
+        window.location.href = '?perPage=' + pageCount;
+    }
+</script>
 </body>
 </html>

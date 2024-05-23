@@ -48,7 +48,9 @@
                     @foreach($patents as $key => $patent)
                         <div class="board-item">
                             <div class="img-box">
+                                @if($patent->image)
                                 <img src="{{asset('storage/'.$patent->image)}}" alt="">
+                                @endif
                             </div>
                             <div class="txt-box row-group">
                                 <p class="title">{{$patent->title}}</p>
