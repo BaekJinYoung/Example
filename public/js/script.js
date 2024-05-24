@@ -4,6 +4,6 @@ $(document).ready(function(){
     $('#header').load('./components/header.html');
     $('#footer').load('./components/footer.html');
 
-    $('#pagination').load('/components/pagination.html');
+    $('#pagination').load('/components/pagination.blade.php');
     $('#top_menu').load('/components/top_menu.html');
 })

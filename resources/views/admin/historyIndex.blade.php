@@ -74,7 +74,7 @@
                     @endforeach
                 @endif
             </div>
-            <div> {{ $histories->appends(['perPage' => $perPage, 'yearFilter' => $selectedYear])->links() }} </div>
+            @include('admin.components.pagination', ['paginator' => $histories])
         </div>
     </div>
 </div>
