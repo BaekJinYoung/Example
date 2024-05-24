@@ -59,25 +59,24 @@
                             이미지
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='image_upload' accept="image/*" name="image"
-                                   onchange="displayFileName(this, 'fileName')">
+                            <input type='file' id='image_upload' accept="image/*" name="image" style="display: none;">
                             <label for="image_upload" class="file-upload-btn">
                                 파일 업로드
                             </label>
                             <span class="guide-txt">
-                                620px*470px 비율 고해상도 사진 등록
+                                320*440px 비율 고해상도 사진 등록
                             </span>
-                            <div class='file-preview-wrap col-group'>
-                                <div class="file-preview " id="image" style="display: none">
-                                    <p class="file-name" id="fileName"></p>
-                                    <button type="button" class="file-del-btn" name="image">
-                                        <i class="xi-close"></i>
-                                    </button>
-                                </div>
+
+                            <div class="file-preview" id="image-preview" style="display: none">
+                                <p class="file-name" id="image-filename"></p>
+                                <button type="button" class="file-del-btn" id="remove-image-btn">
+                                    <i class="xi-close"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="form-btn-wrap col-group">
                     <a href="{{route("admin.historyIndex")}}" class="form-prev-btn">
                         목록으로
@@ -94,10 +93,18 @@
     </div>
 </div>
 <script>
-    function displayFileName(input, fileNameElementId) {
-        var fileName = input.files[0].name;
-        document.getElementById(fileNameElementId).textContent = fileName;
-    }
+    document.getElementById('image_upload').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            document.getElementById('image-preview').style.display = 'block';
+            document.getElementById('image-filename').textContent = file.name;
+        }
+    });
+
+    document.getElementById('remove-image-btn').addEventListener('click', function () {
+        document.getElementById('image_upload').value = '';
+        document.getElementById('image-preview').style.display = 'none';
+    });
 </script>
 </body>
 </html>

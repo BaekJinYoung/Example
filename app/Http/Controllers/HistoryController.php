@@ -83,9 +83,15 @@ class HistoryController extends Controller
         $update['date'] = Carbon::parse($request['registered_at']);
         $update['details'] = $request['content'];
 
-        if ($request->hasFile('image')) {
+        if ($request->remove_image == 1) {
             if ($history->image) {
-                Storage::disk('public')->delete($history->image);
+                Storage::delete('public/images/' . $history->image);
+            }
+            $update['image'] = '';
+            $update['image_name'] = '';
+        } elseif ($request->hasFile('image')) {
+            if ($history->image) {
+                Storage::delete('public/images/' . $history->image);
             }
             $fileName = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
