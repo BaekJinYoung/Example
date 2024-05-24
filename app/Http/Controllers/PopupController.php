@@ -9,17 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class PopupController extends Controller
 {
-    public function __construct(Popup $popup){
+    public function __construct(Popup $popup)
+    {
         $this->Popup = $popup;
     }
 
-    public function index(){
+    public function index()
+    {
         $popups = $this->Popup->orderBy('order', 'desc')->get();
         return view('admin.popupIndex', compact('popups'));
     }
 
-    public function move(Popup $popup, $direction){
-        if($direction == 'left'){
+    public function move(Popup $popup, $direction)
+    {
+        if ($direction == 'left') {
             $previousPopup = Popup::where('order', '>', $popup->order)->orderBy('order', 'asc')->first();
         } elseif ($direction == 'right') {
             $previousPopup = Popup::where('order', '<', $popup->order)->orderBy('order', 'desc')->first();
@@ -37,7 +40,8 @@ class PopupController extends Controller
         return redirect()->back();
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin.popupCreate');
     }
 
@@ -51,56 +55,52 @@ class PopupController extends Controller
 
         return back();
     }
-    public function store(Request $request){
-        $store = $request->validate([
-            'title' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'link' => 'nullable'
-        ]);
 
-        $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+    public function store(Request $request)
+    {
+        $store = $request->validate(['title' => 'required', 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 'link' => 'nullable']);
 
-        $this->Popup->create([
-            'title' => $store['title'],
-            'image' => $path,
-            'link' => $store['link'],
-        ]);
+        $fileName = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
 
-        if($request->has('continue')){
+        $store['image'] = $path;
+        $store['image_name'] = $fileName;
+
+        $this->Popup->create($store);
+
+        if ($request->has('continue')) {
             return redirect()->route('admin.popupCreate');
         }
 
         return redirect()->route('admin.popupIndex');
     }
 
-    public function edit(Popup $popup){
+    public function edit(Popup $popup)
+    {
         return view('admin.popupEdit', compact('popup'));
     }
 
-    public function update(Request $request, Popup $popup){
-        $update = $request->validate([
-            'title' => 'required',
-            'image' => 'nullable',
-            'link' => 'nullable'
-        ]);
+    public function update(Request $request, Popup $popup)
+    {
+        $update = $request->validate(['title' => 'required', 'image' => 'nullable', 'link' => 'nullable']);
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             if ($popup->image) {
                 Storage::disk('public')->delete($popup->image);
             }
-            $fileName = time().'_'.$request -> file('image') -> getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
             $update['image'] = $path;
+            $update['image_name'] = $fileName;
         }
 
-        Log::info('Popup update data: ', $update);
-        $popup->update($update);;
+        $popup->update($update);
 
         return redirect()->route('admin.popupIndex');
     }
 
-    public function delete(Popup $popup){
+    public function delete(Popup $popup)
+    {
         $popup->delete();
         return redirect()->route('admin.popupIndex');
     }

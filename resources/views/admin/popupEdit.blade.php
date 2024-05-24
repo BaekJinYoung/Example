@@ -38,7 +38,7 @@
                                 800*800px 비율 고해상도 사진 등록
                             </span>
                             <div class="file-preview">
-                                <p class="file-name" id="fileName">{{$popup->image}}</p>
+                                <p class="file-name" id="fileName">{{$popup->image_name}}</p>
                             </div>
                         </div>
                     </div>
