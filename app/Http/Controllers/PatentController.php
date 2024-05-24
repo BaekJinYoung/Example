@@ -55,12 +55,7 @@ class PatentController extends Controller
 
     public function store(Request $request)
     {
-        $store = $request->validate([
-            'title' => 'required',
-            'image' => 'nullable',
-            'number' => 'required',
-            'continue' => 'nullable'
-        ]);
+        $store = $request->validate(['title' => 'required', 'image' => 'nullable', 'number' => 'required', 'continue' => 'nullable']);
 
         $fileName = $request->file('image')->getClientOriginalName();
         $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
@@ -84,15 +79,17 @@ class PatentController extends Controller
 
     public function update(Request $request, Patent $patent)
     {
-        $update = $request->validate([
-            'title' => 'required',
-            'image' => 'nullable',
-            'number' => 'required'
-        ]);
+        $update = $request->validate(['title' => 'required', 'image' => 'nullable', 'number' => 'required']);
 
-        if ($request->hasFile('image')) {
+        if ($request->remove_image == 1) {
             if ($patent->image) {
-                Storage::disk('public')->delete($patent->image);
+                Storage::delete('public/images/' . $patent->image);
+            }
+            $update['image'] = '';
+            $update['image_name'] = '';
+        } elseif ($request->hasFile('image')) {
+            if ($patent->image) {
+                Storage::delete('public/images/' . $patent->image);
             }
             $fileName = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
