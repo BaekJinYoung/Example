@@ -73,7 +73,7 @@
                             </span>
                             <div class='file-preview-wrap col-group'>
                                 <div class="file-preview" id="image" style="display: none">
-                                    <p class="file-name" id="fileName"></p>
+                                    <p class="file-name" id="fileName">{{$history->image_name}}</p>
                                     <button type="button" class="file-del-btn" name="image">
                                         <i class="xi-close"></i>
                                     </button>

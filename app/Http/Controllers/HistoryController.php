@@ -37,9 +37,10 @@ class HistoryController extends Controller
         $store['details'] = $store['content'];
 
         if ($request->hasFile('image')) {
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
             $store['image'] = $path;
+            $store['image_name'] = $fileName;
         }
 
         $date = Carbon::parse($store['registered_at']);
@@ -86,9 +87,10 @@ class HistoryController extends Controller
             if ($history->image) {
                 Storage::disk('public')->delete($history->image);
             }
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
             $update['image'] = $path;
+            $update['image_name'] = $fileName;
         }
 
         $history->update($update);
