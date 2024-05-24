@@ -31,7 +31,7 @@
                         <i class="xi-home icon"></i>
                     </a>
                     <i class="xi-angle-right-min icon"></i>
-                    <a href="about.html" class="subpage-top-nav-item">
+                    <a href="about.blade.php" class="subpage-top-nav-item">
                         COMPANY
                     </a>
                     <i class="xi-angle-right-min icon"></i>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="subpage-tab-wrap col-group">
-                <a href="about.html" class="subpage-tab">
+                <a href="about.blade.php" class="subpage-tab">
                     회사소개
                 </a>
                 <a href="greeting.html" class="subpage-tab active">

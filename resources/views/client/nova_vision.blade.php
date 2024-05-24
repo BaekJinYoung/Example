@@ -49,7 +49,7 @@
                 <a href="nova_vision.html" class="subpage-tab active">
                     NOVA VISION
                 </a>
-                <a href="nova_finder.html" class="subpage-tab">
+                <a href="nova_finder.blade.php" class="subpage-tab">
                     NOVA FINDER
                 </a>
             </div>

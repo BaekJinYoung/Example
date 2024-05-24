@@ -1,0 +1,291 @@
+/*===========================================================================
+	웹폰트
+============================================================================*/
+
+/* 폰트 */
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 100;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Thin.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Thin.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Thin.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Thin.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Thin.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 200;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraLight.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraLight.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraLight.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraLight.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 300;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Light.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Light.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Light.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Light.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Light.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 400;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 800;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.ttf') format("truetype");
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 900;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.ttf') format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Giants-Bold';
+    src: url('../fonts/Giants-Bold.ttf') format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Giants-Regular';
+    src: url('../fonts/Giants-Regular.ttf') format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*===========================================================================
+	CSS 초기화
+============================================================================*/
+* { font-family: "Pretendard", sans-serif; box-sizing:border-box; margin:0; padding:0; }
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, em, img, strong, b, i, dl, dt, dd, ol, ul, li, form, label, legend, caption, article, aside, footer, header, menu, nav, section, video, a {border:0; outline:0; font-size:100%; color:#202020; line-height:1;}
+html { scroll-behavior: smooth; }
+body { line-height:1; -ms-overflow-style: none; height: 100%; }
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+ul, ol, li {list-style:none;}
+strong {display: inline-block;}
+a {margin:0; padding:0; font-size:100%; display: block; }
+pre { font-family: "Pretendard", sans-serif; white-space: pre-line; line-height: 1.5; }
+img {width: 100%;}
+input, select {vertical-align:middle; outline:0; border: 0; background: none; font-family: "Pretendard", sans-serif;}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="file"], input[type="checkbox"], input[type="radio"] { display: none; }
+select { appearance: none; background-image: url(../images/icon_arrow_down.svg); background-repeat: no-repeat; background-position: right 8px center; background-size: 24px; }
+select option[value="disabled"][disabled] {display: none;}
+label { cursor: pointer; }
+button {cursor:pointer; border: 0; outline: 0; background: none;}
+a {text-decoration: none; display: block;}
+textarea { border: 0; outline: 0; resize: none; font-family: "Pretendard", sans-serif;}
+
+/* 컨텐츠 공통 */
+.col-group {display:flex;}
+.row-group {display:flex; flex-flow: column;}
+.container { width: 100%; margin: 0 auto; padding: 0 16px; }
+.container.w1680 { max-width: 1680px; }
+.container.w1440 { max-width: 1440px; }
+.container.w1360 { max-width: 1360px; }
+.container.w1280 { max-width: 1280px; }
+.container.w1200 { max-width: 1200px; }
+.color { color: #009999; }
+.img-container { width: 100%; position: relative; }
+.img-container img { width: 100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; object-fit: cover; object-position: center; }
+.video-container { width: 100%; padding-top: 56.25%; position: relative; }
+.video-container iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #e4e4e4; }
+::-webkit-scrollbar-thumb { background: #484848; border-radius: 4px;}
+.null-txt { font-size: 20px; font-weight: 300; text-align: center; color: #9f9b9b; padding: 96px 0; }
+.pc { display: block; }
+.mb { display: none; }
+
+#postcode_search_wrap { border: 1px solid #e4e4e4; border-radius: 8px; overflow: hidden; position: absolute; width: 100%; z-index: 9; max-height: 500px !important; }
+#postcode_search_wrap *::-webkit-scrollbar { display: none !important; }
+#postcode_search_wrap .popup_head { position: sticky; top: 0; }
+#postcode_search_wrap .popup_foot { display: none !important; }
+#postcode_search_wrap .xi-close { display: inline-block; width: 24px; height: 24px; background: #333; line-height: 24px; text-align: center; color: #fff; position: absolute; top: 0; right: 0; z-index: 999; font-size: 14px; cursor: pointer; }
+
+
+@media screen and (max-width: 1024px) {
+    .null-txt { font-size: 14px; padding: 64px; }
+    .pc { display: none; }
+    .mb { display: block; }
+}
+
+/* header */
+#header { position: fixed; top: 0; width: 100%; z-index: 99999; }
+#header * { transition: .3s; }
+.header-wrap { padding: 0 24px; height: 80px; justify-content: space-between; align-items: center; border-bottom: 1px solid #e4e4e4; position: relative; }
+.header-wrap::after { content: ''; display: block; position: absolute; width: 100%; height: 0; background: #fff; top: 0; left: 0; z-index: -1; transition: .3s; }
+.header-wrap .logo { width: 172px; height: 32px; }
+.header-wrap .logo-img { width: 100%; height: 100%; background-image: url(../images/logo.svg); background-repeat: no-repeat; background-size: contain; background-position: center; }
+.header-gnb { width: 10.416vw; max-width: 200px; line-height: 80px; text-align: center; cursor: pointer; font-size: 20px; font-weight: 500; position: relative; } 
+.header-sub-gnb-wrap { position: absolute; top: 80px; width: 100%; padding: 0; gap: 16px; opacity: 0; visibility: hidden; border-right: 1px solid #e4e4e4; height: 0; }
+.header-gnb:first-child .header-sub-gnb-wrap { border-left: 1px solid #e4e4e4; }
+.header-sub-gnb { text-align: center; font-size: 16px; font-weight: 300; }
+.header-sub-gnb:hover { font-weight: 600; }
+.translate-btn-wrap { margin-right: 120px; gap: 32px; position: relative; }
+.translate-btn-wrap::after { content: ''; display: block; position: absolute; width: 1px; height: 18px; background: #202020; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.translate-btn { font-size: 18px; font-weight: bold; opacity: 0.5; }
+.translate-btn.active { opacity: 1; }
+
+.toggle-bar { position: absolute; right: 24px; top: 20px; cursor: pointer; font-size: 40px; color: #00b0ad; }
+
+/* header - 배경이 어두운 상태에서 흰색 글씨 */
+#header.white .header-wrap .logo-img {background-image: url(../images/logo_w.svg);  }
+#header.white .header-gnb { color: #fff; }
+#header.white .translate-btn-wrap::after { background: #fff; }
+#header.white .translate-btn { color: #fff; }
+
+/* header - 서브페이지 내에서 스크롤 시 배경색 */
+#header.active .header-wrap { background: #fff; }
+#header.active .header-wrap .logo-img {background-image: url(../images/logo.svg);  }
+#header.active .header-gnb { color: #202020; }
+#header.active .translate-btn-wrap::after { background: #202020; }
+#header.active .translate-btn { color: #202020; }
+
+/* header - 전체 페이지에서 호버시에 색상 변경 */
+#header.hover .header-wrap::after { height: 255px; }
+#header.hover .header-wrap .logo-img {background-image: url(../images/logo.svg);  }
+#header.hover .header-gnb { color: #202020; }
+#header.hover .header-sub-gnb-wrap { padding: 40px 0; height: 175px; opacity: 1; visibility: visible; }
+#header.hover .translate-btn-wrap::after { background: #202020; }
+#header.hover .translate-btn { color: #202020; }
+
+@media screen and (max-width: 1024px) {
+    .header-wrap { padding: 0 16px; height: 48px; }
+    .header-wrap .logo { width: 104px; height: 20px; }
+    .header-gnb-wrap { display: none; }
+    .translate-btn-wrap { margin-right: 40px; gap: 16px; }
+    .translate-btn-wrap::after { height: 14px; }
+    .translate-btn { font-size: 14px; }
+    
+    .toggle-bar { right: 12px; top: 9px; font-size: 30px; }
+}
+
+/* sitemap */
+.site-map { position: fixed; top: 0; right: 0; width: 100%; max-width: 480px; height: 100%; background: #202020; z-index: 1; transform: translateX(100%); transition: .3s; transition-delay: .2s; padding: 128px 80px; }
+#header.sitemap .site-map { transform: translateX(0); box-shadow: 0 3px 24px 0 rgba(0, 0, 0, 0.08); }
+.site-map .close-btn { font-size: 56px; color: #fff; position: absolute; top: 24px; right: 24px; }
+.site-map .gnb { gap: 32px; }
+.site-map .gnb-menu-wrap { width: 100%; gap: 24px; opacity: 0.4; transition: .3s }
+.site-map .gnb-menu-wrap.active { opacity: 1; }
+.site-map .gnb-menu { font-size: 40px; font-weight: bold; color: #fff; cursor: pointer; }
+.site-map .sub-gnb { gap: 16px; display: none;}
+.site-map .gnb-menu-wrap.active .sub-gnb { display: flex; }
+.site-map .sub-gnb-menu { font-size: 20px; color: #fff; transition: .3s; }
+
+@media screen and (max-width: 1024px) {
+    .site-map { padding: 64px 24px; }
+    .site-map .close-btn { font-size: 32px; top: 16px; right: 16px; }
+    .site-map .gnb { gap: 24px; }
+    .site-map .gnb-menu-wrap { gap: 12px; }
+    .site-map .gnb-menu { font-size: 24px; }
+    .site-map .sub-gnb { gap: 12px;}
+    .site-map .sub-gnb-menu { font-size: 16px; }
+}
+
+/* footer */
+.footer-wrap { background: #484848; padding: 40px 0; justify-content: center; align-items: center; gap: 40px; text-align: center; }
+.footer-txt-wrap { gap: 24px; }
+.footer-logo { width: 172px; }
+.footer-txt-group { gap: 8px; }
+.footer-txt { font-size: 14px; font-weight: 300; line-height: 1.43; color: #fff; }
+.footer-txt span { display: inline-block; color: #fff; }
+.footer-copy-txt { font-size: 14px; font-weight: 300; line-height: 1.43; color: #fff; opacity: 0.5; }
+
+@media screen and (max-width: 1024px) {
+    .footer-wrap { padding: 24px 0; gap: 24px; }
+    .footer-txt-wrap { gap: 16px; }
+    .footer-logo { width: 115px; }
+    .footer-txt-group { gap: 4px; }
+    .footer-txt { font-size: 12px; }
+    .footer-txt span { display: none; }
+    .footer-copy-txt { font-size: 12px; }
+}
+
+/* pagination */
+.pagination { align-items: center; margin-top: 64px; justify-content: center; }
+.pagination .page-btn { display: block; width: 40px; height: 40px; border-radius: 50%; background: #fff; text-align: center; line-height: 40px; border: 1px solid #fff; font-size: 17px; font-weight: 300; transition: .2s; color: #202020; }
+.pagination .page-btn i { color: #202020; font-size: 20px; line-height: 40px; }
+.pagination .page-btn:not(.prev-btn, .next-btn, .active):hover { background: #f5f5f5; }
+.pagination .page-btn.active { background: #333; color: #fff; border: 1px solid #333; }
+
+@media screen and (max-width: 1024px) {
+    .pagination { margin-top: 24px; }
+    .pagination .page-btn { width: 32px; height:32px; line-height: 32px; font-size: 14px; }
+    .pagination .page-btn i { font-size: 16px; }
+}
+
+/* top-btn */
+.top-btn { position: fixed; z-index: 10; right: 24px; bottom: 98px; width: 56px; height: 56px; border-radius: 50%; background: #707070; text-align: center; box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16); cursor: pointer; transition: .3s; opacity: 0; }
+#top_menu.active .top-btn { opacity: 1; }
+.top-btn:hover { box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 30px 0px; }
+.top-btn i { font-size: 29px; color: #fff; line-height: 56px; }
+
+@media screen and (max-width: 1024px) {
+    .top-btn { right: 16px; bottom: 56px; width: 40px; height: 40px; }
+    .top-btn i { font-size: 20px; line-height: 40px; }
+}
+

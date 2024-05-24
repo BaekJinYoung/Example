@@ -49,7 +49,7 @@
                 <a href="about.html" class="subpage-tab active">
                     회사소개
                 </a>
-                <a href="greeting.html" class="subpage-tab">
+                <a href="greeting.blade.php" class="subpage-tab">
                     인사말
                 </a>
             </div>

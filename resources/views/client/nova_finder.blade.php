@@ -31,7 +31,7 @@
                         <i class="xi-home icon"></i>
                     </a>
                     <i class="xi-angle-right-min icon"></i>
-                    <a href="nova_vision.html" class="subpage-top-nav-item">
+                    <a href="nova_vision.blade.php" class="subpage-top-nav-item">
                         PRODUCT
                     </a>
                     <i class="xi-angle-right-min icon"></i>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="subpage-tab-wrap col-group">
-                <a href="nova_vision.html" class="subpage-tab">
+                <a href="nova_vision.blade.php" class="subpage-tab">
                     NOVA VISION
                 </a>
                 <a href="nova_finder.html" class="subpage-tab active">

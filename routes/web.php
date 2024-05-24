@@ -10,7 +10,11 @@ use App\Http\Controllers\YoutubeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('client/index');
+});
+
+Route::get('/company/about', function () {
+    return view('client/about');
 });
 
 Route::get('/index', [ClientController::class, 'index']);

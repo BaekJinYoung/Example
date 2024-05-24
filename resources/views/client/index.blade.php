@@ -44,7 +44,7 @@
                                     AI, 클라우드, 디지털 트윈 기술을 접목한 최적사양 솔루션으로, <br>
                                     농장의 생산성을 극대화하며 축산업의 기술발전을 이끕니다.
                                 </p>
-                                <a href="about.html" class="more-btn col-group">
+                                <a href="about.blade.php" class="more-btn col-group">
                                     ABOUT NOVA
                                     <i class="xi-arrow-right icon"></i>
                                 </a>
@@ -60,7 +60,7 @@
                                     AI, 클라우드, 디지털 트윈 기술을 접목한 최적사양 솔루션으로, <br>
                                     농장의 생산성을 극대화하며 축산업의 기술발전을 이끕니다.
                                 </p>
-                                <a href="about.html" class="more-btn col-group">
+                                <a href="about.blade.php" class="more-btn col-group">
                                     ABOUT NOVA
                                     <i class="xi-arrow-right icon"></i>
                                 </a>
@@ -80,7 +80,7 @@
                                     AI, 클라우드, 디지털 트윈 기술을 접목한 최적사양 솔루션으로, <br>
                                     농장의 생산성을 극대화하며 축산업의 기술발전을 이끕니다.
                                 </p>
-                                <a href="about.html" class="more-btn col-group">
+                                <a href="about.blade.php" class="more-btn col-group">
                                     ABOUT NOVA
                                     <i class="xi-arrow-right icon"></i>
                                 </a>
@@ -96,7 +96,7 @@
                                     AI, 클라우드, 디지털 트윈 기술을 접목한 최적사양 솔루션으로, <br>
                                     농장의 생산성을 극대화하며 축산업의 기술발전을 이끕니다.
                                 </p>
-                                <a href="about.html" class="more-btn col-group">
+                                <a href="about.blade.php" class="more-btn col-group">
                                     ABOUT NOVA
                                     <i class="xi-arrow-right icon"></i>
                                 </a>
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
 
-                                    <a href="nova_vision.html" class="more-btn col-group">
+                                    <a href="nova_vision.blade.php" class="more-btn col-group">
                                         LEARN MORE
                                         <i class="xi-arrow-right icon"></i>
                                     </a>
@@ -203,7 +203,7 @@
                                         </div>
                                     </div>
 
-                                    <a href="nova_finder.html" class="more-btn col-group">
+                                    <a href="nova_finder.blade.php" class="more-btn col-group">
                                         LEARN MORE
                                         <i class="xi-arrow-right icon"></i>
                                     </a>
@@ -242,7 +242,7 @@
                             산란수 자동측정 시스템으로 과산계나 폐사체를 조기 검출하여 사료비를 절감하고 질병 발생을 예방합니다.
                         </p>
                     </div>
-    
+
                     <div class="index-why-list col-group">
                         <div class="index-why-item row-group">
                             <span class="num">01</span>
@@ -325,7 +325,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
             <div class="section index-effect">
                 <div class="container w1280">
@@ -556,7 +556,7 @@
                                         </div>
                                         <div class="index-history-item col-group">
                                             <p class="month">
-                                                08. 
+                                                08.
                                             </p>
                                             <div class="txt-group row-group">
                                                 <p class="txt">
@@ -566,7 +566,7 @@
                                         </div>
                                         <div class="index-history-item col-group">
                                             <p class="month">
-                                                05. 
+                                                05.
                                             </p>
                                             <div class="txt-group row-group">
                                                 <p class="txt">
@@ -576,7 +576,7 @@
                                         </div>
                                         <div class="index-history-item col-group">
                                             <p class="month">
-                                                01. 
+                                                01.
                                             </p>
                                             <div class="txt-group row-group">
                                                 <p class="txt">
@@ -604,13 +604,13 @@
         <!-- <div id="top_menu"></div> -->
 
         <!-- 팝업 -->
-        <!-- 
+        <!--
     <div class="pop-parent" id="popParent">
         <div class="pop">
             <div class="swiper-container">
                 <div class="swiper popupSwiper">
                     <div class="swiper-wrapper">
-                        <a href="{{$item->link}}" class="swiper-slide" target="_blank">
+{{--                        <a href="{{$item->link}}" class="swiper-slide" target="_blank">--}}
                             <div class="m-ratioBox-wrap">
                                 <div class="m-ratioBox">
                                     <img src="https://admin.hielpay.com/storage/popup/1698050140_open-popup2.jpg" alt="">
@@ -640,7 +640,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     -->
         <!-- //팝업 -->
 </body>

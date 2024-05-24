@@ -1,0 +1,146 @@
+<div class="header-wrap col-group">
+    
+    <a href="/index.html" class="logo">
+        <h1 class="logo-img"></h1>
+    </a>
+
+    <div class="header-gnb-wrap col-group">
+        <div class="header-gnb">
+            COMPANY
+            <div class="header-sub-gnb-wrap row-group">
+                <a href="/about.html" class="header-sub-gnb">
+                    회사소개
+                </a>
+                <a href="/greeting.html" class="header-sub-gnb">
+                    인사말
+                </a>
+            </div>
+        </div>
+        <div class="header-gnb">
+            R&D
+            <div class="header-sub-gnb-wrap row-group">
+                <a href="/RnD_1.html" class="header-sub-gnb">
+                    R&D역량
+                </a>
+                <a href="/RnD_2.html" class="header-sub-gnb">
+                    논문현황
+                </a>
+                <a href="/RnD_3.html" class="header-sub-gnb">
+                    특허 및 인증현황
+                </a>
+            </div>
+        </div>
+        <div class="header-gnb">
+            PRODUCTS
+            <div class="header-sub-gnb-wrap row-group">
+                <a href="/nova_vision.html" class="header-sub-gnb">
+                    NOVA VISION
+                </a>
+                <a href="/nova_finder.html" class="header-sub-gnb">
+                    NOVA FINDER
+                </a>
+            </div>
+        </div>
+        <div class="header-gnb">
+            CONTACT
+            <div class="header-sub-gnb-wrap row-group">
+                <a href="/contact.html" class="header-sub-gnb">
+                    CONTACT
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="translate-btn-wrap col-group">
+        <button type="button" class="translate-btn active">
+            KOR
+        </button>
+        <button type="button" class="translate-btn">
+            ENG
+        </button>
+    </div>
+
+    <i class="toggle-bar xi-bars"></i>
+</div>
+
+<div class="site-map">
+    <i class="close-btn xi-close-thin"></i>
+    <div class="gnb row-group">
+        <div class="gnb-menu-wrap row-group">
+            <div class="gnb-menu">
+                COMPANY
+            </div>
+            <div class="sub-gnb row-group">
+                <a href="/about.html" class="sub-gnb-menu">
+                    회사소개
+                </a>
+                <a href="/greeting.html" class="sub-gnb-menu">
+                    인사말
+                </a>
+            </div>
+        </div>
+        <div class="gnb-menu-wrap row-group">
+            <div class="gnb-menu">
+                R&D
+            </div>
+            <div class="sub-gnb row-group">
+                <a href="/RnD_1.html" class="sub-gnb-menu">
+                    R&D역량
+                </a>
+                <a href="/RnD_2.html" class="sub-gnb-menu">
+                    논문현황
+                </a>
+                <a href="/RnD_3.html" class="sub-gnb-menu">
+                    특허 및 인증현황
+                </a>
+            </div>
+        </div>
+        <div class="gnb-menu-wrap row-group">
+            <div class="gnb-menu">
+                PRODUCTS
+            </div>
+            <div class="sub-gnb row-group">
+                <a href="/nova_vision.html" class="sub-gnb-menu">
+                    NOVA VISION
+                </a>
+                <a href="/nova_finder.html" class="sub-gnb-menu">
+                    VOVA FINDER
+                </a>
+            </div>
+        </div>
+        <div class="gnb-menu-wrap row-group">
+            <div class="gnb-menu">
+                CONTACT
+            </div>
+            <div class="sub-gnb row-group">
+                <a href="/contact.html" class="sub-gnb-menu">
+                    CONTACT
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //사이트맵 열고닫기
+    $('.toggle-bar').click(function () {
+        $('#header').addClass('sitemap');
+    });
+    $('.close-btn').click(function () {
+        $('#header').removeClass('sitemap');
+    });
+
+    //사이트맵 하위메뉴
+    $('.gnb-menu').click(function(){
+        $(this).parent('.gnb-menu-wrap').toggleClass('active');
+    });
+
+    //헤더 호버시
+    $('.header-gnb').mouseover(function () {
+        $('#header').addClass('hover');
+    });
+    $('.header-gnb').mouseleave(function () {
+        $('#header').removeClass('hover');
+    });
+    
+</script>
