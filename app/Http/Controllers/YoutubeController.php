@@ -7,42 +7,55 @@ use Illuminate\Http\Request;
 
 class YoutubeController extends Controller
 {
-    public function __construct(Youtube $youtube){
+    public function __construct(Youtube $youtube)
+    {
         $this->Youtube = $youtube;
     }
 
-    public function index(){
-        $youtubes = $this->Youtube->latest()->paginate(10);;
+    public function index()
+    {
+        $youtubes = $this->Youtube->all()->map(function ($youtube) {
+            $youtube->video_id = $this->extractYouTubeId($youtube->link);
+            return $youtube;
+        });
+
         return view('admin.youtubeIndex', compact('youtubes'));
     }
 
-    public function create(){
+    private function extractYouTubeId($url)
+    {
+        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+        return $matches[1] ?? null;
+    }
+
+    public function create()
+    {
         return view('admin.youtubeCreate');
     }
 
-    public function store(Request $request){
-        $request = $request->validate([
-            'link' => 'required',
-        ]);
+    public function store(Request $request)
+    {
+        $request = $request->validate(['link' => 'required',]);
 
         $this->Youtube->create($request);
 
         return redirect()->route('admin.youtubeIndex');
     }
 
-    public function edit(Youtube $youtube){
+    public function edit(Youtube $youtube)
+    {
         return view('admin.youtubeEdit', compact('youtube'));
     }
 
-    public function update(Request $request, Youtube $youtube){
-        $request = $request->validate([
-            'link' => 'required'
-        ]);
+    public function update(Request $request, Youtube $youtube)
+    {
+        $request = $request->validate(['link' => 'required']);
         $youtube->update($request);
         return redirect()->route('admin.youtubeIndex');
     }
 
-    public function delete(Youtube $youtube){
+    public function delete(Youtube $youtube)
+    {
         $youtube->delete();
         return redirect()->route('admin.youtubeIndex');
     }
