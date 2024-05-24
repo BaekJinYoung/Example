@@ -22,48 +22,47 @@
                             제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="title" class="form-input" id="title" value="{{$banner->title}}"
-                               placeholder="제목을 입력하세요">
+                        <textarea rows="2" name="title" placeholder="제목을 작성해주세요.">{{$banner->title}}</textarea>
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             MOBILE 제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="mobile_title" class="form-input" id="mobile_title"
-                               value="{{$banner->mobile_title}}" placeholder="제목을 입력하세요">
+                        <textarea rows="2" name="mobile_title" id="mobile_title"
+                                  placeholder="MOBILE 제목을 작성해주세요.">{{$banner->mobile_title}}</textarea>
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             부제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="subtitle" class="form-input" id="subtitle"
-                               value="{{$banner->subtitle}}" placeholder="제목을 입력하세요">
+                        <textarea rows="2" name="subtitle" id="subtitle"
+                                  placeholder="부제목을 작성해주세요.">{{$banner->subtitle}}</textarea>
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             MOBILE 부제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="mobile_subtitle" class="form-input" id="mobile_subtitle"
-                               value="{{$banner->mobile_subtitle}}" placeholder="제목을 입력하세요">
+                        <textarea rows="2" name="mobile_subtitle" id="mobile_subtitle"
+                                  placeholder="MOBILE 부제목을 작성해주세요.">{{$banner->mobile_subtitle}}</textarea>
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             내용
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="details" class="form-input" id="details" value="{{$banner->details}}"
-                               placeholder="제목을 입력하세요">
+                        <textarea rows="3" name="details" id="details"
+                                  placeholder="내용을 작성해주세요.">{{$banner->details}}</textarea>
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             MOBILE 내용
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="mobile_details" class="form-input" id="mobile_details"
-                               value="{{$banner->mobile_details}}" placeholder="제목을 입력하세요">
+                        <textarea rows="3" name="mobile_details" id="mobile_details"
+                                  placeholder="MOBILE 내용을 작성해주세요.">{{$banner->mobile_details}}</textarea>
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
