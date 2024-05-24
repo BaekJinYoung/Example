@@ -29,42 +29,50 @@
                         등록된 팝업이 없습니다.
                     </div>
                 @else
-                    @foreach($popups as $key => $popup)
-                    <div class="board-item">
 
-                        <div class="img-box">
-                            <img src="{{asset('storage/'.$popup->image)}}" alt="">
-                        </div>
-                        <div class="txt-box row-group">
-                            <p class="title">{{$popup->title}}
-                            </p>
-                            <p class="date col-group">
-                                <a href="{{$popup->link}}" class="btn" target="_blank">링크</a>
-                            </p>
-                            <div class="btn-wrap col-group">
-                                <a href="{{route("admin.popupEdit", $popup->id)}}" class="btn">
-                                    수정
-                                </a>
-                                <form action="{{route("admin.popupDelete", $popup->id)}}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn del-btn">
-                                        삭제
-                                    </button>
-                                </form>
+                    @foreach($popups as $key => $popup)
+                        <div class="board-item">
+                            <div class="img-box">
+                                <img src="{{asset('storage/'.$popup->image)}}" alt="">
                             </div>
-                            <div class="order_btn_wrap">
-                                <form action="{{route("admin.popupMove", ['popup' => $popup->id, 'direction' => 'left'])}}" method="post">
-                                    @csrf
-                                    <button type="submit"><i class="xi-arrow-left"></i></button>
-                                </form>
-                                <form action="{{route("admin.popupMove", ['popup' => $popup->id, 'direction' => 'right'])}}" method="post">
-                                    @csrf
-                                    <button type="submit"><i class="xi-arrow-right"></i></button>
-                                </form>
+                            <div class="txt-box row-group">
+                                <p class="title">{{$popup->title}}
+                                </p>
+                                <p class="date col-group">
+                                    @if($popup->link)
+                                        <a href="{{$popup->link}}" class="btn" target="_blank">링크</a>
+                                    @else
+                                        <a class="btn" target="_blank">링크X</a>
+                                    @endif
+                                </p>
+                                <div class="btn-wrap col-group">
+                                    <a href="{{route("admin.popupEdit", $popup->id)}}" class="btn">
+                                        수정
+                                    </a>
+                                    <form action="{{route("admin.popupDelete", $popup->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn del-btn">
+                                            삭제
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="order_btn_wrap">
+                                    <form
+                                        action="{{route("admin.popupMove", ['popup' => $popup->id, 'direction' => 'left'])}}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit"><i class="xi-arrow-left"></i></button>
+                                    </form>
+                                    <form
+                                        action="{{route("admin.popupMove", ['popup' => $popup->id, 'direction' => 'right'])}}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit"><i class="xi-arrow-right"></i></button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 @endif
             </div>
