@@ -83,9 +83,7 @@
                     @endforeach
                 @endif
             </div>
-            <div id="pagination">
-                {{ $patents->appends(['perPage' => $perPage])->links() }}
-            </div>
+            @include('admin.components.pagination', ['paginator' => $patents])
         </div>
     </div>
 </div>

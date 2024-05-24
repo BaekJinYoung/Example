@@ -89,7 +89,7 @@
                 @endif
                 </tbody>
             </table>
-            <div id="pagination">{{ $notices->appends(['perPage' => $perPage])->links() }}</div>
+            @include('admin.components.pagination', ['paginator' => $notices])
         </div>
     </div>
 </div>
