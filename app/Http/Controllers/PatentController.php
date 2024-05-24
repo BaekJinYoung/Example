@@ -62,14 +62,13 @@ class PatentController extends Controller
             'continue' => 'nullable'
         ]);
 
-        $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+        $fileName = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
 
-        $this->Patent->create([
-            'title' => $store['title'],
-            'image' => $path,
-            'number' => $store['number'],
-        ]);
+        $store['image'] = $path;
+        $store['image_name'] = $fileName;
+
+        $this->Patent->create($store);
 
         if ($request->has('continue')) {
             return redirect()->route('admin.patentCreate');
@@ -95,11 +94,11 @@ class PatentController extends Controller
             if ($patent->image) {
                 Storage::disk('public')->delete($patent->image);
             }
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
             $update['image'] = $path;
+            $update['image_name'] = $fileName;
         }
-
 
         $patent->update($update);
 

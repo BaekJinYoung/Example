@@ -29,7 +29,6 @@
                     <div class="form-item row-group">
                         <p class="item-default">
                             이미지
-
                         </p>
                         <div class="file-upload-wrap">
                             <input type='file' id='image_upload' accept="image/*" name="image">
@@ -40,7 +39,7 @@
                                 320*440px 비율 고해상도 사진 등록
                             </span>
                                 <div class="file-preview" id="image">
-                                    <p class="file-name"></p>
+                                    <p class="file-name">{{$patent->image_name}}</p>
                                     <button type="button" class="file-del-btn" name="image">
                                         <i class="xi-close"></i>
                                     </button>
