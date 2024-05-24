@@ -19,6 +19,23 @@ class BannerController extends Controller
         return view('admin.bannerIndex', compact('banners'));
     }
 
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('admin.popupUpload'), $fileName);
+        }
+
+        if ($request->hasFile('mobile_image')) {
+            $mobile_image = $request->file('mobile_image');
+            $mobile_fileName = time() . '_' . $mobile_image->getClientOriginalName();
+            $mobile_image->move(public_path('admin.popupUpload'), $mobile_fileName);
+        }
+
+        return back();
+    }
+
     public function move(Banner $banner, $direction)
     {
         if ($direction == 'up') {
@@ -39,44 +56,41 @@ class BannerController extends Controller
         return redirect()->back();
     }
 
-    public function create()
-    {
-        return view('admin.bannerCreate');
-    }
-
-    public function upload(Request $request)
-    {
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $fileName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('admin.popupUpload'), $fileName);
-        }
-
-        if ($request->hasFile('mobile_image')) {
-            $mobile_image = $request->file('mobile_image');
-            $mobile_fileName = time() . '_' . $mobile_image->getClientOriginalName();
-            $mobile_image->move(public_path('admin.popupUpload'), $mobile_fileName);
-        }
-
-        return back();
-    }
-
     public function store(Request $request)
     {
-        $store = $request->validate(['title' => 'required', 'mobile_title' => 'required', 'subtitle' => 'required', 'mobile_subtitle' => 'required', 'details' => 'required', 'mobile_details' => 'required', 'image' => 'required', 'mobile_image' => 'required',]);
+        $store = $request->validate(['title' => 'required',
+            'mobile_title' => 'required',
+            'subtitle' => 'required',
+            'mobile_subtitle' => 'required',
+            'details' => 'required',
+            'mobile_details' => 'required',
+            'image' => 'required',
+            'mobile_image' => 'required',]);
 
-        $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public');
-        $mobile_fileName = time() . '_' . $request->file('mobile_image')->getClientOriginalName();
-        $mobile_path = $request->file('mobile_image')->storeAs('images', $mobile_fileName, 'public');
+        $fileName = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
 
-        $this->Banner->create(['title' => $store['title'], 'mobile_title' => $store['mobile_title'], 'subtitle' => $store['subtitle'], 'mobile_subtitle' => $store['mobile_subtitle'], 'details' => $store['details'], 'mobile_details' => $store['mobile_details'], 'image' => $path, 'mobile_image' => $mobile_path,]);
+        $store['image'] = $path;
+        $store['image_name'] = $fileName;
+
+        $mobile_fileName = $request->file('mobile_image')->getClientOriginalName();
+        $mobile_path = $request->file('mobile_image')->storeAs('images', time() . '_' . $mobile_fileName, 'public');
+
+        $store['mobile_image'] = $mobile_path;
+        $store['mobile_image_name'] = $mobile_fileName;
+
+        $this->Banner->create($store);
 
         if ($request->has('continue')) {
             return redirect()->route('admin.bannerCreate');
         }
 
         return redirect()->route('admin.bannerIndex');
+    }
+
+    public function create()
+    {
+        return view('admin.bannerCreate');
     }
 
     public function edit(Banner $banner)
@@ -86,28 +100,36 @@ class BannerController extends Controller
 
     public function update(Request $request, Banner $banner)
     {
-        $update = $request->validate(['title' => 'required', 'mobile_title' => 'required', 'subtitle' => 'required', 'mobile_subtitle' => 'required', 'details' => 'required', 'mobile_details' => 'required', 'image' => 'nullable', 'mobile_image' => 'nullable',]);
-
-        $path = $banner->image;
-        $mobile_path = $banner->mobile_image;
+        $update = $request->validate(['title' => 'required',
+            'mobile_title' => 'required',
+            'subtitle' => 'required',
+            'mobile_subtitle' => 'required',
+            'details' => 'required',
+            'mobile_details' => 'required',
+            'image' => 'nullable',
+            'mobile_image' => 'nullable',]);
 
         if ($request->hasFile('image')) {
             if ($banner->image) {
                 Storage::disk('public')->delete($banner->image);
             }
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', $fileName, 'public');
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
+            $update['image']=$path;
+            $update['image_name']=$fileName;
         }
 
         if ($request->hasFile('mobile_image')) {
             if ($banner->mobile_image) {
                 Storage::disk('public')->delete($banner->mobile_image);
             }
-            $mobile_fileName = time() . '_' . $request->file('mobile_image')->getClientOriginalName();
-            $mobile_path = $request->file('mobile_image')->storeAs('images', $mobile_fileName, 'public');
+            $mobile_fileName = $request->file('mobile_image')->getClientOriginalName();
+            $mobile_path = $request->file('mobile_image')->storeAs('images', time() . '_' . $mobile_fileName, 'public');
+            $update['mobile_image']=$mobile_path;
+            $update['mobile_image_name']=$mobile_fileName;
         }
 
-        $banner->update(['title' => $update['title'], 'mobile_title' => $update['mobile_title'], 'subtitle' => $update['subtitle'], 'mobile_subtitle' => $update['mobile_subtitle'], 'details' => $update['details'], 'mobile_details' => $update['mobile_details'], 'image' => $path, 'mobile_image' => $mobile_path,]);
+        $banner->update($update);
 
         return redirect()->route('admin.bannerIndex');
     }
