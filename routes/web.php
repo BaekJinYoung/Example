@@ -3,13 +3,17 @@
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PatentController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\YoutubeController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::controller(ClientController::class)->group(function () {
+    Route::get('/', 'index')->name('client.index');
     Route::get('/', 'index')->name('client.index');
     Route::get('/company/about', 'about')->name('client.about');
     Route::get('/company/greeting', 'greeting')->name('client.greeting');
@@ -21,7 +25,10 @@ Route::controller(ClientController::class)->group(function () {
     Route::get('/products/finder', 'nova_finder')->name('client.nova_finder');
 });
 
-Route::get('/index', [ClientController::class, 'index']);
+Route::controller(LanguageController::class)->group(function () {
+    Route::get('/lang/ko', 'setKorean')->name('client.lang.ko');
+    Route::get('/lang/en', 'setEnglish')->name('client.lang.en');
+});
 
 Route::controller(PopupController::class)->group(function () {
     Route::get('admin/popups', 'index')->name("admin.popupIndex");

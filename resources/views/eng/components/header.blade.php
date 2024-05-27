@@ -9,10 +9,10 @@
             COMPANY
             <div class="header-sub-gnb-wrap row-group">
                 <a href="{{route("client.about")}}" class="header-sub-gnb">
-                    회사소개
+                    About NOVA
                 </a>
                 <a href="{{route("client.greeting")}}" class="header-sub-gnb">
-                    인사말
+                    Greeting
                 </a>
             </div>
         </div>
@@ -20,13 +20,13 @@
             R&D
             <div class="header-sub-gnb-wrap row-group">
                 <a href="{{route("client.RnD_1")}}" class="header-sub-gnb">
-                    R&D역량
+                    R&D Capabilities
                 </a>
                 <a href="{{route("client.RnD_2")}}" class="header-sub-gnb">
-                    논문현황
+                    Publications
                 </a>
                 <a href="{{route("client.RnD_3")}}" class="header-sub-gnb">
-                    특허 및 인증현황
+                    Patents & <br> Certifications
                 </a>
             </div>
         </div>
@@ -72,10 +72,10 @@
             </div>
             <div class="sub-gnb row-group">
                 <a href="{{route("client.about")}}" class="sub-gnb-menu">
-                    회사소개
+                    About NOVA
                 </a>
                 <a href="{{route("client.greeting")}}" class="sub-gnb-menu">
-                    인사말
+                    Greeting
                 </a>
             </div>
         </div>
@@ -85,13 +85,13 @@
             </div>
             <div class="sub-gnb row-group">
                 <a href="{{route("client.RnD_1")}}" class="sub-gnb-menu">
-                    R&D역량
+                    R&D Capabilities
                 </a>
                 <a href="{{route("client.RnD_2")}}" class="sub-gnb-menu">
-                    논문현황
+                    Publications
                 </a>
-                <a href="{{route("client.RnD_3")}}" class="sub-gnb-menu">
-                    특허 및 인증현황
+                <a href="{{route("client.RnD_3")}}" class="sub-gnb-menu ls">
+                    Patents & Certifications
                 </a>
             </div>
         </div>
@@ -122,7 +122,6 @@
 </div>
 
 <script>
-
     //사이트맵 열고닫기
     $('.toggle-bar').click(function () {
         $('#header').addClass('sitemap');

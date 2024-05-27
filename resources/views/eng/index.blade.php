@@ -31,55 +31,48 @@
         }
     </style>
 </head>
-
 <body>
 <div id="wrap">
 
     <div id="header" class="white">
-        @include('client.components.header')
+        @include('eng.components.header')
     </div>
 
-    <div class="index-wrap fullpage-wrapper" id="fullpage">
-        <div class="section index-main fp-section active fp-table fp-completely">
-            <div class="fp-tableCell">
-                <div class="scroll-icon col-group">
-                    <span>SCROLL</span>
-                    <div class="scroll-icon-img">
-                        <div class="scroll-icon-core"></div>
-                    </div>
+    <div class="index-wrap" id="fullpage">
+        <div class="section index-main">
+            <div class="scroll-icon col-group">
+                <span>SCROLL</span>
+                <div class="scroll-icon-img">
+                    <div class="scroll-icon-core"></div>
                 </div>
-
-                <div class="swiper index-main-slide swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden">
-                    <div class="swiper-pagination index-pagination swiper-pagination-bullets swiper-pagination-horizontal">
-                        <span class="swiper-pagination-bullet"></span>
-                    </div>
-                    <div class="swiper-wrapper">
-                        @foreach($banners as $key => $banner)
-                            <div class="swiper-slide">
-                                <img src="{{asset('storage/'.$banner->image)}}" alt="" class="bg-img pc">
-                                <img src="{{asset('storage/'.$banner->mobile_image)}}" alt="" class="bg-img mb">
-                                <div class="txt-box pc">
-                                    <p class="sub-title">
-                                        {{$banner->subtitle}}
-                                    </p>
-                                    <h2 class="title">
-                                        {{$banner->title}}
-                                    </h2>
-                                    <p class="txt">
-                                        {{$banner->details}}
-                                    </p>
-                                    <a href="{{route("client.about")}}" class="more-btn col-group">
-                                        ABOUT NOVA
-                                        <i class="xi-arrow-right icon"></i>
-                                    </a>
-                                </div>
+            </div>
+            <div class="swiper index-main-slide">
+                <div class="swiper-pagination index-pagination"></div>
+                <div class="swiper-wrapper">
+                    @foreach($banners as $key => $banner)
+                        <div class="swiper-slide">
+                            <img src="{{asset('storage/'.$banner->image)}}" alt="" class="bg-img pc">
+                            <img src="{{asset('storage/'.$banner->mobile_image)}}" alt="" class="bg-img mb">
+                            <div class="txt-box pc">
+                                <p class="sub-title">
+                                    {{$banner->subtitle}}
+                                </p>
+                                <h2 class="title">
+                                    {{$banner->title}}
+                                </h2>
+                                <p class="txt">
+                                    {{$banner->details}}
+                                </p>
+                                <a href="{{route("client.about")}}" class="more-btn col-group">
+                                    ABOUT NOVA
+                                    <i class="xi-arrow-right icon"></i>
+                                </a>
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-
         <div class="section index-product">
             <div class="swiper index-product-slide">
                 <div class="swiper-wrapper">
@@ -103,25 +96,25 @@
 
                                 <div class="txt-box row-group">
                                     <p class="title">
-                                        스마트 축산 체중 예측 시스템
+                                        Smart Livestock Weight Prediction System
                                     </p>
                                     <div class="txt-group row-group">
                                         <div class="txt-item col-group">
                                             <i class="xi-check icon"></i>
                                             <p class="txt">
-                                                3D 스테레오비전 카메라
+                                                3D Stereo Vision Camera
                                             </p>
                                         </div>
                                         <div class="txt-item col-group">
                                             <i class="xi-check icon"></i>
                                             <p class="txt">
-                                                AI 체중예측 알고리즘
+                                                AI Weight Prediction Algorithm
                                             </p>
                                         </div>
                                         <div class="txt-item col-group">
                                             <i class="xi-check icon"></i>
                                             <p class="txt">
-                                                증체량 모니터링 시스템
+                                                Monitoring System for Weight Gain
                                             </p>
                                         </div>
                                     </div>
@@ -154,25 +147,25 @@
 
                                 <div class="txt-box row-group">
                                     <p class="title">
-                                        산란수 자동 측정 시스템
+                                        Automatic Egg Laying Count System
                                     </p>
                                     <div class="txt-group row-group">
                                         <div class="txt-item col-group">
                                             <i class="xi-check icon"></i>
                                             <p class="txt">
-                                                달걀 검출을 위한 RGB 카메라
+                                                RGB Camera for Egg Detection
                                             </p>
                                         </div>
                                         <div class="txt-item col-group">
                                             <i class="xi-check icon"></i>
                                             <p class="txt">
-                                                산란수 측정 AI 알고리즘
+                                                AI Algorithm for Counting Egg Laying
                                             </p>
                                         </div>
                                         <div class="txt-item col-group">
                                             <i class="xi-check icon"></i>
                                             <p class="txt">
-                                                과산계 검출 모니터링 시스템
+                                                Monitoring System for Detection of Non-laying and Dead Hens
                                             </p>
                                         </div>
                                     </div>
@@ -207,14 +200,15 @@
             <div class="container 1680">
                 <div class="index-title-wrap center row-group">
                     <p class="sub-title">
-                        노바의 차별점
+                        Here are the <br class="mb"> features of NOVA
                     </p>
                     <h3 class="title">
                         WHY NOVA?
                     </h3>
                     <p class="txt">
-                        3D 컴퓨터비전 기반 인공지능 기술을 통해 가축 체중을 비접촉으로 측정하고, 출하시기, 건강상태, 사료 소비량 등을 결정하여 농장의 생산성을 높입니다. <br>
-                        산란수 자동측정 시스템으로 과산계나 폐사체를 조기 검출하여 사료비를 절감하고 질병 발생을 예방합니다.
+                        NOVA improves farm productivity by determining slaughter time, pregnancy status, and feed
+                        quantity.. <br>
+                        NOVA helps in reducing feed costs and preventing diseases.
                     </p>
                 </div>
 
@@ -224,11 +218,11 @@
                         <img src="/images/index_why_01.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                손쉬운 사용
+                                Ease of Use
                             </p>
                             <p class="txt">
-                                스마트폰 또는 태블릿에서 <br>
-                                실시간 모니터링이 가능
+                                Real-time monitoring <br>
+                                on smartphones or tablets
                             </p>
                         </div>
                     </div>
@@ -237,12 +231,12 @@
                         <img src="/images/index_why_02.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                저렴한 도입비용
+                                Low Initial Cost
                             </p>
                             <p class="txt">
-                                자체 개발된 3차원 영상 카메라로 <br>
-                                제작단가를 낮추고, <br>
-                                초기 도입비용이 없는 월정액 도입
+                                In-house 3D cameras and <br>
+                                monthly fee <br>
+                                with no initial setup cost
                             </p>
                         </div>
                     </div>
@@ -251,11 +245,11 @@
                         <img src="/images/index_why_03.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                사료비 절감
+                                Feed Cost Reduction
                             </p>
                             <p class="txt">
-                                가축의 성장정도에 따른 <br>
-                                사료 소비량 컨트롤
+                                Controlling feed consumption <br>
+                                based on the growth of livestock
                             </p>
                         </div>
                     </div>
@@ -264,11 +258,11 @@
                         <img src="/images/index_why_04.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                노동력 감소
+                                Labor Reduction
                             </p>
                             <p class="txt">
-                                고노동 및 고인력이 필요한 축산업에 <br>
-                                비접촉 무노동 가능
+                                Non-contact and <br>
+                                labor-free operation
                             </p>
                         </div>
                     </div>
@@ -277,11 +271,12 @@
                         <img src="/images/index_why_05.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                실시간 모니터링
+                                Monitoring in Real-time
                             </p>
                             <p class="txt">
-                                시간 통계 및 변화 과정을 <br>
-                                수치 및 그래프로 분석 및 가시화
+                                Real-time statistics and <br>
+                                changes through numerical data <br>
+                                and graphs
                             </p>
                         </div>
                     </div>
@@ -290,11 +285,12 @@
                         <img src="/images/index_why_06.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                정밀사양관리
+                                Smart Farming
                             </p>
                             <p class="txt">
-                                가축의 건강과 생산성을 개선 시키는 <br>
-                                생장관리 시스템 제공
+                                A growth management system <br>
+                                that enhances the health <br>
+                                and productivity of livestock
                             </p>
                         </div>
                     </div>
@@ -306,14 +302,16 @@
             <div class="container w1280">
                 <div class="index-title-wrap center row-group">
                     <p class="sub-title">
-                        기대효과
+                        Expected Effects
                     </p>
                     <h3 class="title">
                         NOVA EFFECTS
                     </h3>
                     <p class="txt">
-                        고령화된 농업인의 노동력을 감소하고, 사료 소비량 결정, 출하시점 제공 등 농장 운영에 다양한 이점을 제공합니다. <br>
-                        과산계 및 폐사체 조기 선별로, 노동력 및 사료비를 절감하고 생산성을 향상시킵니다.
+                        It reduces the labor force of aging farmers and provides benefits in farm management, such as
+                        determining feed consumption and slaughter time. <br>
+                        Early selection of non-laying and dead hens reduces labor and feed costs while enhancing
+                        productivity.
                     </p>
                 </div>
 
@@ -322,15 +320,15 @@
                         <img src="/images/index_effect_01.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                사료 소비 감소
+                                Reduced Feed Consumption
                             </p>
                             <div class="percent col-group">
                                 10%
                                 <img src="/images/index_effect_arrow_down.png" alt="" class="arrow">
                             </div>
                             <p class="txt">
-                                가축성장 데이터에 기반한 <br>
-                                최적의 사료소비량 결정
+                                Optimal feed consumption determined <br>
+                                based on livestock growth data
                             </p>
                         </div>
                     </div>
@@ -338,15 +336,15 @@
                         <img src="/images/index_effect_02.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                노동력 절감
+                                Labor Reduction
                             </p>
                             <div class="percent col-group">
                                 30%
                                 <img src="/images/index_effect_arrow_down.png" alt="" class="arrow">
                             </div>
                             <p class="txt">
-                                체중측정 및 과산계 선별에 소요되는 노동력 감소, <br>
-                                각종 기능을 통한 노동 효율 증가
+                                Reduced labor for weight measurement <br>
+                                and overfeeding selection
                             </p>
                         </div>
                     </div>
@@ -354,15 +352,15 @@
                         <img src="/images/index_effect_03.svg" alt="" class="img">
                         <div class="txt-group row-group">
                             <p class="title">
-                                생산성 향상
+                                Productivity Enhancement
                             </p>
                             <div class="percent col-group">
                                 35%
                                 <img src="/images/index_effect_arrow_up.png" alt="" class="arrow">
                             </div>
                             <p class="txt">
-                                스트레스로 인한 폐사를 줄이고, <br>
-                                사료 및 인건비 감소에 따른 생산성 증대
+                                Reducing mortality caused by stress and <br>
+                                improving productivity
                             </p>
                         </div>
                     </div>
@@ -377,8 +375,8 @@
                         HISTORY
                     </p>
                     <h3 class="title">
-                        축산에 가치를 더하는 기업 <span class="color">NOVA</span>가 <br>
-                        <strong>걸어온 길</strong>을 소개합니다.
+                        <span class="color">NOVA</span>, A Company Adding Value to Agriculture <br>
+                        We are constantly striving to have a positive impact on the industry.
                     </h3>
                 </div>
             </div>
@@ -420,7 +418,7 @@
         </div>
         <div class="section fp-auto-height">
             <div id="footer">
-                @include('client.components.footer')
+                @include('eng.components.footer')
             </div>
         </div>
     </div>
@@ -496,7 +494,9 @@
     </script>
 </div>
 
+
 <script>
+
     function nonePopup() {
         document.getElementById('popParent').style.display = "none";
     }
@@ -591,7 +591,6 @@
             }
         }
     });
-
 
 </script>
 </body>
