@@ -12,7 +12,7 @@ class Banner extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'mobile_title', 'subtitle', 'mobile_subtitle', 'details', 'mobile_details', 'image', 'mobile_image', 'order', 'image_name', 'mobile_image_name'
+        'title', 'mobile_title', 'subtitle', 'mobile_subtitle', 'details', 'mobile_details', 'image', 'mobile_image', 'order', 'image_name', 'mobile_image_name', 'language'
     ];
 
     protected $dates = ['deleted_at'];

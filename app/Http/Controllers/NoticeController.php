@@ -14,6 +14,7 @@ class NoticeController extends Controller
 
     public function index(Request $request)
     {
+        $locale = $request->session()->get('locale', 'ko');
         $query = $this->Notice->query();
 
         if ($request->has('search')) {
@@ -22,7 +23,7 @@ class NoticeController extends Controller
         }
 
         $perPage = $request->query('perPage', 10);
-        $notices = $query->latest()->paginate($perPage);
+        $notices = $query->where('language', $locale)->latest()->paginate($perPage);
 
         return view('admin.noticeIndex', compact('notices', 'perPage'));
     }
@@ -34,6 +35,8 @@ class NoticeController extends Controller
 
     public function store(Request $request)
     {
+        $locale = $request->session()->get('locale', 'ko');
+
         $store = $request->validate([
             'title' => 'required',
             'details' => 'required',
@@ -44,15 +47,10 @@ class NoticeController extends Controller
             'url' => 'nullable',
         ]);
 
-        $this->Notice->create([
-            'title' => $store['title'],
-            'details' => $store['details'],
-            'summary' => $store['summary'],
-            'writer' => $store['writer'],
-            'information' => $store['information'],
-            'date' => $store['registered_at'],
-            'url' => $store['url'],
-        ]);
+        $store['language'] = $locale;
+        $store['date'] = $store['registered_at'];
+
+        $this->Notice->create($store);
 
         if ($request->has('continue')) {
             return redirect()->route('admin.noticeIndex');

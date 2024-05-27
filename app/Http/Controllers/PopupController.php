@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Popup;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,9 +15,11 @@ class PopupController extends Controller
         $this->Popup = $popup;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $popups = $this->Popup->orderBy('order', 'desc')->get();
+        $locale = $request->session()->get('locale', 'ko');
+        $popups = $this->Popup->where('language', $locale)->orderBy('order', 'desc')->get();
+
         return view('admin.popupIndex', compact('popups'));
     }
 
@@ -58,6 +61,8 @@ class PopupController extends Controller
 
     public function store(Request $request)
     {
+        $locale = $request->session()->get('locale', 'ko');
+
         $store = $request->validate(['title' => 'required', 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 'link' => 'nullable']);
 
         $fileName = $request->file('image')->getClientOriginalName();
@@ -65,6 +70,7 @@ class PopupController extends Controller
 
         $store['image'] = $path;
         $store['image_name'] = $fileName;
+        $store['language'] = $locale;
 
         $this->Popup->create($store);
 

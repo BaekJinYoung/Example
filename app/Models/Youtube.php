@@ -12,7 +12,7 @@ class Youtube extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'link'
+        'link', 'language'
     ];
 
     protected $dates = ['deleted_at'];

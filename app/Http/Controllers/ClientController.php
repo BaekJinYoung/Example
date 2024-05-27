@@ -14,12 +14,12 @@ class ClientController extends Controller
     public function index(){
         $locale = session('locale', 'ko');
 
-        $banners = Banner::orderby('order', 'desc')->get();
-        $histories = History::orderBy('date', 'asc')->get();
+        $banners = Banner::where('language', $locale)->orderby('order', 'desc')->get();
+        $histories = History::where('language', $locale)->orderBy('date', 'asc')->get();
         $historiesByYear = $histories->groupBy(function ($date) {
             return Carbon::parse($date->date)->format('Y');
         })->sortKeysDesc();
-        $popups = Popup::orderby('order', 'desc')->get();
+        $popups = Popup::where('language', $locale)->orderby('order', 'desc')->get();
         if($locale == 'en'){
             return view('eng.index', compact('banners', 'historiesByYear', 'popups'));
         } else {

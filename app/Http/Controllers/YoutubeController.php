@@ -12,9 +12,10 @@ class YoutubeController extends Controller
         $this->Youtube = $youtube;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $youtubes = $this->Youtube->all()->map(function ($youtube) {
+        $locale = $request->session()->get('locale', 'ko');
+        $youtubes = $this->Youtube->where('language', $locale)->get()->map(function ($youtube) {
             $youtube->video_id = $this->extractYouTubeId($youtube->link);
             return $youtube;
         });
@@ -35,9 +36,10 @@ class YoutubeController extends Controller
 
     public function store(Request $request)
     {
-        $request = $request->validate(['link' => 'required',]);
-
-        $this->Youtube->create($request);
+        $locale = $request->session()->get('locale', 'ko');
+        $store = $request->validate(['link' => 'required',]);
+        $store['language'] = $locale;
+        $this->Youtube->create($store);
 
         return redirect()->route('admin.youtubeIndex');
     }

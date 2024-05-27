@@ -12,7 +12,7 @@ class Popup extends Model
     use softDeletes;
 
     protected $fillable = [
-      'title', 'image', 'link', 'order','image_name'
+      'title', 'image', 'link', 'order','image_name', 'language'
     ];
 
     protected $dates = ['deleted_at'];

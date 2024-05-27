@@ -12,7 +12,7 @@ class History extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'main', 'date', 'details', 'image', 'image_name'
+        'main', 'date', 'details', 'image', 'image_name', 'language'
     ];
 
     protected $dates = ['deleted_at'];

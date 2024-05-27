@@ -12,7 +12,7 @@ class Patent extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'image', 'number', 'order', 'image_name'
+        'title', 'image', 'number', 'order', 'image_name', 'language'
     ];
 
     protected $dates = ['deleted_at'];

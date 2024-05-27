@@ -12,7 +12,7 @@ class Notice extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'details', 'summary', 'writer', 'information', 'date', 'url'
+        'title', 'details', 'summary', 'writer', 'information', 'date', 'url', 'language'
     ];
 
     protected $dates = ['deleted_at'];
