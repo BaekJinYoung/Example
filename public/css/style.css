@@ -91,7 +91,7 @@
 
 @media screen and (max-width: 1024px) {
     .fp-section, .fp-tableCell { height: auto !important; }
-    
+
     .more-btn { width: 160px; height: 48px; border-radius: 24px; padding-left: 16px; padding-right: 16px; font-size: 14px; }
     .more-btn .icon { font-size: 16px; }
 }
@@ -203,7 +203,7 @@
     .index-title-wrap .title { font-size: 36px; }
     .index-title-wrap .txt { margin-top: 16px; font-size: 14px; }
     .index-title-wrap .num { font-size: 48px; top: -8px; left: 104px; }
-    
+
     .index-product { padding: 80px 0; max-width: 480px; margin: 0 auto; }
     .index-product::after { display: none; }
     .index-product .index-title-wrap { text-align: center; }
@@ -215,7 +215,7 @@
     .index-product-group .txt-box .title { font-size: 16px; }
     .index-product-group .txt-group { gap: 4px; }
     .index-product-group .txt-item .txt { font-size: 14px; }
-    
+
     .index-product-btn-wrap { gap: 8px; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; z-index: 1; }
     .index-product-btn { width: 32px; height: 32px; line-height: 30px; font-size: 16px; }
 }
@@ -309,9 +309,9 @@
 .index-history .index-title-wrap .title { font-size: 32px; font-weight: 500; line-height: 1.4; }
 .index-history-wrap { position: relative; }
 .index-history-wrap::after { content: ''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: calc( 100% - 88px ); background: #f5f5f5; }
-.index-history-slide .swiper-slide { padding-top: 130px; padding-bottom: 48px; padding-left: 24px; padding-right: 48px; }  
-.index-history-year { position: absolute; left: 0; top: 0; font-size: 64px; font-weight: 900; color: #e4e4e4; }  
-.index-history-year .color { color: #202020; transition: .5s; }
+.index-history-slide .swiper-slide { padding-top: 130px; padding-bottom: 48px; padding-left: 24px; padding-right: 48px; }
+.index-history-year { position: absolute; left: 0; top: 0; font-size: 64px; font-weight: 900; color: #e4e4e4; }
+.index-history-year .color { color: #202020; transition: .5s;}
 .index-history-slide .swiper-slide-active .index-history-year .color { color: #009999; }
 .index-history-group { gap: 24px; position: relative; }
 .index-history-group::after { content: ''; display: block; position: absolute; left: -23px; height: 100%; width: 1px; background: #202020; }
@@ -326,7 +326,7 @@
 @media screen and (max-width: 1680px) {
     .index-history .index-title-wrap { margin-bottom: 36px; }
     .index-history-wrap::after { height: calc( 100% - 72px ); }
-    .index-history-slide .swiper-slide { padding-top: 96px; padding-bottom: 24px; padding-right: 24px; }  
+    .index-history-slide .swiper-slide { padding-top: 96px; padding-bottom: 24px; padding-right: 24px; }
 
     .index-history-year { font-size: 56px; }
     .index-history-group { gap: 12px; }
@@ -343,7 +343,7 @@
     .index-history .index-title-wrap { gap: 8px; text-align: center; margin-bottom: 56px; }
     .index-history .index-title-wrap .title { font-size: 24px; font-weight: 500; line-height: 1.4; }
     .index-history-wrap::after { height: calc( 100% - 48px ); }
-    .index-history-slide .swiper-slide { padding-top: 72px;; padding-right: 16px; }  
+    .index-history-slide .swiper-slide { padding-top: 72px;; padding-right: 16px; }
 
     .index-history-year { font-size: 36px; }
     .index-history-group { gap: 8px; }
@@ -389,17 +389,17 @@
     .subpage-top-nav { gap: 4px; }
     .subpage-top-nav-item { font-size: 14px; }
     .subpage-top-nav .icon { font-size: 14px; }
-    
+
     .subpage-tab { width: 100%; max-width: 240px; height: 48px; font-size: 14px; }
-    
+
     .subpage-title-wrap { gap: 16px; margin-bottom: 24px; }
     .subpage-title-wrap .sub-title { font-size: 14px; letter-spacing: 4.2px; }
     .subpage-title-wrap .title { font-size: 20px; }
     .subpage-title-wrap .txt { font-size: 14px; margin-top: 8px; }
-    
+
     .subpage-title-wrap.bt .title { font-size: 24px; }
     .subpage-title-wrap.bt .txt { margin-top: 4px; }
-    
+
     .subpage .subpage-wrap { padding-bottom: 56px; }
     .subpage .section { padding-top: 56px; }
 }
@@ -469,7 +469,7 @@
 @media screen and (max-width: 1024px) {
     .about-history-tab-list { margin-bottom: 36px; }
     .about-history-tab { width: 100%; max-width: 230px; line-height: 40px; font-size: 16px; }
-    
+
     .about-history-wrap .img-box { display: none; }
     .about-history-group { width: 100%; gap: 24px; padding-left: 16px; }
     .about-history-group::after { left: 3px; }
@@ -540,11 +540,11 @@
     .rnd .right { width: 100%; }
 
     .rnd-capa { max-width: 480px; margin: 0 auto; }
-    
+
     .rnd-dev-tab-list { gap: 24px; flex-flow: row; justify-content: center; margin-bottom: 24px; }
     .rnd-dev-tab { margin-left: 0; font-size: 16px; }
     .rnd-dev-tab::after { display: none; }
-    
+
     .rnd-dev-wrap .img-box { margin-bottom: 24px; }
     .rnd-dev-wrap .title { font-size: 20px; margin-bottom: 12px; }
     .rnd-dev-wrap .sub-title { font-size: 18px; margin-bottom: 16px; }
@@ -610,7 +610,7 @@
     .patent-item .txt-group { padding-top: 8px; text-align: center; gap: 4px; }
     .patent-item .title { font-size: 15px; }
     .patent-item .txt { font-size: 13px; }
-    
+
     #img_view_wrap .img-wrap { width: calc( 100% - 48px ); }
     #img_view_wrap .close-btn { display: none; }
 }
@@ -641,9 +641,9 @@
 .product .section-top-txt { padding: 48px 64px; font-size: 40px; font-weight: 500; position: relative; width: fit-content; margin: 0 auto; }
 .product .section-top-txt::after { content: '['; left: 0; }
 .product .section-top-txt::before { content: ']'; right: 0; }
-.product .section-top-txt::after, 
+.product .section-top-txt::after,
 .product .section-top-txt::before { display: block; position: absolute; font-size: 123px; font-weight: 100; color: #e4e4e4; top: 50%; transform: translateY(-50%); }
-.product .section-top-txt-wrap .img-box { padding-top: 140px; background-image: url(../images/product_top_bg.png); background-position: center top; background-repeat: no-repeat; background-size: 75% 60%; } 
+.product .section-top-txt-wrap .img-box { padding-top: 140px; background-image: url(../images/product_top_bg.png); background-position: center top; background-repeat: no-repeat; background-size: 75% 60%; }
 
 .product .subpage-title-wrap.main { margin-bottom: 0; padding-bottom: 182px; position: relative; }
 .product .subpage-title-wrap.main::after { content: ''; display: block; position: absolute; width: 1px; height: 100px; background: #aeaeae; bottom: 40px; left: 50%; }
@@ -683,14 +683,14 @@
     .product .section-top .subpage-title-wrap .logo { width: 40px; }
     .product .section-top .subpage-title-wrap .title { font-size: 20px; }
     .product .section-top .subpage-title-wrap .txt { font-size: 14px; }
-    
+
     .product .section-top-txt-group { text-align: center; }
     .product .section-top-bg-txt { font-size: 64px; font-weight: 900; color: #fff; -webkit-text-stroke: 1px #e4e4e4; }
     .product .section-top-txt { padding: 24px 16px; font-size: 16px; }
-    .product .section-top-txt::after, 
+    .product .section-top-txt::after,
     .product .section-top-txt::before { font-size: 24px; }
-    .product .section-top-txt-wrap .img-box { padding-top: 0; background-size: 75% 40%; } 
-    .product .section-top-txt-wrap .img-box img { max-width: 240px; margin: 0 auto; } 
+    .product .section-top-txt-wrap .img-box { padding-top: 0; background-size: 75% 40%; }
+    .product .section-top-txt-wrap .img-box img { max-width: 240px; margin: 0 auto; }
 
     .product .subpage-title-wrap.main { padding-bottom: 96px; }
     .product .subpage-title-wrap.main::after { height: 48px; bottom: 24px; }
@@ -700,7 +700,7 @@
     .product .subpage-title-wrap.sub .txt { font-size: 14px; font-weight: 300; flex-flow: column; align-items: center; text-align: center; }
     .product .subpage-title-wrap.sub .txt:not(:first-child) { margin-top: 16px; }
     .product .subpage-title-wrap.sub .txt .icon { font-size: 16px; }
-    
+
     .product .sub-section:not(:last-child) { margin-bottom: 56px; }
     .product .sub-section-container.border { padding: 16px; border-radius: 12px; gap: 24px; }
     .product .sub-section-container.col-group, .product .sub-section-wrap.col-group { flex-flow: wrap; gap: 24px; }

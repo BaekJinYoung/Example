@@ -1,6 +1,6 @@
 <div class="header-wrap col-group">
 
-    <a href="/index.html" class="logo">
+    <a href="{{route("client.index")}}" class="logo">
         <h1 class="logo-img"></h1>
     </a>
 
@@ -8,10 +8,10 @@
         <div class="header-gnb">
             COMPANY
             <div class="header-sub-gnb-wrap row-group">
-                <a href="/about.html" class="header-sub-gnb">
+                <a href="{{route("client.about")}}" class="header-sub-gnb">
                     회사소개
                 </a>
-                <a href="/greeting.html" class="header-sub-gnb">
+                <a href="{{route("client.greeting")}}" class="header-sub-gnb">
                     인사말
                 </a>
             </div>
@@ -19,13 +19,13 @@
         <div class="header-gnb">
             R&D
             <div class="header-sub-gnb-wrap row-group">
-                <a href="/RnD_1.html" class="header-sub-gnb">
+                <a href="{{route("client.RnD_1")}}" class="header-sub-gnb">
                     R&D역량
                 </a>
-                <a href="/RnD_2.html" class="header-sub-gnb">
+                <a href="{{route("client.RnD_2")}}" class="header-sub-gnb">
                     논문현황
                 </a>
-                <a href="/RnD_3.html" class="header-sub-gnb">
+                <a href="{{route("client.RnD_3")}}" class="header-sub-gnb">
                     특허 및 인증현황
                 </a>
             </div>
@@ -33,10 +33,10 @@
         <div class="header-gnb">
             PRODUCTS
             <div class="header-sub-gnb-wrap row-group">
-                <a href="/nova_vision.html" class="header-sub-gnb">
+                <a href="{{route("client.nova_vision")}}" class="header-sub-gnb">
                     NOVA VISION
                 </a>
-                <a href="/nova_finder.html" class="header-sub-gnb">
+                <a href="{{route("client.nova_finder")}}" class="header-sub-gnb">
                     NOVA FINDER
                 </a>
             </div>
@@ -44,7 +44,7 @@
         <div class="header-gnb">
             CONTACT
             <div class="header-sub-gnb-wrap row-group">
-                <a href="/contact.html" class="header-sub-gnb">
+                <a href="{{route("client.contact")}}" class="header-sub-gnb">
                     CONTACT
                 </a>
             </div>
@@ -71,10 +71,10 @@
                 COMPANY
             </div>
             <div class="sub-gnb row-group">
-                <a href="/about.html" class="sub-gnb-menu">
+                <a href="{{route("client.about")}}" class="sub-gnb-menu">
                     회사소개
                 </a>
-                <a href="/greeting.html" class="sub-gnb-menu">
+                <a href="{{route("client.greeting")}}" class="sub-gnb-menu">
                     인사말
                 </a>
             </div>
@@ -84,13 +84,13 @@
                 R&D
             </div>
             <div class="sub-gnb row-group">
-                <a href="/RnD_1.html" class="sub-gnb-menu">
+                <a href="{{route("client.RnD_1")}}" class="sub-gnb-menu">
                     R&D역량
                 </a>
-                <a href="/RnD_2.html" class="sub-gnb-menu">
+                <a href="{{route("client.RnD_2")}}" class="sub-gnb-menu">
                     논문현황
                 </a>
-                <a href="/RnD_3.html" class="sub-gnb-menu">
+                <a href="{{route("client.RnD_3")}}" class="sub-gnb-menu">
                     특허 및 인증현황
                 </a>
             </div>
@@ -100,10 +100,10 @@
                 PRODUCTS
             </div>
             <div class="sub-gnb row-group">
-                <a href="/nova_vision.html" class="sub-gnb-menu">
+                <a href="{{route("client.nova_vision")}}" class="sub-gnb-menu">
                     NOVA VISION
                 </a>
-                <a href="/nova_finder.html" class="sub-gnb-menu">
+                <a href="{{route("client.nova_finder")}}" class="sub-gnb-menu">
                     VOVA FINDER
                 </a>
             </div>
@@ -113,7 +113,7 @@
                 CONTACT
             </div>
             <div class="sub-gnb row-group">
-                <a href="/contact.html" class="sub-gnb-menu">
+                <a href="{{route("client.contact")}}" class="sub-gnb-menu">
                     CONTACT
                 </a>
             </div>

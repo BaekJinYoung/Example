@@ -9,12 +9,16 @@ use App\Http\Controllers\PopupController;
 use App\Http\Controllers\YoutubeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('client/index');
-});
-
-Route::get('/company/about', function () {
-    return view('client/about');
+Route::controller(ClientController::class)->group(function () {
+    Route::get('/', 'index')->name('client.index');
+    Route::get('/company/about', 'about')->name('client.about');
+    Route::get('/company/greeting', 'greeting')->name('client.greeting');
+    Route::get('/md/ability', 'RnD_1')->name('client.RnD_1');
+    Route::get('/md/thesis', 'RnD_2')->name('client.RnD_2');
+    Route::get('/md/certification', 'RnD_3')->name('client.RnD_3');
+    Route::get('/contact', 'contact')->name('client.contact');
+    Route::get('/products/vision', 'nova_vision')->name('client.nova_vision');
+    Route::get('/products/finder', 'nova_finder')->name('client.nova_finder');
 });
 
 Route::get('/index', [ClientController::class, 'index']);

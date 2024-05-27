@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,25 +18,32 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <!-- //chart -->
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<script src="/js/jquery.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> <!-- swiper -->
+<script src="/js/jquery.fullPage.js"></script> <!-- fullpage -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- aos -->
 
 <body>
     <div id="wrap">
 
-        <div id="header" class="white"></div>
+        <div id="header" class="white">
+            @include('client.components.header')
+        </div>
 
         <div class="subpage about">
 
             <div class="subpage-top-wrap">
                 <div class="subpage-top-nav col-group">
-                    <a href="index.blade.php" class="subpage-top-nav-item">
+                    <a href="{{route("client.index")}}" class="subpage-top-nav-item">
                         <i class="xi-home icon"></i>
                     </a>
                     <i class="xi-angle-right-min icon"></i>
-                    <a href="about.html" class="subpage-top-nav-item">
+                    <a href="{{route("client.about")}}" class="subpage-top-nav-item">
                         COMPANY
                     </a>
                     <i class="xi-angle-right-min icon"></i>
-                    <a href="about.html" class="subpage-top-nav-item">
+                    <a href="{{route("client.about")}}" class="subpage-top-nav-item">
                         회사소개
                     </a>
                 </div>
@@ -46,10 +54,10 @@
             </div>
 
             <div class="subpage-tab-wrap col-group">
-                <a href="about.html" class="subpage-tab active">
+                <a href="{{route("client.about")}}" class="subpage-tab active">
                     회사소개
                 </a>
-                <a href="greeting.blade.php" class="subpage-tab">
+                <a href="{{route("client.greeting")}}" class="subpage-tab">
                     인사말
                 </a>
             </div>
@@ -363,17 +371,14 @@
 
         </div>
 
-        <div id="footer"></div>
-        <div id="top_menu"></div>
+        <div id="footer">@include('client.components.footer')</div>
+        <div id="top_menu">@include('client.components.top_menu')</div>
 
     </div>
 </body>
 
-<script src="/js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> <!-- swiper -->
-<script src="/js/jquery.fullPage.js"></script> <!-- fullpage -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- aos -->
-<script src="/js/script.js"></script>
+
+
 <script>
 
     //스크롤시 헤더 변화

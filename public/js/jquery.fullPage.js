@@ -8,11 +8,11 @@
 (function(global, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
-        define(['jquery'], function($) {
+        define(['public/js/jquery.js'], function($) {
           return factory($, global, global.document, global.Math);
         });
     } else if (typeof exports === "object" && exports) {
-        module.exports = factory(require('jquery'), global, global.document, global.Math);
+        module.exports = factory(require('public/js/jquery.js'), global, global.document, global.Math);
     } else {
         factory(jQuery, global, global.document, global.Math);
     }
