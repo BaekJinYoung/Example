@@ -31,10 +31,15 @@ class ClientController extends Controller
     {
         $locale = session('locale', 'ko');
 
+        $histories = History::where('language', $locale)->orderBy('date', 'asc')->get();
+        $historiesByYear = $histories->groupBy(function ($date) {
+            return Carbon::parse($date->date)->format('Y');
+        })->sortKeysDesc();
+
         if($locale == 'en'){
-            return view('eng.about');
+            return view('eng.about', compact('historiesByYear', 'histories'));
         } else {
-            return view('client.about');
+            return view('client.about', compact('historiesByYear', 'histories'));
         }
     }
 
