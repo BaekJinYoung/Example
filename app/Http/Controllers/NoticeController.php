@@ -9,6 +9,7 @@ class NoticeController extends Controller
 {
     public function __construct(Notice $notice)
     {
+        $this->middleware('auth');
         $this->Notice = $notice;
     }
 

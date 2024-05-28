@@ -70,7 +70,8 @@
                 Copyright 2023 NOVA Inc. All rights reserved.
             </p>
         </div>
-        <form action="" method="post">
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
             <button type="submit" class="logout-btn">
                 <i class="xi-log-out"></i>
                 로그아웃

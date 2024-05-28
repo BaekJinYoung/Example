@@ -10,6 +10,7 @@ class BannerController extends Controller
 {
     public function __construct(Banner $banner)
     {
+        $this->middleware('auth');
         $this->Banner = $banner;
     }
 

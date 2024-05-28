@@ -126,7 +126,7 @@
                                             Multimodal Deep Neural Network
                                         </p>
                                     </div>
-                                    <a href="nova_vision.blade.php" class="more-btn col-group">
+                                    <a href="{{route("client.nova_vision")}}" class="more-btn col-group">
                                         LEARN MORE
                                         <i class="xi-long-arrow-right"></i>
                                     </a>
@@ -154,7 +154,7 @@
                                             Monitoring System Development
                                         </p>
                                     </div>
-                                    <a href="nova_finder.blade.php" class="more-btn col-group">
+                                    <a href="{{route("client.nova_finder")}}" class="more-btn col-group">
                                         LEARN MORE
                                         <i class="xi-long-arrow-right"></i>
                                     </a>

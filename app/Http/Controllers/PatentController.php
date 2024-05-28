@@ -51,6 +51,7 @@ class PatentController extends Controller
 
     public function create()
     {
+        $this->middleware('auth');
         return view('admin.patentCreate');
     }
 
