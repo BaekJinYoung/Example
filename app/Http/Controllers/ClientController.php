@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\History;
+use App\Models\Notice;
 use App\Models\Popup;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -102,11 +103,12 @@ class ClientController extends Controller
     public function RnD_2()
     {
         $locale = session('locale', 'ko');
+        $notices = Notice::where('language', $locale)->orderby('created_at', 'desc')->get();
 
         if($locale == 'en'){
-            return view('eng.RnD_2');
+            return view('eng.RnD_2', compact('notices'));
         } else {
-            return view('client.RnD_2');
+            return view('client.RnD_2', compact('notices'));
         }
     }
 

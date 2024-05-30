@@ -75,224 +75,43 @@
                         Publications
                     </h3>
                 </div>
-
-                <div class="thesis-list row-group">
-                    <div class="thesis-item">
-                        <div class="thesis-title-wrap col-group">
-                            <p class="thesis-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. </p>
-                            <i class="xi-angle-down thesis-more-btn"></i>
-                        </div>
-                        <div class="thesis-detail-wrap">
-                            <p class="thesis-txt">ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <div class="thesis-detail-list row-group">
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Authors :
-                                    </p>
-                                    <p class="item-txt">
-                                        NOVA Kim
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Publisher :
-                                    </p>
-                                    <p class="item-txt">
-                                        2023 SEP 09;18(6):1234.
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Published Date :
-                                    </p>
-                                    <p class="item-txt">
-                                        2018-09-18
-                                    </p>
-                                </div>
+                @foreach($notices as $key => $notice)
+                    <div class="thesis-list row-group">
+                        <div class="thesis-item">
+                            <div class="thesis-title-wrap col-group">
+                                <p class="thesis-title">{{$notice->title}}</p>
+                                <i class="xi-angle-down thesis-more-btn"></i>
                             </div>
-                            <a href="" class="thesis-btn col-group">
-                                <i class="xi-link icon"></i>
-                                Read More
-                            </a>
+                            <div class="thesis-detail-wrap">
+                                <p class="thesis-txt">{{$notice->summary}}</p>
+                                <div class="thesis-detail-list row-group">
+                                    <div class="thesis-detail-item col-group">
+                                        <p class="item-title">
+                                            Authors :
+                                        </p>
+                                        <p class="item-txt">{{$notice->writer}}</p>
+                                    </div>
+                                    <div class="thesis-detail-item col-group">
+                                        <p class="item-title">
+                                            Publisher :
+                                        </p>
+                                        <p class="item-txt">{{$notice->information}}</p>
+                                    </div>
+                                    <div class="thesis-detail-item col-group">
+                                        <p class="item-title">
+                                            Published Date :
+                                        </p>
+                                        <p class="item-txt">{{date('Y-m-d', strtotime($notice->date))}}</p>
+                                    </div>
+                                </div>
+                                <a href="{{$notice->url}}" class="thesis-btn col-group">
+                                    <i class="xi-link icon"></i>
+                                    Read More
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="thesis-item">
-                        <div class="thesis-title-wrap col-group">
-                            <p class="thesis-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. </p>
-                            <i class="xi-angle-down thesis-more-btn"></i>
-                        </div>
-                        <div class="thesis-detail-wrap">
-                            <p class="thesis-txt">ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <div class="thesis-detail-list row-group">
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Authors :
-                                    </p>
-                                    <p class="item-txt">
-                                        NOVA Kim
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Publisher :
-                                    </p>
-                                    <p class="item-txt">
-                                        2023 SEP 09;18(6):1234.
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Published Date :
-                                    </p>
-                                    <p class="item-txt">
-                                        2018-09-18
-                                    </p>
-                                </div>
-                            </div>
-                            <a href="" class="thesis-btn col-group">
-                                <i class="xi-link icon"></i>
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                    <div class="thesis-item">
-                        <div class="thesis-title-wrap col-group">
-                            <p class="thesis-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. </p>
-                            <i class="xi-angle-down thesis-more-btn"></i>
-                        </div>
-                        <div class="thesis-detail-wrap">
-                            <p class="thesis-txt">ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <div class="thesis-detail-list row-group">
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Authors :
-                                    </p>
-                                    <p class="item-txt">
-                                        NOVA Kim
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Publisher :
-                                    </p>
-                                    <p class="item-txt">
-                                        2023 SEP 09;18(6):1234.
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Published Date :
-                                    </p>
-                                    <p class="item-txt">
-                                        2018-09-18
-                                    </p>
-                                </div>
-                            </div>
-                            <a href="" class="thesis-btn col-group">
-                                <i class="xi-link icon"></i>
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                    <div class="thesis-item">
-                        <div class="thesis-title-wrap col-group">
-                            <p class="thesis-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. </p>
-                            <i class="xi-angle-down thesis-more-btn"></i>
-                        </div>
-                        <div class="thesis-detail-wrap">
-                            <p class="thesis-txt">ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <div class="thesis-detail-list row-group">
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Authors :
-                                    </p>
-                                    <p class="item-txt">
-                                        NOVA Kim
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Publisher :
-                                    </p>
-                                    <p class="item-txt">
-                                        2023 SEP 09;18(6):1234.
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Published Date :
-                                    </p>
-                                    <p class="item-txt">
-                                        2018-09-18
-                                    </p>
-                                </div>
-                            </div>
-                            <a href="" class="thesis-btn col-group">
-                                <i class="xi-link icon"></i>
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                    <div class="thesis-item">
-                        <div class="thesis-title-wrap col-group">
-                            <p class="thesis-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. </p>
-                            <i class="xi-angle-down thesis-more-btn"></i>
-                        </div>
-                        <div class="thesis-detail-wrap">
-                            <p class="thesis-txt">ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <div class="thesis-detail-list row-group">
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Authors :
-                                    </p>
-                                    <p class="item-txt">
-                                        NOVA Kim
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Publisher :
-                                    </p>
-                                    <p class="item-txt">
-                                        2023 SEP 09;18(6):1234.
-                                    </p>
-                                </div>
-                                <div class="thesis-detail-item col-group">
-                                    <p class="item-title">
-                                        Published Date :
-                                    </p>
-                                    <p class="item-txt">
-                                        2018-09-18
-                                    </p>
-                                </div>
-                            </div>
-                            <a href="" class="thesis-btn col-group">
-                                <i class="xi-link icon"></i>
-                                Read More
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
                 <div id="pagination"></div>
             </div>
