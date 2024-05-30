@@ -7,6 +7,7 @@ use App\Models\History;
 use App\Models\Notice;
 use App\Models\Patent;
 use App\Models\Popup;
+use App\Models\Youtube;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -23,11 +24,23 @@ class ClientController extends Controller
             return Carbon::parse($date->date)->format('Y');
         })->sortKeysDesc();
         $popups = Popup::where('language', $locale)->orderby('order', 'desc')->get();
+
+        $youtubes = Youtube::where('language', $locale)->get()->map(function ($youtube) {
+            $youtube->video_id = $this->extractYouTubeId($youtube->link);
+            return $youtube;
+        });
+
         if($locale == 'en'){
-            return view('eng.index', compact('banners', 'historiesByYear', 'popups'));
+            return view('eng.index', compact('banners', 'historiesByYear', 'popups', 'youtubes'));
         } else {
-            return view('client.index', compact('banners', 'historiesByYear', 'popups'));
+            return view('client.index', compact('banners', 'historiesByYear', 'popups', 'youtubes'));
         }
+    }
+
+    private function extractYouTubeId($url)
+    {
+        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+        return $matches[1] ?? null;
     }
 
     public function about()

@@ -196,13 +196,16 @@
         </div>
         <div class="section index-video">
             <div class="container w1200">
-                <div class="video-container" id="video">
-                    <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/mkggXE5e2yk?si=78lS4WOPlqdFNCDU?autoplay=1&mute=1"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen data-autoplay></iframe>
-                </div>
+                @if($youtubes->isNotEmpty())
+                    <div class="video-container" id="video">
+                        <iframe id="youtube-iframe-{{ $youtubes->first()->id }}"
+                                width="560" height="315"
+                                src="https://www.youtube.com/embed/{{ $youtubes->first()->video_id }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen data-autoplay></iframe>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="section index-why">
