@@ -2,12 +2,21 @@
     <img src="{{ asset('images/nova_products_logo.svg') }}" alt="" class="header-logo">
 
     <div class="translation_wrap">
-        <a href="{{ route('client.lang.ko') }}">
-            <img src="{{ asset('images/kr-on.png') }}" alt="Korean">
-        </a>
-        <a href="{{ route('client.lang.en') }}">
-            <img src="{{ asset('images/en-off.png') }}" alt="English">
-        </a>
+        @if(session('locale') === 'ko')
+            <a href="{{ route('client.lang.ko') }}">
+                <img src="{{ asset('images/kr-on.png') }}" alt="Korean">
+            </a>
+            <a href="{{ route('client.lang.en') }}">
+                <img src="{{ asset('images/en-off.png') }}" alt="English">
+            </a>
+        @else
+            <a href="{{ route('client.lang.ko') }}">
+                <img src="{{ asset('images/kr-off.png') }}" alt="Korean">
+            </a>
+            <a href="{{ route('client.lang.en') }}">
+                <img src="{{ asset('images/en-on.png') }}" alt="English">
+            </a>
+        @endif
     </div>
 
     <div class="menu-wrap row-group">
@@ -84,10 +93,4 @@
     $('.gnb-item').click(function () {
         $(this).toggleClass('active');
     });
-
-    document.getElementById('languageForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        this.submit();
-    });
-</script>
 </script>
