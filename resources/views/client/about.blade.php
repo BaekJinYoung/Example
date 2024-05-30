@@ -171,13 +171,15 @@
                     <div class="about-history">
                         <div class="about-history-tab-list col-group">
                             @foreach($historiesByYear as $year => $histories)
-                                <div class="about-history-tab{{ $loop->first ? ' active' : '' }}" data-tab="his_{{ $year }}">
+                                <div class="about-history-tab{{ $loop->first ? ' active' : '' }}"
+                                     data-tab="his_{{ $year }}">
                                     {{ $year }}
                                 </div>
                             @endforeach
                         </div>
                         @foreach($historiesByYear as $year => $histories)
-                            <div class="about-history-container{{ $loop->first ? ' active' : '' }}" id="his_{{ $year }}">
+                            <div class="about-history-container{{ $loop->first ? ' active' : '' }}"
+                                 id="his_{{ $year }}">
                                 @foreach($histories as $history)
                                     <div class="about-history-wrap col-group">
                                         <div class="img-box">

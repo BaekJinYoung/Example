@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=0" />
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=0"/>
 
     <title>NOVA</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="https://font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- aos -->
     <!-- chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
@@ -27,72 +27,73 @@
 
 
 <body>
-    <div id="wrap">
+<div id="wrap">
 
-        <div id="header" class="white">@include('client.components.header')</div>
+    <div id="header" class="white">@include('client.components.header')</div>
 
-        <div class="subpage contact">
+    <div class="subpage contact">
 
-            <div class="subpage-top-wrap">
-                <div class="subpage-top-nav col-group">
-                    <a href="{{route("client.index")}}" class="subpage-top-nav-item">
-                        <i class="xi-home icon"></i>
-                    </a>
-                    <i class="xi-angle-right-min icon"></i>
-                    <a href="{{route("client.contact")}}" class="subpage-top-nav-item">
-                        CONTACT
-                    </a>
-                </div>
-
-                <h2 class="subpage-top-title">
+        <div class="subpage-top-wrap">
+            <div class="subpage-top-nav col-group">
+                <a href="{{route("client.index")}}" class="subpage-top-nav-item">
+                    <i class="xi-home icon"></i>
+                </a>
+                <i class="xi-angle-right-min icon"></i>
+                <a href="{{route("client.contact")}}" class="subpage-top-nav-item">
                     CONTACT
-                </h2>
+                </a>
             </div>
 
-            <div class="container w1440">
-                <div class="contact-wrap">
-                    <h2 class="contact-title col-group">
-                        <img src="/images/icon_contact.svg" alt="">
-                        주식회사 노바
-                    </h2>
-
-                    <div class="contact-list row-group">
-                        <div class="contact-item col-group">
-                            <p class="item-title">
-                                주소
-                            </p>
-                            <p class="item-txt">
-                                (54896) 전라북도 전주시 덕진구 백제대로 567 전북대학교 공과대학 4호관 4414호
-                            </p>
-                        </div>
-                        <div class="contact-item col-group">
-                            <p class="item-title">
-                                연락처
-                            </p>
-                            <p class="item-txt">
-                                063)270-2372
-                            </p>
-                        </div>
-                        <div class="contact-item col-group">
-                            <p class="item-title">
-                                이메일
-                            </p>
-                            <p class="item-txt">
-                                hjun@jbnu.edu
-                            </p>
-                        </div>
-                    </div>
-
-                    <div id="daumRoughmapContainer1704690768907" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-                </div>
-            </div>
-
+            <h2 class="subpage-top-title">
+                CONTACT
+            </h2>
         </div>
 
-        <div id="footer">@include('client.components.footer')</div>
-        <div id="top_menu">@include('client.components.top_menu')</div>
+        <div class="container w1440">
+            <div class="contact-wrap">
+                <h2 class="contact-title col-group">
+                    <img src="/images/icon_contact.svg" alt="">
+                    주식회사 노바
+                </h2>
+
+                <div class="contact-list row-group">
+                    <div class="contact-item col-group">
+                        <p class="item-title">
+                            주소
+                        </p>
+                        <p class="item-txt">
+                            (54896) 전라북도 전주시 덕진구 백제대로 567 전북대학교 공과대학 4호관 4414호
+                        </p>
+                    </div>
+                    <div class="contact-item col-group">
+                        <p class="item-title">
+                            연락처
+                        </p>
+                        <p class="item-txt">
+                            063)270-2372
+                        </p>
+                    </div>
+                    <div class="contact-item col-group">
+                        <p class="item-title">
+                            이메일
+                        </p>
+                        <p class="item-txt">
+                            hjun@jbnu.edu
+                        </p>
+                    </div>
+                </div>
+
+                <div id="daumRoughmapContainer1704690768907"
+                     class="root_daum_roughmap root_daum_roughmap_landing"></div>
+            </div>
+        </div>
 
     </div>
+
+    <div id="footer">@include('client.components.footer')</div>
+    <div id="top_menu">@include('client.components.top_menu')</div>
+
+</div>
 </body>
 
 
@@ -111,13 +112,14 @@
 
 </script>
 
- <!-- * 카카오맵 - 지도퍼가기 -->
-<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<!-- * 카카오맵 - 지도퍼가기 -->
+<script charset="UTF-8" class="daum_roughmap_loader_script"
+        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 <script charset="UTF-8">
-	new daum.roughmap.Lander({
-		"timestamp" : "1704690768907",
-		"key" : "2hjyt",
-	}).render();
+    new daum.roughmap.Lander({
+        "timestamp": "1704690768907",
+        "key": "2hjyt",
+    }).render();
 </script>
 
 </html>

@@ -49,10 +49,8 @@
                     </div>
                 </div>
 
-                <div
-                    class="swiper index-main-slide swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden">
-                    <div
-                        class="swiper-pagination index-pagination swiper-pagination-bullets swiper-pagination-horizontal">
+                <div class="swiper index-main-slide swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden">
+                    <div class="swiper-pagination index-pagination swiper-pagination-bullets swiper-pagination-horizontal">
                         <span class="swiper-pagination-bullet"></span>
                     </div>
                     <div class="swiper-wrapper">

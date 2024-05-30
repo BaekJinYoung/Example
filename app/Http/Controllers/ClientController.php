@@ -15,7 +15,8 @@ class ClientController extends Controller
         $locale = session('locale', 'ko');
 
         $banners = Banner::where('language', $locale)->orderby('order', 'desc')->get();
-        $histories = History::where('language', $locale)->orderBy('date', 'asc')->get();
+        $histories = History::where('language', $locale)->
+            where('main', '1')->orderBy('date', 'asc')->get();
         $historiesByYear = $histories->groupBy(function ($date) {
             return Carbon::parse($date->date)->format('Y');
         })->sortKeysDesc();
