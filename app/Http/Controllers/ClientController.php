@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\History;
 use App\Models\Notice;
+use App\Models\Patent;
 use App\Models\Popup;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -115,11 +116,12 @@ class ClientController extends Controller
     public function RnD_3()
     {
         $locale = session('locale', 'ko');
+        $patents = Patent::where('language', $locale)->orderby('created_at', 'desc')->get();
 
         if($locale == 'en'){
-            return view('eng.RnD_3');
+            return view('eng.RnD_3', compact('patents'));
         } else {
-            return view('client.RnD_3');
+            return view('client.RnD_3', compact('patents'));
         }
     }
 }

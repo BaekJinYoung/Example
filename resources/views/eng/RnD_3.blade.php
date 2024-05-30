@@ -76,110 +76,21 @@
                 </div>
 
                 <div class="patent-list col-group">
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
+                    @foreach($patents as $key => $patent)
+                        <div class="patent-item">
+                            <div class="img-container">
+                                @if($patent->image)
+                                    <img src="{{asset('storage/'.$patent->image)}}" alt="">
+                                @endif
+                            </div>
+                            <div class="txt-group row-group">
+                                <p class="title">{{$patent->title}}</p>
+                                <p class="txt">
+                                    [제 {{$patent->number}} 호]
+                                </p>
+                            </div>
                         </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
-                        </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
-                        </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
-                        </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
-                        </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
-                        </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
-                        </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
-                    <div class="patent-item">
-                        <div class="img-container">
-                            <img src="/images/patent_sample.jpg" alt="">
-                        </div>
-                        <div class="txt-group row-group">
-                            <p class="title">
-                                NOVA VISION 특허증
-                            </p>
-                            <p class="txt">
-                                [제 10-1235678 호]
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
                 <div id="pagination"></div>
@@ -207,8 +118,6 @@
     </div>
 
 </div>
-</body>
-
 
 <script>
 
@@ -237,5 +146,5 @@
         }
     });
 </script>
-
+</body>
 </html>
