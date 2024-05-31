@@ -15,22 +15,23 @@ use Illuminate\Support\Facades\App;
 class ClientController extends Controller
 {
     public function index(){
-        $locale = session('locale', 'ko');
 
-        $banners = Banner::where('language', $locale)->orderby('order', 'desc')->get();
-        $histories = History::where('language', $locale)->
+        $banners = Banner::where('language', app()->getLocale())->orderby('order', 'desc')->get();
+
+        $histories = History::where('language', app()->getLocale())->
             where('main', '1')->orderBy('date', 'asc')->get();
         $historiesByYear = $histories->groupBy(function ($date) {
             return Carbon::parse($date->date)->format('Y');
         })->sortKeysDesc();
-        $popups = Popup::where('language', $locale)->orderby('order', 'desc')->get();
 
-        $youtubes = Youtube::where('language', $locale)->get()->map(function ($youtube) {
+        $popups = Popup::where('language', app()->getLocale())->orderby('order', 'desc')->get();
+
+        $youtubes = Youtube::where('language', app()->getLocale())->get()->map(function ($youtube) {
             $youtube->video_id = $this->extractYouTubeId($youtube->link);
             return $youtube;
         });
 
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.index', compact('banners', 'historiesByYear', 'popups', 'youtubes'));
         } else {
             return view('client.index', compact('banners', 'historiesByYear', 'popups', 'youtubes'));
@@ -45,14 +46,12 @@ class ClientController extends Controller
 
     public function about()
     {
-        $locale = session('locale', 'ko');
-
-        $histories = History::where('language', $locale)->orderBy('date', 'asc')->get();
+        $histories = History::where('language', app()->getLocale())->orderBy('date', 'asc')->get();
         $historiesByYear = $histories->groupBy(function ($date) {
             return Carbon::parse($date->date)->format('Y');
         })->sortKeysDesc();
 
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.about', compact('historiesByYear', 'histories'));
         } else {
             return view('client.about', compact('historiesByYear', 'histories'));
@@ -61,9 +60,7 @@ class ClientController extends Controller
 
     public function greeting()
     {
-        $locale = session('locale', 'ko');
-
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.greeting');
         } else {
             return view('client.greeting');
@@ -72,9 +69,7 @@ class ClientController extends Controller
 
     public function contact()
     {
-        $locale = session('locale', 'ko');
-
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.contact');
         } else {
             return view('client.contact');
@@ -83,9 +78,7 @@ class ClientController extends Controller
 
     public function nova_vision()
     {
-        $locale = session('locale', 'ko');
-
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.nova_vision');
         } else {
             return view('client.nova_vision');
@@ -94,9 +87,7 @@ class ClientController extends Controller
 
     public function nova_finder()
     {
-        $locale = session('locale', 'ko');
-
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.nova_finder');
         } else {
             return view('client.nova_finder');
@@ -105,9 +96,7 @@ class ClientController extends Controller
 
     public function RnD_1()
     {
-        $locale = session('locale', 'ko');
-
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.RnD_1');
         } else {
             return view('client.RnD_1');
@@ -116,10 +105,9 @@ class ClientController extends Controller
 
     public function RnD_2()
     {
-        $locale = session('locale', 'ko');
-        $notices = Notice::where('language', $locale)->orderby('created_at', 'desc')->get();
+        $notices = Notice::where('language', app()->getLocale())->orderby('created_at', 'desc')->get();
 
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.RnD_2', compact('notices'));
         } else {
             return view('client.RnD_2', compact('notices'));
@@ -128,10 +116,9 @@ class ClientController extends Controller
 
     public function RnD_3()
     {
-        $locale = session('locale', 'ko');
-        $patents = Patent::where('language', $locale)->orderby('created_at', 'desc')->get();
+        $patents = Patent::where('language', app()->getLocale())->orderby('created_at', 'desc')->get();
 
-        if($locale == 'en'){
+        if(app()->getLocale() == 'en'){
             return view('eng.RnD_3', compact('patents'));
         } else {
             return view('client.RnD_3', compact('patents'));

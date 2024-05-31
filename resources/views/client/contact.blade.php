@@ -94,7 +94,7 @@
     <div id="top_menu">@include('client.components.top_menu')</div>
 
 </div>
-</body>
+
 
 
 <script>
@@ -121,5 +121,5 @@
         "key": "2hjyt",
     }).render();
 </script>
-
+</body>
 </html>

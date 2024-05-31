@@ -17,11 +17,9 @@ class HistoryController extends Controller
 
     public function index(Request $request)
     {
-        $locale = $request->session()->get('locale', 'ko');
-
         $perPage = $request->query('perPage', 8);
         $selectedYear = $request->query('yearFilter', '');
-        $histories = $this->History->where('language', $locale)->latest();
+        $histories = $this->History->where('language', app()->getLocale())->latest();
 
         if ($selectedYear) {
             $histories->whereYear('date', $selectedYear);
@@ -35,8 +33,6 @@ class HistoryController extends Controller
 
     public function store(Request $request)
     {
-        $locale = $request->session()->get('locale', 'ko');
-
         $store = $request->validate(['main' => 'required|boolean', 'registered_at' => 'required', 'content' => 'required', 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
 
         $store['details'] = $store['content'];
@@ -50,7 +46,7 @@ class HistoryController extends Controller
 
         $date = Carbon::parse($store['registered_at']);
         $store['date'] = $date->format('Y-m-d');
-        $store['language'] = $locale;
+        $store['language'] = app()->getLocale();
 
         $this->History->create($store);
 

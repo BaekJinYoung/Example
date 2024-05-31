@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HistoryController;
@@ -9,12 +8,24 @@ use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PatentController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\YoutubeController;
-use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Support\Facades\App;
+use App\Http\Middleware\LocaleMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
+
+Route::middleware([LocaleMiddleware::class])->group(function () {
+    Route::controller(ClientController::class)->group(function () {
+        Route::get('/', 'index')->name('client.index');
+        Route::get('/company/about', 'about')->name('client.about');
+        Route::get('/company/greeting', 'greeting')->name('client.greeting');
+        Route::get('/md/ability', 'RnD_1')->name('client.RnD_1');
+        Route::get('/md/thesis', 'RnD_2')->name('client.RnD_2');
+        Route::get('/md/certification', 'RnD_3')->name('client.RnD_3');
+        Route::get('/contact', 'contact')->name('client.contact');
+        Route::get('/products/vision', 'nova_vision')->name('client.nova_vision');
+        Route::get('/products/finder', 'nova_finder')->name('client.nova_finder');
+    });
 
     Route::controller(PopupController::class)->group(function () {
         Route::get('admin/popups', 'index')->middleware('auth')->name("admin.popupIndex");
@@ -73,19 +84,6 @@ Auth::routes();
         Route::delete('admin/patents/{patent}', 'delete')->name("admin.patentDelete");
         Route::post('admin/patents/{patent}/move/{direction}', 'move')->name("admin.patentMove");
     });
-
-
-Route::controller(ClientController::class)->group(function () {
-    Route::get('/', 'index')->name('client.index');
-    Route::get('/', 'index')->name('client.index');
-    Route::get('/company/about', 'about')->name('client.about');
-    Route::get('/company/greeting', 'greeting')->name('client.greeting');
-    Route::get('/md/ability', 'RnD_1')->name('client.RnD_1');
-    Route::get('/md/thesis', 'RnD_2')->name('client.RnD_2');
-    Route::get('/md/certification', 'RnD_3')->name('client.RnD_3');
-    Route::get('/contact', 'contact')->name('client.contact');
-    Route::get('/products/vision', 'nova_vision')->name('client.nova_vision');
-    Route::get('/products/finder', 'nova_finder')->name('client.nova_finder');
 });
 
 Route::controller(LanguageController::class)->group(function () {

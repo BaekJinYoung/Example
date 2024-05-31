@@ -16,8 +16,7 @@ class BannerController extends Controller
 
     public function index(Request $request)
     {
-        $locale = $request->session()->get('locale', 'ko');
-        $banners = $this->Banner->where('language', $locale)->orderBy('order', 'desc')->get();
+        $banners = $this->Banner->where('language', app()->getLocale())->orderBy('order', 'desc')->get();
         return view('admin.bannerIndex', compact('banners'));
     }
 
@@ -60,8 +59,6 @@ class BannerController extends Controller
 
     public function store(Request $request)
     {
-        $locale = $request->session()->get('locale', 'ko');
-
         $store = $request->validate(['title' => 'required',
             'mobile_title' => 'required',
             'subtitle' => 'required',
@@ -83,7 +80,7 @@ class BannerController extends Controller
         $store['mobile_image'] = $mobile_path;
         $store['mobile_image_name'] = $mobile_fileName;
 
-        $store['language'] = $locale;
+        $store['language'] = app()->getLocale();
 
         $this->Banner->create($store);
 

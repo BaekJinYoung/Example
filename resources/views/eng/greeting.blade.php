@@ -118,12 +118,8 @@
 
     </div>
 
-    <div id="footer">
-        @include('eng.components.footer')
-    </div>
-    <div id="top_menu">
-        @include('client.components.top_menu')
-    </div>
+    <div id="footer">@include('eng.components.footer')</div>
+    <div id="top_menu">@include('client.components.top_menu')</div>
 
 </div>
 </body>

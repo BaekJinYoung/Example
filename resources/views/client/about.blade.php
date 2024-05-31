@@ -213,8 +213,6 @@
     <div id="top_menu">@include('client.components.top_menu')</div>
 
 </div>
-</body>
-
 
 <script>
 
@@ -241,5 +239,5 @@
 
 
 </script>
-00
+</body>
 </html>

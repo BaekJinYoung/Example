@@ -430,6 +430,7 @@
         @include('client.components.top_menu')
     </div>
 
+    @if($popups->isNotEmpty())
     <div class="pop-parent" id="popParent">
         <div class="pop">
             <div class="swiper-container">
@@ -468,6 +469,7 @@
             </div>
         </div>
     </div>
+    @endif
     <script>
 
         function setCookie(name, value, exp) {

@@ -100,12 +100,8 @@
         </div>
     </div>
 
-    <div id="footer">
-        @include('eng.components.footer')
-    </div>
-    <div id="top_menu">
-        @include('client.components.top_menu')
-    </div>
+    <div id="footer">@include('eng.components.footer')</div>
+    <div id="top_menu">@include('client.components.top_menu')</div>
 
     <!-- 이미지 클릭시 나타나는 팝업 -->
     <div id="img_view_wrap">

@@ -15,7 +15,6 @@ class PatentController extends Controller
 
     public function index(Request $request)
     {
-        $locale = $request->session()->get('locale', 'ko');
         $query = $this->Patent->query();
 
         if ($request->has('search')) {
@@ -24,7 +23,7 @@ class PatentController extends Controller
         }
 
         $perPage = $request->query('perPage', 8);
-        $patents = $query->where('language', $locale)->orderBy('order', 'desc')->paginate($perPage);
+        $patents = $query->where('language', app()->getLocale())->orderBy('order', 'desc')->paginate($perPage);
 
         return view('admin.patentIndex', compact('patents', 'perPage'));
     }
@@ -57,7 +56,6 @@ class PatentController extends Controller
 
     public function store(Request $request)
     {
-        $locale = $request->session()->get('locale', 'ko');
         $store = $request->validate(['title' => 'required', 'image' => 'nullable', 'number' => 'required', 'continue' => 'nullable']);
 
         if ($request->hasFile('image')) {
@@ -72,7 +70,7 @@ class PatentController extends Controller
             $store['image_name'] = null; // 또는 기본 값 설정
         }
 
-        $store['language'] = $locale;
+        $store['language'] = app()->getLocale();
 
         $this->Patent->create($store);
 
