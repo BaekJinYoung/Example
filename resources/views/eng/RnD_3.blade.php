@@ -81,6 +81,8 @@
                             <div class="img-container">
                                 @if($patent->image)
                                     <img src="{{asset('storage/'.$patent->image)}}" alt="">
+                                @else
+                                    <img src="{{asset('images/certificate.png')}}" alt="">
                                 @endif
                             </div>
                             <div class="txt-group row-group">

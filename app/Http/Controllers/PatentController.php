@@ -60,11 +60,18 @@ class PatentController extends Controller
         $locale = $request->session()->get('locale', 'ko');
         $store = $request->validate(['title' => 'required', 'image' => 'nullable', 'number' => 'required', 'continue' => 'nullable']);
 
-        $fileName = $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
+        if ($request->hasFile('image')) {
+            $fileName = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
 
-        $store['image'] = $path;
-        $store['image_name'] = $fileName;
+            $store['image'] = $path;
+            $store['image_name'] = $fileName;
+        } else {
+            // 파일이 없는 경우 처리
+            $store['image'] = null; // 또는 기본 값 설정
+            $store['image_name'] = null; // 또는 기본 값 설정
+        }
+
         $store['language'] = $locale;
 
         $this->Patent->create($store);
