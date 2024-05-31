@@ -75,8 +75,9 @@
                         Publications
                     </h3>
                 </div>
-                @foreach($notices as $key => $notice)
+
                     <div class="thesis-list row-group">
+                        @foreach($notices as $key => $notice)
                         <div class="thesis-item">
                             <div class="thesis-title-wrap col-group">
                                 <p class="thesis-title">{{$notice->title}}</p>
@@ -110,8 +111,9 @@
                                 </a>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                @endforeach
+
 
                 <div id="pagination"></div>
             </div>
