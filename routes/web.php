@@ -15,78 +15,100 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::middleware([LocaleMiddleware::class])->group(function () {
-    Route::controller(ClientController::class)->group(function () {
-        Route::get('/', 'index')->name('client.index');
-        Route::get('/company/about', 'about')->name('client.about');
-        Route::get('/company/greeting', 'greeting')->name('client.greeting');
-        Route::get('/md/ability', 'RnD_1')->name('client.RnD_1');
-        Route::get('/md/thesis', 'RnD_2')->name('client.RnD_2');
-        Route::get('/md/certification', 'RnD_3')->name('client.RnD_3');
-        Route::get('/contact', 'contact')->name('client.contact');
-        Route::get('/products/vision', 'nova_vision')->name('client.nova_vision');
-        Route::get('/products/finder', 'nova_finder')->name('client.nova_finder');
+    Route::name('client.')->group(function () {
+        Route::controller(ClientController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/company/about', 'about')->name('about');
+            Route::get('/company/greeting', 'greeting')->name('greeting');
+            Route::get('/md/ability', 'RnD_1')->name('RnD_1');
+            Route::get('/md/thesis', 'RnD_2')->name('RnD_2');
+            Route::get('/md/certification', 'RnD_3')->name('RnD_3');
+            Route::get('/contact', 'contact')->name('contact');
+            Route::get('/products/vision', 'nova_vision')->name('nova_vision');
+            Route::get('/products/finder', 'nova_finder')->name('nova_finder');
+        });
+
+        Route::prefix('lang')->group(function () {
+            Route::controller(LanguageController::class)->group(function () {
+                Route::get('/ko', 'setKorean')->name('lang.ko');
+                Route::get('/en', 'setEnglish')->name('lang.en');
+            });
+        });
     });
 
-    Route::controller(PopupController::class)->group(function () {
-        Route::get('admin/popups', 'index')->name("admin.popupIndex");
-        Route::get('admin/popups/create', 'create')->name("admin.popupCreate");
-        Route::post('admin/popups/store', 'store')->name("admin.popupStore");
-        Route::get('admin/popups/{popup}/edit', 'edit')->name("admin.popupEdit");
-        Route::patch('admin/popups/{popup}', 'update')->name("admin.popupUpdate");
-        Route::delete('admin/popups/{popup}', 'delete')->name("admin.popupDelete");
-        Route::post('admin/popups/{popup}/move/{direction}', 'move')->name("admin.popupMove");
-        Route::post('admin/popups/{popup}/create', 'upload')->name("admin.popupUpload");
-    });
+    Route::name('admin.')->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::prefix('popups')->group(function () {
+                Route::controller(PopupController::class)->group(function () {
+                    Route::get('/', 'index')->name("popupIndex");
+                    Route::get('/create', 'create')->name("popupCreate");
+                    Route::post('/store', 'store')->name("popupStore");
+                    Route::get('/{popup}/edit', 'edit')->name("popupEdit");
+                    Route::patch('/{popup}', 'update')->name("popupUpdate");
+                    Route::delete('/{popup}', 'delete')->name("popupDelete");
+                    Route::post('/{popup}/move/{direction}', 'move')->name("popupMove");
+                    Route::post('/{popup}/create', 'upload')->name("popupUpload");
+                });
+            });
 
-    Route::controller(BannerController::class)->group(function () {
-        Route::get('admin/banners', 'index')->name("admin.bannerIndex");
-        Route::get('admin/banners/create', 'create')->name("admin.bannerCreate");
-        Route::post('admin/banners/store', 'store')->name("admin.bannerStore");
-        Route::get('admin/banners/{banner}/edit', 'edit')->name("admin.bannerEdit");
-        Route::patch('admin/banners/{banner}', 'update')->name("admin.bannerUpdate");
-        Route::delete('admin/banners/{banner}', 'delete')->name("admin.bannerDelete");
-        Route::post('admin/banners/{banner}/move/{direction}', 'move')->name("admin.bannerMove");
-    });
+            Route::prefix('banners')->group(function () {
+                Route::controller(BannerController::class)->group(function () {
+                    Route::get('/', 'index')->name("bannerIndex");
+                    Route::get('/create', 'create')->name("bannerCreate");
+                    Route::post('/store', 'store')->name("bannerStore");
+                    Route::get('/{banner}/edit', 'edit')->name("bannerEdit");
+                    Route::patch('/{banner}', 'update')->name("bannerUpdate");
+                    Route::delete('/{banner}', 'delete')->name("bannerDelete");
+                    Route::post('/{banner}/move/{direction}', 'move')->name("bannerMove");
+                });
+            });
 
-    Route::controller(YoutubeController::class)->group(function () {
-        Route::get('admin/youtube', 'index')->name("admin.youtubeIndex");
-        Route::get('admin/youtube/create', 'create')->name("admin.youtubeCreate");
-        Route::post('admin/youtube/store', 'store')->name("admin.youtubeStore");
-        Route::get('admin/youtube/{youtube}/edit', 'edit')->name("admin.youtubeEdit");
-        Route::patch('admin/youtube/{youtube}', 'update')->name("admin.youtubeUpdate");
-        Route::delete('admin/youtube/{youtube}', 'delete')->name("admin.youtubeDelete");
-    });
+            Route::prefix('youtube')->group(function () {
+                Route::controller(YoutubeController::class)->group(function () {
+                    Route::get('/', 'index')->name("youtubeIndex");
+                    Route::get('/create', 'create')->name("youtubeCreate");
+                    Route::post('/store', 'store')->name("youtubeStore");
+                    Route::get('/{youtube}/edit', 'edit')->name("youtubeEdit");
+                    Route::patch('/{youtube}', 'update')->name("youtubeUpdate");
+                    Route::delete('/{youtube}', 'delete')->name("youtubeDelete");
+                });
+            });
 
-    Route::controller(HistoryController::class)->group(function () {
-        Route::get('admin/histories', 'index')->name("admin.historyIndex");
-        Route::get('admin/histories/create', 'create')->name("admin.historyCreate");
-        Route::post('admin/histories/store', 'store')->name("admin.historyStore");
-        Route::get('admin/histories/{history}/edit', 'edit')->name("admin.historyEdit");
-        Route::patch('admin/histories/{history}', 'update')->name("admin.historyUpdate");
-        Route::delete('admin/histories/{history}', 'delete')->name("admin.historyDelete");
-    });
+            Route::prefix('histories')->group(function () {
+                Route::controller(HistoryController::class)->group(function () {
+                    Route::get('/', 'index')->name("historyIndex");
+                    Route::get('/create', 'create')->name("historyCreate");
+                    Route::post('/store', 'store')->name("historyStore");
+                    Route::get('/{history}/edit', 'edit')->name("historyEdit");
+                    Route::patch('/{history}', 'update')->name("historyUpdate");
+                    Route::delete('/{history}', 'delete')->name("historyDelete");
+                });
+            });
 
-    Route::controller(NoticeController::class)->group(function () {
-        Route::get('admin/notices', 'index')->name("admin.noticeIndex");
-        Route::get('admin/notices/create', 'create')->name("admin.noticeCreate");
-        Route::post('admin/notices/store', 'store')->name("admin.noticeStore");
-        Route::get('admin/notices/{notice}/edit', 'edit')->name("admin.noticeEdit");
-        Route::patch('admin/notices/{notice}', 'update')->name("admin.noticeUpdate");
-        Route::delete('admin/notices/{notice}', 'delete')->name("admin.noticeDelete");
-    });
+            Route::prefix('notices')->group(function () {
+                Route::controller(NoticeController::class)->group(function () {
+                    Route::get('/', 'index')->name("noticeIndex");
+                    Route::get('/create', 'create')->name("noticeCreate");
+                    Route::post('/store', 'store')->name("noticeStore");
+                    Route::get('/{notice}/edit', 'edit')->name("noticeEdit");
+                    Route::patch('/{notice}', 'update')->name("noticeUpdate");
+                    Route::delete('/{notice}', 'delete')->name("noticeDelete");
+                });
+            });
 
-    Route::controller(PatentController::class)->group(function () {
-        Route::get('admin/patents', 'index')->name("admin.patentIndex");
-        Route::get('admin/patents/create', 'create')->name("admin.patentCreate");
-        Route::post('admin/patents/store', 'store')->name("admin.patentStore");
-        Route::get('admin/patents/{patent}/edit', 'edit')->name("admin.patentEdit");
-        Route::patch('admin/patents/{patent}', 'update')->name("admin.patentUpdate");
-        Route::delete('admin/patents/{patent}', 'delete')->name("admin.patentDelete");
-        Route::post('admin/patents/{patent}/move/{direction}', 'move')->name("admin.patentMove");
+            Route::prefix('patents')->group(function () {
+                Route::controller(PatentController::class)->group(function () {
+                    Route::get('/', 'index')->name("patentIndex");
+                    Route::get('/create', 'create')->name("patentCreate");
+                    Route::post('/store', 'store')->name("patentStore");
+                    Route::get('/{patent}/edit', 'edit')->name("patentEdit");
+                    Route::patch('/{patent}', 'update')->name("patentUpdate");
+                    Route::delete('/{patent}', 'delete')->name("patentDelete");
+                    Route::post('/{patent}/move/{direction}', 'move')->name("patentMove");
+                });
+            });
+        });
     });
 });
 
-Route::controller(LanguageController::class)->group(function () {
-    Route::get('/lang/ko', 'setKorean')->name('client.lang.ko');
-    Route::get('/lang/en', 'setEnglish')->name('client.lang.en');
-});
+
