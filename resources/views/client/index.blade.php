@@ -392,25 +392,30 @@
                 <div class="container w1680">
                     <div class="swiper index-history-slide">
                         <div class="swiper-wrapper">
-                            @foreach($historiesByYear as $year => $histories)
+                            @foreach($historiesByYearAndMonth as $year => $months)
                                 <div class="swiper-slide">
                                     <div class="index-history-year">
                                         20<span class="color">{{ substr($year, 2) }}</span>
                                     </div>
-                                    @foreach($histories as $history)
+
                                         <div class="index-history-group row-group">
+                                            @foreach($months as $month => $histories)
                                             <div class="index-history-item col-group">
                                                 <p class="month">
-                                                    {{date('m', strtotime($history->date))}}.
+                                                    {{ $month }}.
                                                 </p>
                                                 <div class="txt-group row-group">
+                                                    @foreach($histories as $history)
                                                     <p class="txt">
-                                                        {{$history->details}}
+                                                        {{$history->details}}<br>
                                                     </p>
+                                                    @endforeach
                                                 </div>
+
                                             </div>
+                                            @endforeach
                                         </div>
-                                    @endforeach
+
                                 </div>
                             @endforeach
                         </div>

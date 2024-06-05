@@ -179,16 +179,18 @@
                 <div class="container w1440">
                     <div class="about-history">
                         <div class="about-history-tab-list col-group">
-                            @foreach($historiesByYear as $year => $histories)
+                            @foreach($historiesByYearAndMonth as $year => $months)
                                 <div class="about-history-tab{{ $loop->first ? ' active' : '' }}"
                                      data-tab="his_{{ $year }}">
                                     {{ $year }}
                                 </div>
                             @endforeach
                         </div>
-                        @foreach($historiesByYear as $year => $histories)
+                        @foreach($historiesByYearAndMonth as $year => $months)
                             @php
-                                $firstImageHistory = $histories->firstWhere('image', '!=', null);
+                                $firstImageHistory = $months->flatMap(function ($month) {
+                                    return $month->where('image', '!=', null);
+                                })->first();
                             @endphp
                             <div class="about-history-container{{ $loop->first ? ' active' : '' }}"
                                  id="his_{{ $year }}">
@@ -198,12 +200,15 @@
                                             <img src="{{ asset('storage/'.$firstImageHistory->image) }}" alt="">
                                         @endif
                                     </div>
+
                                     <div class="about-history-group row-group">
-                                        @foreach($histories as $history)
+                                        @foreach($months as $month => $histories)
                                             <div class="about-history-item col-group">
-                                                <p class="month">{{ date('Y-m', strtotime($history->date)) }}</p>
+                                                <p class="month">{{ $year }}-{{ $month }}</p>
                                                 <div class="txt-group row-group">
-                                                    <p class="txt">{{ $history->details }}</p>
+                                                    @foreach($histories as $history)
+                                                        <p class="txt">{{ $history->details }}</p>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         @endforeach
