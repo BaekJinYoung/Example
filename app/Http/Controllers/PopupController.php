@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PopupRequest;
 use Illuminate\Http\Request;
 use App\Models\Popup;
 use Illuminate\Support\Facades\App;
@@ -15,7 +16,7 @@ class PopupController extends Controller
         $this->Popup = $popup;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $popups = $this->Popup->where('language', app()->getLocale())->orderBy('order', 'desc')->get();
 
@@ -58,20 +59,20 @@ class PopupController extends Controller
         return back();
     }
 
-    public function store(Request $request)
+    public function store(PopupRequest $request)
     {
-        $store = $request->validate(['title' => 'required', 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 'link' => 'nullable']);
+        $store = $request->validated();
 
         $fileName = $request->file('image')->getClientOriginalName();
         $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
-
         $store['image'] = $path;
         $store['image_name'] = $fileName;
+
         $store['language'] = app()->getLocale();
 
         $this->Popup->create($store);
 
-        if ($request->has('continue')) {
+        if ($request->filled('continue')) {
             return redirect()->route('admin.popupCreate');
         }
 
@@ -83,9 +84,9 @@ class PopupController extends Controller
         return view('admin.popupEdit', compact('popup'));
     }
 
-    public function update(Request $request, Popup $popup)
+    public function update(PopupRequest $request, Popup $popup)
     {
-        $update = $request->validate(['title' => 'required', 'image' => 'nullable', 'link' => 'nullable']);
+        $update = $request->validated();
 
         if ($request->hasFile('image')) {
             if ($popup->image) {

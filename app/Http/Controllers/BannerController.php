@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BannerRequest;
 use Illuminate\Http\Request;
 use App\Models\Banner;
 use Illuminate\Support\Facades\Storage;
@@ -10,7 +11,6 @@ class BannerController extends Controller
 {
     public function __construct(Banner $banner)
     {
-        $this->middleware('auth');
         $this->Banner = $banner;
     }
 
@@ -57,26 +57,17 @@ class BannerController extends Controller
         return redirect()->back();
     }
 
-    public function store(Request $request)
+    public function store(BannerRequest $request)
     {
-        $store = $request->validate(['title' => 'required',
-            'mobile_title' => 'required',
-            'subtitle' => 'required',
-            'mobile_subtitle' => 'required',
-            'details' => 'required',
-            'mobile_details' => 'required',
-            'image' => 'required',
-            'mobile_image' => 'required',]);
+        $store = $request->validated();
 
         $fileName = $request->file('image')->getClientOriginalName();
         $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
-
         $store['image'] = $path;
         $store['image_name'] = $fileName;
 
         $mobile_fileName = $request->file('mobile_image')->getClientOriginalName();
         $mobile_path = $request->file('mobile_image')->storeAs('images', time() . '_' . $mobile_fileName, 'public');
-
         $store['mobile_image'] = $mobile_path;
         $store['mobile_image_name'] = $mobile_fileName;
 
@@ -84,7 +75,7 @@ class BannerController extends Controller
 
         $this->Banner->create($store);
 
-        if ($request->has('continue')) {
+        if ($request->filled('continue')) {
             return redirect()->route('admin.bannerCreate');
         }
 
@@ -101,16 +92,9 @@ class BannerController extends Controller
         return view('admin.bannerEdit', compact('banner'));
     }
 
-    public function update(Request $request, Banner $banner)
+    public function update(BannerRequest $request, Banner $banner)
     {
-        $update = $request->validate(['title' => 'required',
-            'mobile_title' => 'required',
-            'subtitle' => 'required',
-            'mobile_subtitle' => 'required',
-            'details' => 'required',
-            'mobile_details' => 'required',
-            'image' => 'nullable',
-            'mobile_image' => 'nullable',]);
+        $update = $request->validated();
 
         if ($request->hasFile('image')) {
             if ($banner->image) {
@@ -118,8 +102,8 @@ class BannerController extends Controller
             }
             $fileName = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
-            $update['image']=$path;
-            $update['image_name']=$fileName;
+            $update['image'] = $path;
+            $update['image_name'] = $fileName;
         }
 
         if ($request->hasFile('mobile_image')) {
@@ -128,8 +112,8 @@ class BannerController extends Controller
             }
             $mobile_fileName = $request->file('mobile_image')->getClientOriginalName();
             $mobile_path = $request->file('mobile_image')->storeAs('images', time() . '_' . $mobile_fileName, 'public');
-            $update['mobile_image']=$mobile_path;
-            $update['mobile_image_name']=$mobile_fileName;
+            $update['mobile_image'] = $mobile_path;
+            $update['mobile_image_name'] = $mobile_fileName;
         }
 
         $banner->update($update);

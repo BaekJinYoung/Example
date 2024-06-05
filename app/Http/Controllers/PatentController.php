@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PatentRequest;
 use Illuminate\Http\Request;
 use App\Models\Patent;
 use Illuminate\Support\Facades\Storage;
@@ -50,31 +51,29 @@ class PatentController extends Controller
 
     public function create()
     {
-        $this->middleware('auth');
         return view('admin.patentCreate');
     }
 
-    public function store(Request $request)
+    public function store(PatentRequest $request)
     {
-        $store = $request->validate(['title' => 'required', 'image' => 'nullable', 'number' => 'required', 'continue' => 'nullable']);
+        //dd($request);
+        $store = $request->validated();
 
         if ($request->hasFile('image')) {
             $fileName = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('images', time() . '_' . $fileName, 'public');
-
             $store['image'] = $path;
             $store['image_name'] = $fileName;
         } else {
-            // 파일이 없는 경우 처리
-            $store['image'] = null; // 또는 기본 값 설정
-            $store['image_name'] = null; // 또는 기본 값 설정
+            $store['image'] = null;
+            $store['image_name'] = null;
         }
 
         $store['language'] = app()->getLocale();
 
         $this->Patent->create($store);
 
-        if ($request->has('continue')) {
+        if ($request->filled('continue')) {
             return redirect()->route('admin.patentCreate');
         }
 
@@ -86,9 +85,9 @@ class PatentController extends Controller
         return view('admin.patentEdit', compact('patent'));
     }
 
-    public function update(Request $request, Patent $patent)
+    public function update(PatentRequest $request, Patent $patent)
     {
-        $update = $request->validate(['title' => 'required', 'image' => 'nullable', 'number' => 'required']);
+        $update = $request->validated();
 
         if ($request->remove_image == 1) {
             if ($patent->image) {

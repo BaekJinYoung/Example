@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\App;
 class ClientController extends Controller
 {
     public function index(){
-
         $banners = Banner::where('language', app()->getLocale())->orderby('order', 'desc')->get();
 
         $histories = History::where('language', app()->getLocale())->

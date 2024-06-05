@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HistoryRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\History;
@@ -31,11 +32,11 @@ class HistoryController extends Controller
         return view('admin.historyIndex', compact('histories', 'perPage', 'years', 'selectedYear'));
     }
 
-    public function store(Request $request)
+    public function store(HistoryRequest $request)
     {
-        $store = $request->validate(['main' => 'required|boolean', 'registered_at' => 'required', 'content' => 'required', 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+        $store = $request->validated();
 
-        $store['details'] = $store['content'];
+        $store['details'] = $request['content'];
 
         if ($request->hasFile('image')) {
             $fileName = $request->file('image')->getClientOriginalName();
@@ -44,13 +45,13 @@ class HistoryController extends Controller
             $store['image_name'] = $fileName;
         }
 
-        $date = Carbon::parse($store['registered_at']);
+        $date = Carbon::parse($request['registered_at']);
         $store['date'] = $date->format('Y-m-d');
         $store['language'] = app()->getLocale();
 
         $this->History->create($store);
 
-        if ($request->has('continue')) {
+        if ($request->filled('continue')) {
             return redirect()->route('admin.historyIndex');
         }
 
@@ -78,9 +79,9 @@ class HistoryController extends Controller
         return view('admin.historyEdit', compact('history'));
     }
 
-    public function update(Request $request, History $history)
+    public function update(HistoryRequest $request, History $history)
     {
-        $update = $request->validate(['main' => 'required', 'registered_at' => 'required', 'content' => 'required', 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+        $update = $request->validated();
 
         $update['date'] = Carbon::parse($request['registered_at']);
         $update['details'] = $request['content'];

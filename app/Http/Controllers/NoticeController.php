@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NoticeRequest;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,6 @@ class NoticeController extends Controller
 {
     public function __construct(Notice $notice)
     {
-        $this->middleware('auth');
         $this->Notice = $notice;
     }
 
@@ -33,24 +33,16 @@ class NoticeController extends Controller
         return view('admin.noticeCreate');
     }
 
-    public function store(Request $request)
+    public function store(NoticeRequest $request)
     {
-        $store = $request->validate([
-            'title' => 'required',
-            'details' => 'required',
-            'summary' => 'required',
-            'writer' => 'required',
-            'information' => 'required',
-            'registered_at' => 'required',
-            'url' => 'nullable',
-        ]);
+        $store = $request->validated();
 
         $store['language'] = app()->getLocale();
         $store['date'] = $store['registered_at'];
 
         $this->Notice->create($store);
 
-        if ($request->has('continue')) {
+        if ($request->filled('continue')) {
             return redirect()->route('admin.noticeIndex');
         }
 
@@ -62,27 +54,13 @@ class NoticeController extends Controller
         return view('admin.noticeEdit', compact('notice'));
     }
 
-    public function update(Request $request, Notice $notice)
+    public function update(NoticeRequest $request, Notice $notice)
     {
-        $update = $request->validate([
-            'title' => 'required',
-            'details' => 'required',
-            'summary' => 'required',
-            'writer' => 'required',
-            'information' => 'required',
-            'registered_at' => 'required',
-            'url' => 'nullable',
-        ]);
+        $update = $request->validated();
 
-        $notice->update([
-            'title' => $update['title'],
-            'details' => $update['details'],
-            'summary' => $update['summary'],
-            'writer' => $update['writer'],
-            'information' => $update['information'],
-            'date' => $update['registered_at'],
-            'url' => $update['url'],
-        ]);
+        $update['registered_at'] = $request['date'];
+
+        $notice->update($update);
 
         return redirect()->route('admin.noticeIndex');
     }
