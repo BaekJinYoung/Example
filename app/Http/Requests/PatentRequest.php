@@ -31,4 +31,12 @@ class PatentRequest extends FormRequest
 
         return $rules;
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => '제목을 작성해주세요.',
+            'number.required' => '특허번호 또는 발급번호를 입력하세요.',
+        ];
+    }
 }

@@ -35,4 +35,22 @@ class PopupRequest extends FormRequest
 
         return $rules;
     }
+    public function messages()
+    {
+        $messages = [
+            'title.required' => '제목을 작성해주세요.',
+            'mobile_title.required' => 'MOBILE 제목을 작성해주세요.',
+            'subtitle.required' => '부제목을 작성해주세요.',
+            'mobile_subtitle.required' => 'MOBILE 부제목을 작성해주세요.',
+            'details.required' => '내용을 작성해주세요.',
+            'mobile_details.required' => 'MOBILE 내용을 작성해주세요.',
+        ];
+
+        if ($this->isMethod('post')) {
+            $messages['image.required'] = '이미지가 비어있습니다.';
+            $messages['mobile_image.required'] = 'MOBILE 이미지가 비어있습니다.';
+        }
+
+        return $messages;
+    }
 }

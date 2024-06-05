@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\YoutubeRequest;
 use App\Models\Youtube;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class YoutubeController extends Controller
         $this->Youtube = $youtube;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $youtubes = $this->Youtube->where('language', app()->getLocale())->get()->map(function ($youtube) {
             $youtube->video_id = $this->extractYouTubeId($youtube->link);
@@ -34,10 +35,11 @@ class YoutubeController extends Controller
         return view('admin.youtubeCreate');
     }
 
-    public function store(Request $request)
+    public function store(YoutubeRequest $request)
     {
-        $store = $request->validate(['link' => 'required',]);
+        $store = $request->validated();
         $store['language'] = app()->getLocale();
+
         $this->Youtube->create($store);
 
         return redirect()->route('admin.youtubeIndex');
@@ -48,10 +50,11 @@ class YoutubeController extends Controller
         return view('admin.youtubeEdit', compact('youtube'));
     }
 
-    public function update(Request $request, Youtube $youtube)
+    public function update(YoutubeRequest $request, Youtube $youtube)
     {
-        $request = $request->validate(['link' => 'required']);
-        $youtube->update($request);
+        $update = $request->validated();
+
+        $youtube->update($update);
         return redirect()->route('admin.youtubeIndex');
     }
 

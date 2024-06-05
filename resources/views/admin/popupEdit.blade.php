@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
 @include('admin.components.head')
 <body>
 <div id="wrap">
@@ -8,6 +11,18 @@
             @include('admin.components.snb')
         </header>
         <div class="admin-wrap">
+            @if ($errors->any())
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="title-wrap col-group">
                 <h2 class="main-title">
                     팝업 수정
@@ -22,7 +37,7 @@
                             제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="title" class="form-input" value="{{$popup->title}}">
+                        <input type="text" name="title" class="form-input" value="{{old('title', $popup->title)}}">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
@@ -46,7 +61,7 @@
                         <p class="item-default">
                             링크(선택)
                         </p>
-                        <input type="text" name="link" class="form-input" value="{{$popup->link}}" placeholder='링크를 입력하세요(https:// 포함), 선택사항'>
+                        <input type="text" name="link" class="form-input" value="{{old('link', $popup->link)}}" placeholder='링크를 입력하세요(https:// 포함), 선택사항'>
                     </div>
                 </div>
                 <div class="form-btn-wrap col-group">
@@ -67,5 +82,8 @@
         document.getElementById(fileNameElementId).textContent = fileName;
     }
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

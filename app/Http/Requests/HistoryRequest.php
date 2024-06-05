@@ -31,4 +31,15 @@ class HistoryRequest extends FormRequest
 
         return $rules;
     }
+
+    public function messages()
+    {
+        $messages = [
+            'main.required' => '메인 페이지 노출 여부를 선택해주세요.',
+            'registered_at.required' => '진행 일자를 선택해주세요.',
+            'content.required' => '내용을 작성해주세요.',
+        ];
+
+        return $messages;
+    }
 }
