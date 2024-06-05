@@ -52,10 +52,10 @@
     </div>
 
     <div class="translate-btn-wrap col-group">
-        <a href="{{ route('client.lang.ko') }}" class="translate-btn {{ session('locale') == 'ko' ? 'active' : '' }}">
+        <a href="{{ route('client.lang.ko') }}" class="translate-btn {{ session('locale', 'en') == 'ko' ? 'active' : '' }}">
             KOR
         </a>
-        <a href="{{ route('client.lang.en') }}" class="translate-btn {{ session('locale') == 'en' ? 'active' : '' }}">
+        <a href="{{ route('client.lang.en') }}" class="translate-btn {{ session('locale', 'en') == 'en' ? 'active' : '' }}">
             ENG
         </a>
     </div>

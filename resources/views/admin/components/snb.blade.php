@@ -2,7 +2,7 @@
     <img src="{{ asset('images/nova_products_logo.svg') }}" alt="" class="header-logo">
 
     <div class="translation_wrap">
-        @if(session('locale') === 'ko')
+        @if(session('locale', 'ko') == 'ko')
             <a href="{{ route('client.lang.ko') }}">
                 <img src="{{ asset('images/kr-on.png') }}" alt="Korean">
             </a>

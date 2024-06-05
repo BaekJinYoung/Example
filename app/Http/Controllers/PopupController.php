@@ -12,7 +12,6 @@ class PopupController extends Controller
 {
     public function __construct(Popup $popup)
     {
-        $this->middleware('auth');
         $this->Popup = $popup;
     }
 
