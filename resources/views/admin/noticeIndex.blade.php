@@ -28,7 +28,7 @@
                         </select>
                         <form action="{{route("admin.noticeIndex")}}" method="get">
                             <div class="search-wrap col-group">
-                                <input type="text" name="search" class="search-input" placeholder="제목을 입력하세요">
+                                <input type="text" name="search" class="search-input" placeholder="제목을 입력하세요" value="{{ old('search', $search) }}">
                                 <button type="submit" class="search-btn">
                                     <i class="xi-search"></i>
                                 </button>

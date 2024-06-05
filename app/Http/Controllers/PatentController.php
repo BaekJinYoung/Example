@@ -16,16 +16,16 @@ class PatentController extends Controller
     public function index(Request $request)
     {
         $query = $this->Patent->query();
+        $search = $request->input('search', '');
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
+        if (!empty($search)) {
             $query->where('title', 'like', '%' . $search . '%');
         }
 
         $perPage = $request->query('perPage', 8);
         $patents = $query->where('language', app()->getLocale())->orderBy('order', 'desc')->paginate($perPage);
 
-        return view('admin.patentIndex', compact('patents', 'perPage'));
+        return view('admin.patentIndex', compact('patents', 'perPage', 'search'));
     }
 
     public function move(Patent $patent, $direction)

@@ -16,16 +16,16 @@ class NoticeController extends Controller
     public function index(Request $request)
     {
         $query = $this->Notice->query();
+        $search = $request->input('search', '');
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
+        if (!empty($search)) {
             $query->where('title', 'like', '%' . $search . '%');
         }
 
         $perPage = $request->query('perPage', 10);
         $notices = $query->where('language', app()->getLocale())->latest()->paginate($perPage);
 
-        return view('admin.noticeIndex', compact('notices', 'perPage'));
+        return view('admin.noticeIndex', compact('notices', 'perPage', 'search'));
     }
 
     public function create()
