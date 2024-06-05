@@ -84,7 +84,7 @@
                     <button class="form-prev-btn" type="submit">
                         등록
                     </button>
-                    <button class="form-submit-btn" name="continue" type="submit">
+                    <button class="form-submit-btn" name="continue" type="submit" value="1">
                         등록 후 계속
                     </button>
                 </div>

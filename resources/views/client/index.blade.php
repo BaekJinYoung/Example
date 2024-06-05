@@ -435,44 +435,44 @@
     </div>
 
     @if($popups->isNotEmpty())
-    <div class="pop-parent" id="popParent">
-        <div class="pop">
-            <div class="swiper-container">
-                <div class="swiper popupSwiper">
-                    <div class="swiper-wrapper">
-                        @foreach($popups as $key => $popup)
-                            <a href="{{$popup->link}}" class="swiper-slide" target="_blank">
-                                <div class="m-ratioBox-wrap">
-                                    <div class="m-ratioBox">
-                                        <img src="{{asset('storage/'.$popup->image)}}" alt="">
+        <div class="pop-parent" id="popParent">
+            <div class="pop">
+                <div class="swiper-container">
+                    <div class="swiper popupSwiper">
+                        <div class="swiper-wrapper">
+                            @foreach($popups as $key => $popup)
+                                <a href="{{$popup->link}}" class="swiper-slide" target="_blank">
+                                    <div class="m-ratioBox-wrap">
+                                        <div class="m-ratioBox">
+                                            <img src="{{asset('storage/'.$popup->image)}}" alt="">
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        @endforeach
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
 
-                <div class="swiper-control">
-                    <div class="swiper-pagination"></div>
-                </div>
+                    <div class="swiper-control">
+                        <div class="swiper-pagination"></div>
+                    </div>
 
-                <div class="pop-btns">
-                    <input type="checkbox" name="oneday" id="oneday_check">
-                    <label for="oneday_check" onclick="nonePopupOneDay()">
-                        <span class="icon"></span> 오늘하루 보지 않기
-                    </label>
+                    <div class="pop-btns">
+                        <input type="checkbox" name="oneday" id="oneday_check">
+                        <label for="oneday_check" onclick="nonePopupOneDay()">
+                            <span class="icon"></span> 오늘하루 보지 않기
+                        </label>
 
-                    <button class="btn-toggle">
-                        <i class="xi-angle-up" style="color:#fff;"></i>
-                    </button>
+                        <button class="btn-toggle">
+                            <i class="xi-angle-up" style="color:#fff;"></i>
+                        </button>
 
-                    <button class="btn-close" onclick="nonePopup()">
-                        <i class="xi-close" style="color:#fff;"></i>
-                    </button>
+                        <button class="btn-close" onclick="nonePopup()">
+                            <i class="xi-close" style="color:#fff;"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
     <script>
 

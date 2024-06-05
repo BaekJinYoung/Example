@@ -31,7 +31,8 @@
                             <span class="red">*</span>
                         </p>
                         <div class="file-upload-wrap">
-                            <input type='file' id='popup_file' accept="image/*" name="image" onchange="displayFileName(this, 'fileName')">
+                            <input type='file' id='popup_file' accept="image/*" name="image"
+                                   onchange="displayFileName(this, 'fileName')">
                             <label for="popup_file" class="file-upload-btn">
                                 파일 업로드
                             </label>
@@ -47,19 +48,20 @@
                         <p class="item-default">
                             링크(선택)
                         </p>
-                        <input type="text" name="link" class="form-input" id="link" placeholder="링크를 입력하세요(https:// 포함), 선택사항">
+                        <input type="text" name="link" class="form-input" id="link"
+                               placeholder="링크를 입력하세요(https:// 포함), 선택사항">
                     </div>
                 </div>
                 <div class="form-btn-wrap col-group">
-                <a href="{{route("admin.popupIndex")}}" class="form-prev-btn">
-                    목록으로
-                </a>
-                <button class="form-prev-btn" type="submit">
-                    등록
-                </button>
-                <button class="form-submit-btn" name="continue" type="submit">
-                    등록 후 계속
-                </button>
+                    <a href="{{route("admin.popupIndex")}}" class="form-prev-btn">
+                        목록으로
+                    </a>
+                    <button class="form-prev-btn" type="submit">
+                        등록
+                    </button>
+                    <button class="form-submit-btn" name="continue" type="submit" value="1">
+                        등록 후 계속
+                    </button>
                 </div>
             </form>
         </div>
