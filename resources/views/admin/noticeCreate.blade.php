@@ -12,7 +12,7 @@
 
             <div class="title-wrap col-group">
                 <h2 class="main-title">
-                    팝업 등록
+                    논문현황 등록
                 </h2>
             </div>
             <form action="{{route('admin.noticeStore')}}" method="post" enctype="multipart/form-data">
@@ -23,35 +23,35 @@
                             제목
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="title" class="form-input" id="title" placeholder="제목을 입력하세요">
+                        <input type="text" name="title" class="form-input" id="title" placeholder="제목을 작성해주세요.">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             내용
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="details" class="form-input" id="details" placeholder="제목을 입력하세요">
+                        <input type="text" name="details" class="form-input" id="details" placeholder="내용을 작성해주세요.">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             한줄요약
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="summary" class="form-input" id="summary" placeholder="제목을 입력하세요">
+                        <input type="text" name="summary" class="form-input" id="summary" placeholder="한줄요약을 작성해주세요.">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             저자
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="writer" class="form-input" id="writer" placeholder="제목을 입력하세요">
+                        <input type="text" name="writer" class="form-input" id="writer" placeholder="저자를 작성해주세요.">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
                             발행정보
                             <span class="red">*</span>
                         </p>
-                        <input type="text" name="information" class="form-input" id="information" placeholder="제목을 입력하세요">
+                        <input type="text" name="information" class="form-input" id="information" placeholder="발행정보를 작성해주세요.">
                     </div>
                     <div class="form-item row-group">
                         <p class="item-default">
@@ -64,7 +64,7 @@
                         <p class="item-default">
                             논문 URL
                         </p>
-                        <input type="text" name="url" class="form-input" id="link" placeholder="링크를 입력하세요(https:// 포함), 선택사항">
+                        <input type="text" name="url" class="form-input" id="link" placeholder="논문 URL을 작성해주세요.">
                     </div>
                 </div>
                 <div class="form-btn-wrap col-group">
