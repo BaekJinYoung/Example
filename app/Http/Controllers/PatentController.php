@@ -80,8 +80,14 @@ class PatentController extends Controller
         return redirect()->route('admin.patentIndex');
     }
 
-    public function edit(Patent $patent)
+    public function edit($id)
     {
+        $patent = Patent::withTrashed()->find($id);
+
+        if (!$patent || $patent->trashed()) {
+            return redirect()->route('admin.patentIndex');
+        }
+
         return view('admin.patentEdit', compact('patent'));
     }
 

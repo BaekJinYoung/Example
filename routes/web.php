@@ -36,78 +36,81 @@ Route::middleware([LocaleMiddleware::class])->group(function () {
         });
     });
 
-    Route::name('admin.')->group(function () {
-        Route::prefix('admin')->group(function () {
-            Route::prefix('popups')->group(function () {
-                Route::controller(PopupController::class)->group(function () {
-                    Route::get('/', 'index')->name("popupIndex");
-                    Route::get('/create', 'create')->name("popupCreate");
-                    Route::post('/store', 'store')->name("popupStore");
-                    Route::get('/{popup}/edit', 'edit')->name("popupEdit");
-                    Route::patch('/{popup}', 'update')->name("popupUpdate");
-                    Route::delete('/{popup}', 'delete')->name("popupDelete");
-                    Route::post('/{popup}/move/{direction}', 'move')->name("popupMove");
-                    Route::post('/{popup}/create', 'upload')->name("popupUpload");
+    Route::middleware('auth')->group(function () {
+        Route::name('admin.')->group(function () {
+            Route::prefix('admin')->group(function () {
+                Route::prefix('popups')->group(function () {
+                    Route::controller(PopupController::class)->group(function () {
+                        Route::get('/', 'index')->name("popupIndex");
+                        Route::get('/create', 'create')->name("popupCreate");
+                        Route::post('/store', 'store')->name("popupStore");
+                        Route::get('/{popup}/edit', 'edit')->name("popupEdit");
+                        Route::patch('/{popup}', 'update')->name("popupUpdate");
+                        Route::delete('/{popup}', 'delete')->name("popupDelete");
+                        Route::post('/{popup}/move/{direction}', 'move')->name("popupMove");
+                        Route::post('/{popup}/create', 'upload')->name("popupUpload");
+                    });
                 });
-            });
 
-            Route::prefix('banners')->group(function () {
-                Route::controller(BannerController::class)->group(function () {
-                    Route::get('/', 'index')->name("bannerIndex");
-                    Route::get('/create', 'create')->name("bannerCreate");
-                    Route::post('/store', 'store')->name("bannerStore");
-                    Route::get('/{banner}/edit', 'edit')->name("bannerEdit");
-                    Route::patch('/{banner}', 'update')->name("bannerUpdate");
-                    Route::delete('/{banner}', 'delete')->name("bannerDelete");
-                    Route::post('/{banner}/move/{direction}', 'move')->name("bannerMove");
+                Route::prefix('banners')->group(function () {
+                    Route::controller(BannerController::class)->group(function () {
+                        Route::get('/', 'index')->name("bannerIndex");
+                        Route::get('/create', 'create')->name("bannerCreate");
+                        Route::post('/store', 'store')->name("bannerStore");
+                        Route::get('/{banner}/edit', 'edit')->name("bannerEdit");
+                        Route::patch('/{banner}', 'update')->name("bannerUpdate");
+                        Route::delete('/{banner}', 'delete')->name("bannerDelete");
+                        Route::post('/{banner}/move/{direction}', 'move')->name("bannerMove");
+                    });
                 });
-            });
 
-            Route::prefix('youtube')->group(function () {
-                Route::controller(YoutubeController::class)->group(function () {
-                    Route::get('/', 'index')->name("youtubeIndex");
-                    Route::get('/create', 'create')->name("youtubeCreate");
-                    Route::post('/store', 'store')->name("youtubeStore");
-                    Route::get('/{youtube}/edit', 'edit')->name("youtubeEdit");
-                    Route::patch('/{youtube}', 'update')->name("youtubeUpdate");
-                    Route::delete('/{youtube}', 'delete')->name("youtubeDelete");
+                Route::prefix('youtube')->group(function () {
+                    Route::controller(YoutubeController::class)->group(function () {
+                        Route::get('/', 'index')->name("youtubeIndex");
+                        Route::get('/create', 'create')->name("youtubeCreate");
+                        Route::post('/store', 'store')->name("youtubeStore");
+                        Route::get('/{youtube}/edit', 'edit')->name("youtubeEdit");
+                        Route::patch('/{youtube}', 'update')->name("youtubeUpdate");
+                        Route::delete('/{youtube}', 'delete')->name("youtubeDelete");
+                    });
                 });
-            });
 
-            Route::prefix('histories')->group(function () {
-                Route::controller(HistoryController::class)->group(function () {
-                    Route::get('/', 'index')->name("historyIndex");
-                    Route::get('/create', 'create')->name("historyCreate");
-                    Route::post('/store', 'store')->name("historyStore");
-                    Route::get('/{history}/edit', 'edit')->name("historyEdit");
-                    Route::patch('/{history}', 'update')->name("historyUpdate");
-                    Route::delete('/{history}', 'delete')->name("historyDelete");
+                Route::prefix('histories')->group(function () {
+                    Route::controller(HistoryController::class)->group(function () {
+                        Route::get('/', 'index')->name("historyIndex");
+                        Route::get('/create', 'create')->name("historyCreate");
+                        Route::post('/store', 'store')->name("historyStore");
+                        Route::get('/{history}/edit', 'edit')->name("historyEdit");
+                        Route::patch('/{history}', 'update')->name("historyUpdate");
+                        Route::delete('/{history}', 'delete')->name("historyDelete");
+                    });
                 });
-            });
 
-            Route::prefix('notices')->group(function () {
-                Route::controller(NoticeController::class)->group(function () {
-                    Route::get('/', 'index')->name("noticeIndex");
-                    Route::get('/create', 'create')->name("noticeCreate");
-                    Route::post('/store', 'store')->name("noticeStore");
-                    Route::get('/{notice}/edit', 'edit')->name("noticeEdit");
-                    Route::patch('/{notice}', 'update')->name("noticeUpdate");
-                    Route::delete('/{notice}', 'delete')->name("noticeDelete");
+                Route::prefix('notices')->group(function () {
+                    Route::controller(NoticeController::class)->group(function () {
+                        Route::get('/', 'index')->name("noticeIndex");
+                        Route::get('/create', 'create')->name("noticeCreate");
+                        Route::post('/store', 'store')->name("noticeStore");
+                        Route::get('/{notice}/edit', 'edit')->name("noticeEdit");
+                        Route::patch('/{notice}', 'update')->name("noticeUpdate");
+                        Route::delete('/{notice}', 'delete')->name("noticeDelete");
+                    });
                 });
-            });
 
-            Route::prefix('patents')->group(function () {
-                Route::controller(PatentController::class)->group(function () {
-                    Route::get('/', 'index')->name("patentIndex");
-                    Route::get('/create', 'create')->name("patentCreate");
-                    Route::post('/store', 'store')->name("patentStore");
-                    Route::get('/{patent}/edit', 'edit')->name("patentEdit");
-                    Route::patch('/{patent}', 'update')->name("patentUpdate");
-                    Route::delete('/{patent}', 'delete')->name("patentDelete");
-                    Route::post('/{patent}/move/{direction}', 'move')->name("patentMove");
+                Route::prefix('patents')->group(function () {
+                    Route::controller(PatentController::class)->group(function () {
+                        Route::get('/', 'index')->name("patentIndex");
+                        Route::get('/create', 'create')->name("patentCreate");
+                        Route::post('/store', 'store')->name("patentStore");
+                        Route::get('/{patent}/edit', 'edit')->name("patentEdit");
+                        Route::patch('/{patent}', 'update')->name("patentUpdate");
+                        Route::delete('/{patent}', 'delete')->name("patentDelete");
+                        Route::post('/{patent}/move/{direction}', 'move')->name("patentMove");
+                    });
                 });
             });
         });
+
     });
 });
 

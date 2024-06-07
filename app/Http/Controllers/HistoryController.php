@@ -12,7 +12,6 @@ class HistoryController extends Controller
 {
     public function __construct(History $history)
     {
-        $this->middleware('auth');
         $this->History = $history;
     }
 
@@ -74,8 +73,14 @@ class HistoryController extends Controller
         return back();
     }
 
-    public function edit(History $history)
+    public function edit($id)
     {
+        $history = History::withTrashed()->find($id);
+
+        if (!$history || $history->trashed()) {
+            return redirect()->route('admin.historyIndex');
+        }
+
         return view('admin.historyEdit', compact('history'));
     }
 

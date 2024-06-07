@@ -195,7 +195,7 @@
                                     <div class="about-history-group row-group">
                                         @foreach($months as $month => $histories)
                                             <div class="about-history-item col-group">
-                                                <p class="month">{{ $year }}-{{ $month }}</p>
+                                                <p class="month">{{ $year }}.{{ $month }}</p>
                                                 <div class="txt-group row-group">
                                                     @foreach($histories as $history)
                                                     <p class="txt">{{ $history->details }}</p>

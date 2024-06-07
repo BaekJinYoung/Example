@@ -49,8 +49,14 @@ class NoticeController extends Controller
         return redirect()->route('admin.noticeIndex');
     }
 
-    public function edit(Notice $notice)
+    public function edit($id)
     {
+        $notice = Notice::withTrashed()->find($id);
+
+        if (!$notice || $notice->trashed()) {
+            return redirect()->route('admin.noticeIndex');
+        }
+
         return view('admin.noticeEdit', compact('notice'));
     }
 

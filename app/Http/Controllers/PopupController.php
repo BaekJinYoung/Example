@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PopupRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Models\Popup;
 use Illuminate\Support\Facades\App;
@@ -79,8 +80,14 @@ class PopupController extends Controller
         return redirect()->route('admin.popupIndex');
     }
 
-    public function edit(Popup $popup)
+    public function edit($id)
     {
+        $popup = Popup::withTrashed()->find($id);
+
+        if (!$popup || $popup->trashed()) {
+            return redirect()->route('admin.popupIndex');
+        }
+
         return view('admin.popupEdit', compact('popup'));
     }
 

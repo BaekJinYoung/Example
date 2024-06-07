@@ -87,8 +87,14 @@ class BannerController extends Controller
         return view('admin.bannerCreate');
     }
 
-    public function edit(Banner $banner)
+    public function edit($id)
     {
+        $banner = Banner::withTrashed()->find($id);
+
+        if (!$banner || $banner->trashed()) {
+            return redirect()->route('admin.bannerIndex');
+        }
+
         return view('admin.bannerEdit', compact('banner'));
     }
 

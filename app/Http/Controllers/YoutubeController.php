@@ -45,8 +45,14 @@ class YoutubeController extends Controller
         return redirect()->route('admin.youtubeIndex');
     }
 
-    public function edit(Youtube $youtube)
+    public function edit($id)
     {
+        $youtube = Youtube::withTrashed()->find($id);
+
+        if (!$youtube || $youtube->trashed()) {
+            return redirect()->route('admin.youtubeIndex');
+        }
+
         return view('admin.youtubeEdit', compact('youtube'));
     }
 
