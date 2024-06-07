@@ -30,8 +30,8 @@ Route::middleware([LocaleMiddleware::class])->group(function () {
 
         Route::prefix('lang')->group(function () {
             Route::controller(LanguageController::class)->group(function () {
-                Route::get('/ko', 'setKorean')->name('lang.ko');
-                Route::get('/en', 'setEnglish')->name('lang.en');
+                Route::get('/ko/{boardType?}', 'setKorean')->name('lang.ko');
+                Route::get('/en/{boardType?}', 'setEnglish')->name('lang.en');
             });
         });
     });

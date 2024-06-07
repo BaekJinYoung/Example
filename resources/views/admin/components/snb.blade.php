@@ -1,19 +1,24 @@
+@php use Illuminate\Support\Str; @endphp
 <div class="header-wrap">
     <img src="{{ asset('images/nova_products_logo.svg') }}" alt="" class="header-logo">
 
     <div class="translation_wrap">
+        @php
+            $boardType = Str::of(request()->segment(2))->singular();
+        @endphp
+
         @if(session('locale', 'ko') == 'ko')
-            <a href="{{ route('client.lang.ko') }}">
+            <a href="{{ route('client.lang.ko', ['boardType' => $boardType]) }}">
                 <img src="{{ asset('images/kr-on.png') }}" alt="Korean">
             </a>
-            <a href="{{ route('client.lang.en') }}">
+            <a href="{{ route('client.lang.en', ['boardType' => $boardType]) }}">
                 <img src="{{ asset('images/en-off.png') }}" alt="English">
             </a>
         @else
-            <a href="{{ route('client.lang.ko') }}">
+            <a href="{{ route('client.lang.ko', ['boardType' => $boardType]) }}">
                 <img src="{{ asset('images/kr-off.png') }}" alt="Korean">
             </a>
-            <a href="{{ route('client.lang.en') }}">
+            <a href="{{ route('client.lang.en', ['boardType' => $boardType]) }}">
                 <img src="{{ asset('images/en-on.png') }}" alt="English">
             </a>
         @endif

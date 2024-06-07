@@ -5,17 +5,49 @@ use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
-    // 한국어로 설정
     public function setKorean(Request $request)
     {
+        $boardType = $request->route('boardType');
         $request->session()->put('locale', 'ko');
-        return redirect()->back();
+
+        switch ($boardType) {
+            case 'popup':
+                return redirect()->route("admin.popupIndex");
+            case 'banner':
+                return redirect()->route("admin.bannerIndex");
+            case 'youtube':
+                return redirect()->route("admin.youtubeIndex");
+            case 'history':
+                return redirect()->route("admin.historyIndex");
+            case 'notice':
+                return redirect()->route("admin.noticeIndex");
+            case 'patent':
+                return redirect()->route("admin.patentIndex");
+            default:
+                return redirect()->back();
+        }
     }
 
-    // 영어로 설정
     public function setEnglish(Request $request)
     {
+        $boardType = $request->route('boardType');
         $request->session()->put('locale', 'en');
-        return redirect()->back();
+
+        switch ($boardType) {
+            case 'popup':
+                return redirect()->route("admin.popupIndex");
+            case 'banner':
+                return redirect()->route("admin.bannerIndex");
+            case 'youtube':
+                return redirect()->route("admin.youtubeIndex");
+            case 'history':
+                return redirect()->route("admin.historyIndex");
+            case 'notice':
+                return redirect()->route("admin.noticeIndex");
+            case 'patent':
+                return redirect()->route("admin.patentIndex");
+            default:
+                return redirect()->back();
+        }
     }
 }
