@@ -71,7 +71,7 @@
                                         {{$banner->details}}
                                     </p>
                                     <a href="{{route("client.about")}}" class="more-btn col-group">
-                                        ABOUT NOVA
+                                        ㅅㄷㄴㅅ
                                         <i class="xi-arrow-right icon"></i>
                                     </a>
                                 </div>
