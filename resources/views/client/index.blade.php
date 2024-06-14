@@ -96,7 +96,7 @@
                                 <div class="index-title-wrap row-group">
                                     <p class="num">01</p>
                                     <p class="sub-title">
-                                        된 거 맞아?
+                                        될 것 같기도
                                     </p>
                                     <h3 class="title">
                                         VISION
