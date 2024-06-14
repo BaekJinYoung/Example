@@ -22,6 +22,11 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
 
+      - name: Start SSH Agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
@@ -29,12 +34,11 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/test/exampleTest  # 서버에 배포할 경로로 변경
-            git pull origin master
+            cd /path/to/your/project
+            git pull origin main
             composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-            php artisan migrate --force  # 필요한 경우 마이그레이션 실행
+            php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-            # 필요한 경우 다른 Artisan 명령어 추가
 
