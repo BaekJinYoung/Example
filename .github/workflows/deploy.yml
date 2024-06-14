@@ -34,6 +34,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            sudo -u test bash -c '
             cd /home/test/exampleTest
             git pull origin master
             composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
@@ -41,6 +42,7 @@ jobs:
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
+            '
 
-            #
+
 
