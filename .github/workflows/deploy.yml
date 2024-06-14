@@ -36,7 +36,7 @@ jobs:
           script: |
             sudo -u root bash -c '
             cd /home/test/exampleTest
-            git pull example master
+            git pull origin master
             composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
             php artisan migrate --force
             php artisan config:cache
