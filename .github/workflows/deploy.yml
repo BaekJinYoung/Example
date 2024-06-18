@@ -30,28 +30,14 @@ jobs:
       - name: Add server host key to known_hosts
         run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Create Laravel directory if not exists
-        run: sudo mkdir -p /var/www/laravel
+      - name: Copy install.sh to server
+        run: scp path/to/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
 
-      - name: Change directory to Laravel
-        run: cd /var/www/laravel || exit 1
-
-      - name: Initialize Git repository if not initialized
-        run: |
-          if [ ! -d ".git" ]; then
-            git init
-            git remote add origin https://github.com/your/repository.git
-          fi
-
-      - name: Pull latest changes from Git
-        run: git pull origin master
-
-      - name: Install Composer dependencies
-        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-
-      - name: Run Laravel Artisan commands
-        run: |
-          php artisan migrate --force
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
+      - name: Execute install.sh on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            bash /home/${{ secrets.SERVER_USER }}/install.sh
