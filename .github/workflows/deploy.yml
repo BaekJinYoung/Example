@@ -19,8 +19,11 @@ jobs:
           php-version: '8.2'
           extensions: mbstring, intl, mysql
 
-      - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+      - name: Add known hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
 
       - name: Start SSH Agent
         uses: webfactory/ssh-agent@v0.5.3
