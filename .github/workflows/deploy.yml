@@ -55,7 +55,7 @@ jobs:
             # MySQL 루트 패스워드 전달
             expect -c '
               spawn bash /home/${{ secrets.SERVER_USER }}/install.sh
-              expect "Enter password:"
+              expect "Enter MySQL root password: "
               send "$MYSQL_ROOT_PASSWORD\r"
               expect eof
             '
