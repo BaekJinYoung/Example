@@ -67,7 +67,7 @@ configure_firewall() {
 # Install SSL certificate with Certbot
 install_ssl_cert() {
     # domain
-    sudo certbot --nginx -d baekjinyoung.co.kr
+    sudo certbot --nginx -d baekjinyoung.co.kr -n
     sudo systemctl enable certbot.timer
     sudo systemctl start certbot.timer
 }
