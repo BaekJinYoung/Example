@@ -1,5 +1,6 @@
 #!/bin/bash
 
+chmod +x /home/${{ secrets.SERVER_USER }}/install.sh
 set -e
 
 # Prompt for MySQL root password (not stored in script)
