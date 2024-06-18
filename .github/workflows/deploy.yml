@@ -36,6 +36,7 @@ jobs:
       - name: Set up environment variables
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          USERNAME: ${{ secrets.SERVER_USER }}
         run: |
           echo "Setting up environment variables..."
           export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
