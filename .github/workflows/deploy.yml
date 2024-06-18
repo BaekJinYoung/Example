@@ -49,6 +49,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # MySQL 루트 패스워드 전달
+            sudo apt-get update
             sudo apt-get install expect
             expect -c '
               spawn bash /home/${{ secrets.SERVER_USER }}/install.sh
