@@ -41,10 +41,15 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          env:
+            MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           script: |
             # 필요한 패키지 설치
             sudo apt-get update
-            sudo apt-get install -y expect
+            sudo apt-get install -y mysql-server
+
+            # MySQL 루트 비밀번호 설정
+            sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY '${MYSQL_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
 
             # Laravel 프로젝트 설정
             sudo mkdir -p /home/${{ secrets.SERVER_USER }}/laravel
@@ -59,9 +64,7 @@ jobs:
             git pull origin master
 
             # install.sh 실행
-            sudo -u ${{ secrets.SERVER_USER }} bash /home/${{ secrets.SERVER_USER }}/install.sh <<EOF
-            ${{ secrets.MYSQL_ROOT_PASSWORD }}
-            EOF
+            sudo -u ${{ secrets.SERVER_USER }} bash /home/${{ secrets.SERVER_USER }}/install.sh
 
             # 웹 서버 사용자로 소유자 변경
             sudo chown -R www-data:www-data /home/${{ secrets.SERVER_USER }}/laravel
