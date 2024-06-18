@@ -38,6 +38,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             bash /home/${{ secrets.SERVER_USER }}/install.sh
+            mkdir -p /var/www/laravel
             cd /var/www/laravel
             git pull origin master
             composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
