@@ -22,7 +22,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
 
-      - name: Configure SSH
+      - name: Start SSH Agent
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -30,20 +30,43 @@ jobs:
       - name: Add server host key to known_hosts
         run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy Laravel application
+      - name: Copy install.sh to server
+        run: scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
+
+      - name: Set up environment variables
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SERVER_HOST: ${{ secrets.SERVER_HOST }}
-          SERVER_USER: ${{ secrets.SERVER_USER }}
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         run: |
-          ssh -i $SSH_PRIVATE_KEY $SERVER_USER@$SERVER_HOST "bash -s" << 'EOF'
-            cd /home/$SERVER_USER
-            git clone https://github.com/BaekJinYoung/Example.git laravel
-            cd laravel
-            composer install --no-dev --optimize-autoloader
+          echo "Setting up environment variables..."
+          export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
+          echo "MYSQL_ROOT_PASSWORD set to: $MYSQL_ROOT_PASSWORD"
+
+      - name: Execute install.sh on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # MySQL 루트 패스워드 전달
+            expect -c '
+              spawn bash /home/${{ secrets.SERVER_USER }}/install.sh
+              expect "Enter password:"
+              send "$MYSQL_ROOT_PASSWORD\r"
+              expect eof
+            '
+
+            # Laravel 프로젝트 설정
+            sudo mkdir -p /home/${{ secrets.SERVER_USER }}/laravel
+            cd /home/${{ secrets.SERVER_USER }}/laravel
+
+            # Git 초기화 및 소스 코드 다운로드
+            git init
+            git remote add origin https://github.com/BaekJinYoung/Example.git
+            git pull origin master
+
+            # Laravel 명령어 실행
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-          EOF
