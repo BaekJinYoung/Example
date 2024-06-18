@@ -48,4 +48,4 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            bash -s $MYSQL_ROOT_PASSWORD < /dev/tty < /home/${{ secrets.SERVER_USER }}/install.sh
+            echo "$MYSQL_ROOT_PASSWORD" | bash /home/${{ secrets.SERVER_USER }}/install.sh
