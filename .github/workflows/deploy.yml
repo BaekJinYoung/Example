@@ -40,7 +40,7 @@ jobs:
           echo "Setting up environment variables..."
           export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
           echo "MYSQL_ROOT_PASSWORD set to: $MYSQL_ROOT_PASSWORD"
-          bash install.sh
+          bash /home/${{ secrets.SERVER_USER }}/install.sh
 
       - name: Execute install.sh on server
         uses: appleboy/ssh-action@master
