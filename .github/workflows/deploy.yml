@@ -49,6 +49,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # MySQL 루트 패스워드 전달
+            sudo apt-get install expect
             expect -c '
               spawn bash /home/${{ secrets.SERVER_USER }}/install.sh
               expect "Enter password:"
@@ -58,15 +59,10 @@ jobs:
 
             # Laravel 프로젝트 설정
             sudo mkdir -p /home/${{ secrets.SERVER_USER }}/laravel
+            sudo chown -R $USER:$USER /home/${{ secrets.SERVER_USER }}/laravel
             cd /home/${{ secrets.SERVER_USER }}/laravel
 
             # Git 초기화 및 소스 코드 다운로드
             git init
             git remote add origin https://github.com/BaekJinYoung/Example.git
             git pull origin master
-
-            # Laravel 명령어 실행
-            php artisan migrate --force
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
