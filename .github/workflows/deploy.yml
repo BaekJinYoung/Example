@@ -33,6 +33,12 @@ jobs:
       - name: Copy install.sh to server
         run: scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
 
+      - name: Set up environment variables
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        run: |
+          bash install.sh
+
       - name: Execute install.sh on server
         uses: appleboy/ssh-action@master
         with:
