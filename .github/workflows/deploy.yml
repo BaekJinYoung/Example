@@ -48,9 +48,11 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # MySQL 루트 패스워드 전달
+            # 필요한 패키지 설치
             sudo apt-get update
-            sudo apt-get install expect
+            sudo apt-get install -y expect
+
+            # MySQL 루트 패스워드 전달
             expect -c '
               spawn bash /home/${{ secrets.SERVER_USER }}/install.sh
               expect "Enter password:"
@@ -66,4 +68,6 @@ jobs:
             # Git 초기화 및 소스 코드 다운로드
             git init
             git remote add origin https://github.com/BaekJinYoung/Example.git
+            git fetch
+            git checkout master
             git pull origin master
