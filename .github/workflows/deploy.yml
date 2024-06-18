@@ -3,7 +3,7 @@ name: Laravel Deploy
 on:
   push:
     branches:
-      - master  # 배포할 브랜치 설정
+      - master
 
 jobs:
   deploy:
@@ -16,16 +16,22 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'  # 사용하고 있는 PHP 버전에 맞게 설정
-          extensions: mbstring, intl, mysql  # 필요한 PHP 확장자들
+          php-version: '8.2'
+          extensions: mbstring, intl, mysql
 
       - name: Install Composer dependencies
         run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+
+      - name: Generate Laravel Application Key
+        run: php artisan key:generate
 
       - name: Start SSH Agent
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Copy installation script
+        run: scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
@@ -34,14 +40,11 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/test/exampleTest
+            bash /home/${{ secrets.SERVER_USER }}/install.sh
+            cd /var/www/laravel
             git pull origin master
             composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-
-
-
-
