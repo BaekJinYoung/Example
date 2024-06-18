@@ -49,3 +49,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "$MYSQL_ROOT_PASSWORD" | bash /home/${{ secrets.SERVER_USER }}/install.sh
+            cd /home/ubuntu/laravel
+            git pull origin master
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache

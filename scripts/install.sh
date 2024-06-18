@@ -90,7 +90,7 @@ configure_php_nginx() {
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    root /home/ubuntu/public;
+    root /home/ubuntu/laravel/public;
     index index.php index.html index.htm index.nginx-debian.html;
     server_name baekjinyoung.co.kr;
 
