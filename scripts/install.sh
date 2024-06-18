@@ -70,7 +70,6 @@ configure_firewall() {
 install_ssl_cert() {
     # domain
     sudo certbot --nginx -d baekjinyoung.co.kr -n --agree-tos --email time121412@gmail.com
-    sudo certbot renew --nginx --agree-tos --email time121412@gmail.com
     sudo systemctl enable certbot.timer
     sudo systemctl start certbot.timer
 }
