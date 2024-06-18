@@ -31,7 +31,9 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Copy install.sh to server
-        run: scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
+        run: |
+          scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'chmod +x /home/${{ secrets.SERVER_USER }}/install.sh'
 
       - name: Set up environment variables
         env:
@@ -41,7 +43,7 @@ jobs:
           echo "Setting up environment variables..."
           export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
           echo "MYSQL_ROOT_PASSWORD set to: $MYSQL_ROOT_PASSWORD"
-          bash /home/${{ secrets.SERVER_USER }}/install.sh
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "/home/${{ secrets.SERVER_USER }}/install.sh"
 
       - name: Execute install.sh on server
         uses: appleboy/ssh-action@master
