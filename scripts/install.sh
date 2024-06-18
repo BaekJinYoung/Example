@@ -58,6 +58,8 @@ EOL
 configure_firewall() {
     sudo ufw allow OpenSSH
     sudo ufw allow mysql
+    sudo ufw allow 80/tcp
+    sudo ufw allow 443/tcp
     sudo ufw allow 2121/tcp
     sudo ufw allow 20:21/tcp
     sudo ufw allow 30000:31000/tcp
@@ -88,7 +90,7 @@ configure_php_nginx() {
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    root /var/www/html;
+    root /home/ubuntu/;
     index index.php index.html index.htm index.nginx-debian.html;
     server_name baekjinyoung.co.kr;
 
