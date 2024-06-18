@@ -85,7 +85,8 @@ configure_php_nginx() {
 
     # Configure Nginx
     NGINX_CONF="/etc/nginx/sites-available/default"
-    sudo tee $NGINX_CONF > /dev/null <<EOL
+    if [ ! -f "$NGINX_CONF" ]; then
+        sudo tee $NGINX_CONF > /dev/null <<EOL
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
@@ -107,9 +108,13 @@ server {
     }
 }
 EOL
+    fi
 
     # symbolic link
-    sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+    if [ ! -e "/etc/nginx/sites-enabled/default" ]; then
+        sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+    fi
+
     sudo systemctl restart nginx
 }
 
