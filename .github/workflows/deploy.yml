@@ -41,34 +41,34 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-        script: |
-          # 필요한 패키지 설치
-          sudo apt-get update
-          sudo apt-get install -y mysql-server
+          envs:  # corrected from env to envs
+            MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          command: |
+            # 필요한 패키지 설치
+            sudo apt-get update
+            sudo apt-get install -y mysql-server
 
-          # MySQL 루트 비밀번호 설정
-          sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY '${MYSQL_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
+            # MySQL 루트 비밀번호 설정
+            sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY '${MYSQL_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
 
-          # Laravel 프로젝트 설정
-          sudo mkdir -p /home/${{ secrets.SERVER_USER }}/laravel
-          sudo chown -R $USER:$USER /home/${{ secrets.SERVER_USER }}/laravel
-          cd /home/${{ secrets.SERVER_USER }}/laravel
+            # Laravel 프로젝트 설정
+            sudo mkdir -p /home/${{ secrets.SERVER_USER }}/laravel
+            sudo chown -R $USER:$USER /home/${{ secrets.SERVER_USER }}/laravel
+            cd /home/${{ secrets.SERVER_USER }}/laravel
 
-          # Git 초기화 및 소스 코드 다운로드
-          git init
-          git remote add origin https://github.com/BaekJinYoung/Example.git
-          git fetch
-          git checkout master
-          git pull origin master
+            # Git 초기화 및 소스 코드 다운로드
+            git init
+            git remote add origin https://github.com/BaekJinYoung/Example.git
+            git fetch
+            git checkout master
+            git pull origin master
 
-          # install.sh 실행
-          sudo -u ${{ secrets.SERVER_USER }} bash /home/${{ secrets.SERVER_USER }}/install.sh
+            # install.sh 실행
+            sudo -u ${{ secrets.SERVER_USER }} bash /home/${{ secrets.SERVER_USER }}/install.sh
 
-          # 웹 서버 사용자로 소유자 변경
-          sudo chown -R www-data:www-data /home/${{ secrets.SERVER_USER }}/laravel
+            # 웹 서버 사용자로 소유자 변경
+            sudo chown -R www-data:www-data /home/${{ secrets.SERVER_USER }}/laravel
 
-          # 파일 권한 설정
-          sudo find /home/${{ secrets.SERVER_USER }}/laravel -type f -exec chmod 644 {} \;
-          sudo find /home/${{ secrets.SERVER_USER }}/laravel -type d -exec chmod 755 {} \;
+            # 파일 권한 설정
+            sudo find /home/${{ secrets.SERVER_USER }}/laravel -type f -exec chmod 644 {} \;
+            sudo find /home/${{ secrets.SERVER_USER }}/laravel -type d -exec chmod 755 {} \;
