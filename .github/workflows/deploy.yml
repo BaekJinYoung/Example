@@ -28,18 +28,12 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Add server host key to known_hosts
-        run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Copy install.sh to server
         run: scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
-
-      - name: Set up environment variables
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-        run: |
-          echo "Setting up environment variables..."
-          export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
-          echo "MYSQL_ROOT_PASSWORD set to: $MYSQL_ROOT_PASSWORD"
 
       - name: Execute install.sh on server
         uses: appleboy/ssh-action@master
@@ -52,14 +46,6 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y expect
 
-            # MySQL 루트 패스워드 전달
-            expect -c '
-              spawn bash /home/${{ secrets.SERVER_USER }}/install.sh
-              expect "Enter MySQL root password: "
-              send "$MYSQL_ROOT_PASSWORD\r"
-              expect eof
-            '
-
             # Laravel 프로젝트 설정
             sudo mkdir -p /home/${{ secrets.SERVER_USER }}/laravel
             sudo chown -R $USER:$USER /home/${{ secrets.SERVER_USER }}/laravel
@@ -71,3 +57,8 @@ jobs:
             git fetch
             git checkout master
             git pull origin master
+
+            # install.sh 실행
+            sudo -u ${{ secrets.SERVER_USER }} bash /home/${{ secrets.SERVER_USER }}/install.sh <<EOF
+            ${{ secrets.MYSQL_ROOT_PASSWORD }}
+            EOF
