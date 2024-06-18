@@ -51,6 +51,8 @@ jobs:
             echo "$MYSQL_ROOT_PASSWORD" | bash /home/${{ secrets.SERVER_USER }}/install.sh
             sudo mkdir /home/${{ secrets.SERVER_USER }}/laravel
             cd /home/${{ secrets.SERVER_USER }}/laravel
+            git init
+            git remote add origin https://github.com/BaekJinYoung/Example.git
             git pull origin master
             php artisan migrate --force
             php artisan config:cache
