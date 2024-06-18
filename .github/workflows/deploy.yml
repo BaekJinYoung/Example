@@ -31,19 +31,15 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Copy install.sh to server
-        run: |
-          scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'chmod +x /home/${{ secrets.SERVER_USER }}/install.sh'
+        run: scp scripts/install.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/install.sh
 
       - name: Set up environment variables
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-          USERNAME: ${{ secrets.SERVER_USER }}
         run: |
           echo "Setting up environment variables..."
           export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
           echo "MYSQL_ROOT_PASSWORD set to: $MYSQL_ROOT_PASSWORD"
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "/home/${{ secrets.SERVER_USER }}/install.sh"
 
       - name: Execute install.sh on server
         uses: appleboy/ssh-action@master
@@ -52,5 +48,4 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo "Executing install.sh on server..."
-            bash /home/${{ secrets.SERVER_USER }}/install.sh
+            bash -s $MYSQL_ROOT_PASSWORD < /dev/tty < /home/${{ secrets.SERVER_USER }}/install.sh
