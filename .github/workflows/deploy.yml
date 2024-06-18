@@ -39,6 +39,7 @@ jobs:
         run: |
           echo "Setting up environment variables..."
           export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
+          echo "MYSQL_ROOT_PASSWORD set to: $MYSQL_ROOT_PASSWORD"
           bash install.sh
 
       - name: Execute install.sh on server
@@ -48,4 +49,5 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            echo "Executing install.sh on server..."
             bash /home/${{ secrets.SERVER_USER }}/install.sh
