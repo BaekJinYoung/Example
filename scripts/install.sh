@@ -9,9 +9,45 @@ read -s -p "Enter MySQL root password: " MYSQL_ROOT_PASSWORD
 echo
 
 # Update and install necessary packages
-sudo apt-get update
-sudo apt-get install -y git unzip nginx php-fpm php-mysql php-mbstring php-xml php-bcmath php-json php-zip php-curl mariadb-server mariadb-client software-properties-common ca-certificates vsftpd certbot python3-certbot-nginx phpmyadmin
-sudo systemctl daemon-reload
+is_installed() {
+    dpkg -l | grep -q "$1"
+}
+
+install_packages() {
+    sudo apt-get update
+
+    # 필요한 패키지 목록
+    packages=(
+        git
+        unzip
+        nginx
+        php-fpm
+        php-mysql
+        php-mbstring
+        php-xml
+        php-bcmath
+        php-json
+        php-zip
+        php-curl
+        mariadb-server
+        mariadb-client
+        software-properties-common
+        ca-certificates
+        vsftpd
+        certbot
+        python3-certbot-nginx
+        phpmyadmin
+    )
+
+    for package in "${packages[@]}"; do
+        if ! is_installed "$package"; then
+            sudo apt-get install -y "$package"
+        fi
+    done
+
+    # 변경 사항 반영을 위해 systemd 데몬 재로드
+    sudo systemctl daemon-reload
+}
 
 # Secure MySQL installation
 secure_mysql_installation() {
@@ -35,6 +71,7 @@ EOF
 
 # Configure VSFTPD
 configure_vsftpd() {
+    if [ ! -f /etc/vsftpd.conf ] || ! grep -q "listen_port=2121" /etc/vsftpd.conf; then
     sudo tee /etc/vsftpd.conf > /dev/null <<EOL
 listen=YES
 listen_ipv6=NO
@@ -60,6 +97,7 @@ rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 ssl_enable=NO
 EOL
     sudo systemctl restart vsftpd
+    fi
 }
 
 # Configure firewall
@@ -76,10 +114,11 @@ configure_firewall() {
 
 # Install SSL certificate with Certbot
 install_ssl_cert() {
-    # domain
-    sudo certbot --nginx -d baekjinyoung.co.kr -n --agree-tos --email time121412@gmail.com || true
-    sudo systemctl enable certbot.timer
-    sudo systemctl start certbot.timer
+    if ! sudo certbot certificates | grep -q "baekjinyoung.co.kr"; then
+        sudo certbot --nginx -d baekjinyoung.co.kr -n --agree-tos --email time121412@gmail.com || true
+        sudo systemctl enable certbot.timer
+        sudo systemctl start certbot.timer
+    fi
 }
 
 # Configure PHP and Nginx
@@ -128,6 +167,7 @@ EOL
 
 # Main function to execute all configuration steps
 main() {
+    install_packages
     secure_mysql_installation
     configure_vsftpd
     configure_firewall
