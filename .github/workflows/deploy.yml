@@ -30,9 +30,9 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PUBLIC_KEY }}" >> ~/.ssh/authorized_keys
           chmod 755 ~/.ssh
           chmod 644 ~/.ssh/authorized_keys
-          echo "${{ secrets.SSH_PUBLIC_KEY }}" >> ~/.ssh/authorized_keys
 
 
       - name: Add server host key to known_hosts
