@@ -31,9 +31,9 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          mkdir -p /home/${{ secrets.SERVER_USER }}/.ssh
+          sudo mkdir -p /home/${{ secrets.SERVER_USER }}/.ssh
           echo "$SSH_PRIVATE_KEY" > /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
-          chmod 600 /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
+          sudo chmod 600 /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
           ssh-add /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
 
 
