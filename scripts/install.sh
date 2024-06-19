@@ -54,7 +54,7 @@ secure_mysql_installation() {
     sudo systemctl start mysql
 
     # MySQL root 비밀번호 설정
-    sudo mysql --user=root <<-EOF
+    sudo mysql -u root -p "${MYSQL_ROOT_PASSWORD}" <<-EOF
     ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
     FLUSH PRIVILEGES;
 EOF
