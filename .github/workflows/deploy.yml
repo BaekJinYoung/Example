@@ -33,8 +33,8 @@ jobs:
         run: |
           sudo mkdir -p /home/${{ secrets.SERVER_USER }}/.ssh
           echo "$SSH_PRIVATE_KEY" > /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
-          sudo chmod 600 /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
-          ssh-add /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
+          sudo chmod 755 /home/${{ secrets.SERVER_USER }}/.ssh
+          sudo chmod 644 /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
 
 
       - name: Add server host key to known_hosts
