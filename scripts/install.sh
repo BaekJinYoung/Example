@@ -51,22 +51,15 @@ install_packages() {
 
 # Secure MySQL installation
 secure_mysql_installation() {
-    sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" <<EOF
-ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-FLUSH PRIVILEGES;
+    sudo systemctl start mariadb
+    sudo mysql --user=root <<-EOF
+    ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+    DELETE FROM mysql.user WHERE User='';
+    DROP DATABASE IF EXISTS test;
+    DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
+    FLUSH PRIVILEGES;
 EOF
-
-    sudo mysql_secure_installation <<EOF
-${MYSQL_ROOT_PASSWORD}
-y
-${MYSQL_ROOT_PASSWORD}
-${MYSQL_ROOT_PASSWORD}
-y
-y
-y
-y
-EOF
-    sudo systemctl restart mysql
+    sudo systemctl restart mariadb
 }
 
 # Configure VSFTPD
