@@ -4,7 +4,7 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
+MYSQL_ROOT_PASSWORD=$1
 
 # Update and install necessary packages
 is_installed() {
