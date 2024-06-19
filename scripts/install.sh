@@ -11,6 +11,7 @@ echo
 # Update and install necessary packages
 sudo apt-get update
 sudo apt-get install -y git unzip nginx php-fpm php-mysql php-mbstring php-xml php-bcmath php-json php-zip php-curl mariadb-server mariadb-client software-properties-common ca-certificates vsftpd certbot python3-certbot-nginx phpmyadmin
+sudo systemctl daemon-reload
 
 # Secure MySQL installation
 secure_mysql_installation() {
