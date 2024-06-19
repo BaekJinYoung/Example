@@ -28,11 +28,13 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          sudo mkdir -p /home/ubuntu/.ssh
-          echo "${{ secrets.SSH_PUBLIC_KEY }}" > /home/ubuntu/.ssh/authorized_keys
-          sudo chmod 755 /home/${{ secrets.SERVER_USER }}/.ssh
-          sudo chmod 644 /home/${{ secrets.SERVER_USER }}/.ssh/authorized_keys
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-add ~/.ssh/id_rsa
 
 
       - name: Add server host key to known_hosts
