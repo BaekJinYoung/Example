@@ -52,13 +52,21 @@ install_packages() {
 # Secure MySQL installation
 secure_mysql_installation() {
     sudo systemctl start mariadb
+
+    # MySQL root 비밀번호 설정
     sudo mysql --user=root <<-EOF
     ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+    FLUSH PRIVILEGES;
+EOF
+
+    # MySQL 보안 설정
+    sudo mysql --user=root --password="${MYSQL_ROOT_PASSWORD}" <<-EOF
     DELETE FROM mysql.user WHERE User='';
     DROP DATABASE IF EXISTS test;
     DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
     FLUSH PRIVILEGES;
 EOF
+
     sudo systemctl restart mariadb
 }
 
