@@ -51,7 +51,7 @@ install_packages() {
 
 # Secure MySQL installation
 secure_mysql_installation() {
-    sudo systemctl start mariadb
+    sudo systemctl start mysql
 
     # MySQL root 비밀번호 설정
     sudo mysql --user=root <<-EOF
@@ -67,7 +67,7 @@ EOF
     FLUSH PRIVILEGES;
 EOF
 
-    sudo systemctl restart mariadb
+    sudo systemctl restart mysql
 }
 
 # Configure VSFTPD
