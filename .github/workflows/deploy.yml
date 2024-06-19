@@ -53,6 +53,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             export MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+            echo "MySQL Root Password: $MYSQL_ROOT_PASSWORD"
 
             # 필요한 패키지 설치
             sudo apt-get update
