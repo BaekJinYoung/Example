@@ -49,6 +49,9 @@ install_packages() {
 
 # Secure MySQL installation
 secure_mysql_installation() {
+    sudo chown -R mysql:mysql /var/lib/mysql
+    sudo chmod -R 755 /var/lib/mysql
+    sudo chmod -R 644 /var/lib/mysql/*
     sudo systemctl start mysql
 
     # MySQL root 비밀번호 설정
