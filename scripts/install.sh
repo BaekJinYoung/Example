@@ -4,9 +4,7 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-# Prompt for MySQL root password (not stored in script)
-read -s -p "Enter MySQL root password: " MYSQL_ROOT_PASSWORD
-echo
+MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
 
 # Update and install necessary packages
 is_installed() {
