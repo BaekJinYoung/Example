@@ -72,3 +72,4 @@ jobs:
             # 파일 권한 설정
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type f -exec chmod 644 {} \;
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type d -exec chmod 755 {} \;
+            #
