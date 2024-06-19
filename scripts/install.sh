@@ -60,7 +60,7 @@ secure_mysql_installation() {
     EOF
 
     # MySQL 보안 설정
-    sudo mysql --user=root --password="${MYSQL_ROOT_PASSWORD}" <<-EOF
+    sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" <<-EOF
     DELETE FROM mysql.user WHERE User='';
     DROP DATABASE IF EXISTS test;
     DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
