@@ -21,6 +21,7 @@ FLUSH PRIVILEGES;
 EOF
 
     sudo mysql_secure_installation <<EOF
+${MYSQL_ROOT_PASSWORD}
 y
 ${MYSQL_ROOT_PASSWORD}
 ${MYSQL_ROOT_PASSWORD}
