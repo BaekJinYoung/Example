@@ -2,8 +2,8 @@
 
 set -e
 
-sudo apt-get install --reinstall debconf
 export DEBIAN_FRONTEND=noninteractive
+sudo apt-get install --reinstall debconf
 
 MYSQL_ROOT_PASSWORD=$1
 
