@@ -13,6 +13,8 @@ is_installed() {
 }
 
 install_packages() {
+    sudo dpkg --configure -a
+    sudo apt-get clean
     sudo apt-get update
     sudo apt-get upgrade
 
