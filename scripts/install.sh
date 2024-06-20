@@ -40,7 +40,7 @@ install_packages() {
 
     for package in "${packages[@]}"; do
         if ! is_installed "$package"; then
-            sudo apt-get --assume-yes install -y "$package"
+            sudo apt-get --assume-yes install "$package"
         fi
     done
 
