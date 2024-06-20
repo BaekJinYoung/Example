@@ -14,6 +14,7 @@ is_installed() {
 
 install_packages() {
     sudo apt-get update
+    sudo apt-get upgrade
 
     # 필요한 패키지 목록
     packages=(
