@@ -59,12 +59,12 @@ secure_mysql_installation() {
 
     # MySQL root 비밀번호 설정 및 보안 설정
     sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -S /var/run/mysqld/mysqld.sock <<-EOF
-    ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-    DROP USER IF EXISTS 'root'@'localhost';
-    CREATE USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-    GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
-    FLUSH PRIVILEGES;
-    EOF
+ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+DROP USER IF EXISTS 'root'@'localhost';
+CREATE USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EOF
 
     sudo systemctl restart mysql
 }
