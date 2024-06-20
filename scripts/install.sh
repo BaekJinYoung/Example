@@ -56,17 +56,11 @@ secure_mysql_installation() {
     sudo chown -R mysql:mysql /var/lib/mysql
     sudo chmod -R 755 /var/lib/mysql
     sudo chmod -R 644 /var/lib/mysql/*
-    sudo systemctl start mysql
 
-    # MySQL root 비밀번호 설정
+    # MySQL root 비밀번호 설정 및 보안 설정
     sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -S /var/run/mysqld/mysqld.sock <<-EOF
     ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-    FLUSH PRIVILEGES;
-    EOF
-
-    # MySQL 보안 설정
-    sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -S /var/run/mysqld/mysqld.sock <<-EOF
-    DROP USER IF EXISTS root@localhost;
+    DROP USER IF EXISTS 'root'@'localhost';
     CREATE USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
     GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
     FLUSH PRIVILEGES;
