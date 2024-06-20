@@ -27,8 +27,8 @@ install_packages() {
         php-json
         php-zip
         php-curl
-        mysql-server
-        mysql-client
+        mysql-server-8.0
+        mysql-client-8.0
         software-properties-common
         ca-certificates
         vsftpd
@@ -39,7 +39,10 @@ install_packages() {
 
     for package in "${packages[@]}"; do
         if ! is_installed "$package"; then
-            sudo apt-get --assume-yes install "$package"
+            sudo apt-get --assume-yes install "$package" || {
+                            echo "Failed to install $package. Aborting." >&2
+                            exit 1
+                        }
         fi
     done
 
