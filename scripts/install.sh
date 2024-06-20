@@ -27,8 +27,8 @@ install_packages() {
         php-json
         php-zip
         php-curl
-        mariadb-server
-        mariadb-client
+        mysql-server
+        mysql-client
         software-properties-common
         ca-certificates
         vsftpd
