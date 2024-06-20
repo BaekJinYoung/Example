@@ -66,11 +66,11 @@ secure_mysql_installation() {
 
     # MySQL 보안 설정
     sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -S /var/run/mysqld/mysqld.sock <<-EOF
-    DELETE FROM mysql.user WHERE User='';
-    DROP DATABASE IF EXISTS test;
-    DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
+    DROP USER IF EXISTS root@localhost;
+    CREATE USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+    GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
     FLUSH PRIVILEGES;
-EOF
+    EOF
 
     sudo systemctl restart mysql
 }
