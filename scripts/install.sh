@@ -1,6 +1,10 @@
 #!/bin/bash
 
 set -e
+sudo dpkg --configure -a
+sudo apt-get clean --assume-yes
+sudo apt-get update --assume-yes
+sudo apt-get upgrade --assume-yes
 
 MYSQL_ROOT_PASSWORD=$1
 
@@ -10,11 +14,6 @@ is_installed() {
 }
 
 install_packages() {
-    sudo dpkg --configure -a
-    sudo apt-get clean --assume-yes
-    sudo apt-get update --assume-yes
-    sudo apt-get upgrade --assume-yes
-
     # 필요한 패키지 목록
     packages=(
         git
