@@ -2,6 +2,7 @@
 
 set -e
 sudo dpkg --configure -a
+
 sudo apt-get clean --assume-yes
 sudo apt-get update --assume-yes
 sudo apt-get upgrade --assume-yes
@@ -66,6 +67,7 @@ FLUSH PRIVILEGES;
 EOF
 
     sudo systemctl restart mysql
+    systemctl daemon-reload
 }
 
 # Configure VSFTPD
@@ -96,6 +98,7 @@ rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 ssl_enable=NO
 EOL
     sudo systemctl restart vsftpd
+    systemctl daemon-reload
     fi
 }
 
@@ -117,6 +120,7 @@ install_ssl_cert() {
         sudo certbot --nginx -d baekjinyoung.co.kr -n --agree-tos --email time121412@gmail.com || true
         sudo systemctl enable certbot.timer
         sudo systemctl start certbot.timer
+        systemctl daemon-reload
     fi
 }
 
@@ -162,6 +166,7 @@ EOL
     fi
 
     sudo systemctl restart nginx
+    systemctl daemon-reload
 }
 
 # Main function to execute all configuration steps
