@@ -97,4 +97,4 @@ jobs:
             EOF
 
             source ~/.bashrc
-#
+            source ~/.bash_profile
