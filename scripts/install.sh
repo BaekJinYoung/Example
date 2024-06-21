@@ -72,6 +72,7 @@ install_packages() {
 
     # Add Composer vendor bin directory to PATH
     echo "export COMPOSER_ALLOW_PLUGINS=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+    echo "COMPOSER_ALLOW_SUPERUSER=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
     echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc ~/.bash_profile > /dev/null
     source ~/.bashrc
 
@@ -102,9 +103,9 @@ secure_mysql_installation() {
     sudo chmod -R 644 /var/lib/mysql/*
 
     # Check if MySQL root password is already set
-    if ! sudo mysql -u root -e "SELECT 1" &> /dev/null; then
+    if ! sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1" &> /dev/null; then
         # Set MySQL root password
-        sudo mysql -u root <<-EOF
+        sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" <<-EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 DROP USER IF EXISTS 'root'@'localhost';
 CREATE USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
