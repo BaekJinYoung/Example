@@ -233,6 +233,8 @@ setup_laravel_project() {
     sudo apt-get install php8.2-sqlite3
     sudo systemctl restart php8.2-fpm
 
+    DB_PATH="$LARAVEL_PROJECT_PATH/database/database.sqlite"
+
     # SQLite 데이터베이스 파일 생성
     if [ ! -f "$DB_PATH" ]; then
         mkdir -p "$(dirname "$DB_PATH")"
@@ -250,7 +252,7 @@ setup_laravel_project() {
     php artisan config:cache
 
     # 데이터베이스 마이그레이션
-    php artisan migrate
+    php artisan migrate --force
 }
 
 # Main function to execute all configuration steps
