@@ -13,6 +13,7 @@ MYSQL_ROOT_PASSWORD=$1
 install_packages() {
 
     # Add additional repositories and install specific PHP version and Composer
+    sudo apt install software-properties-common
     sudo add-apt-repository ppa:ondrej/php -y
     sudo add-apt-repository ppa:ondrej/nginx -y
     sudo apt-get update --assume-yes
@@ -27,9 +28,8 @@ install_packages() {
         unzip
         zip
         nginx
-        mysql-server-8.0
-        mysql-client-8.0
-        software-properties-common
+        mysql-server
+        mysql-client
         ca-certificates
         vsftpd
         certbot
