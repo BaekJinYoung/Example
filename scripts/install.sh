@@ -10,46 +10,35 @@ MYSQL_ROOT_PASSWORD=$1
 LARAVEL_PROJECT_PATH=$2
 DB_PATH="$LARAVEL_PROJECT_PATH/database/database.sqlite"
 
-# Update and install necessary packages
+# Composer 설치 함수
+install_composer() {
+    if ! command -v composer &> /dev/null; then
+        curl -sS https://getcomposer.org/installer | php
+        sudo mv composer.phar /usr/local/bin/composer
+        sudo chmod +x /usr/local/bin/composer
+    fi
+}
 
+# Laravel 설치 함수
+install_laravel() {
+    if ! command -v laravel &> /dev/null; then
+        sudo composer global require laravel/installer
+        sudo ln -s ~/.composer/vendor/bin/laravel /usr/local/bin/laravel
+    fi
+}
+
+# 필수 패키지 설치 함수
 install_packages() {
-
-    # Add additional repositories and install specific PHP version and Composer
-    sudo apt install software-properties-common
-    sudo add-apt-repository ppa:ondrej/php -y
-    sudo add-apt-repository ppa:ondrej/nginx -y
-    sudo apt-get update --assume-yes
-
-    is_installed() {
-        dpkg -l | grep -q "$1"
-    }
-
-    # 필요한 패키지 목록
-    packages=(
-        git
-        unzip
-        zip
-        nginx
-        mysql-server
-        mysql-client
-        ca-certificates
-        vsftpd
-        certbot
-        python3-certbot-nginx
-        phpmyadmin
-    )
-
-    for package in "${packages[@]}"; do
-        if ! is_installed "$package"; then
-            sudo apt-get --assume-yes install "$package" || {
-                            echo "Failed to install $package. Aborting." >&2
-                            exit 1
-                        }
-        fi
-    done
-
-    # Install PHP 8.2 and necessary PHP extensions
-    sudo apt-get --assume-yes install \
+    sudo apt-get update
+    sudo apt-get install -y \
+        software-properties-common \
+        curl \
+        git \
+        unzip \
+        zip \
+        nginx \
+        mysql-server \
+        mysql-client \
         php8.2 \
         php8.2-cli \
         php8.2-fpm \
@@ -59,40 +48,11 @@ install_packages() {
         php8.2-curl \
         php8.2-zip \
         php8.2-gd \
+        php8.2-bcmath \
         php8.2-sqlite3 \
-        php8.2-bcmath || {
-            echo "Failed to install PHP 8.2 and extensions. Aborting." >&2
-            exit 1
-        }
-
-    # Update package lists again
-    sudo apt-get update --assume-yes
-
-    # Install Composer
-    if ! command -v composer &> /dev/null; then
-        curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-        echo 'PATH="$HOME/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc
-        echo 'COMPOSER_ALLOW_PLUGINS=1' >> ~/.bashrc
-        source ~/.bashrc
-    fi
-
-    # Check if Composer is installed, move it to system path
-    if [ ! -f /usr/local/bin/composer ]; then
-        sudo mv ~/composer.phar /usr/local/bin/composer
-    fi
-
-    # Install Laravel globally if not already installed
-    if ! command -v laravel &> /dev/null; then
-        sudo composer global require laravel/installer
-    fi
-
-    # Create symbolic link for Laravel CLI
-    if [ ! -L /usr/bin/laravel ]; then
-        sudo ln -s /root/.config/composer/vendor/bin/laravel /usr/bin/laravel
-    fi
-
-    # 변경 사항 반영을 위해 systemd 데몬 재로드
-    sudo systemctl daemon-reload
+        vsftpd \
+        certbot \
+        python3-certbot-nginx
 }
 
 # Secure MySQL installation
@@ -223,14 +183,12 @@ EOL
     sudo systemctl restart nginx
 }
 
-# Laravel 프로젝트 설정 함수
+# Laravel 프로젝트 설정
 setup_laravel_project() {
     cd "$LARAVEL_PROJECT_PATH"
 
     # Composer 종속성 설치
-    composer install
-
-    DB_PATH="$LARAVEL_PROJECT_PATH/database/database.sqlite"
+    composer install --no-plugins --no-scripts --ignore-platform-reqs
 
     # SQLite 데이터베이스 파일 생성
     if [ ! -f "$DB_PATH" ]; then
@@ -238,12 +196,27 @@ setup_laravel_project() {
         touch "$DB_PATH"
     fi
 
-    # .env 파일 설정 확인
-    if ! grep -q "DB_CONNECTION=sqlite" .env; then
-        echo -e "\nDB_CONNECTION=sqlite\nDB_DATABASE=$DB_PATH" >> .env
+    # .env 파일 설정 확인 및 생성
+    if [ ! -f .env ]; then
+        cat > .env <<EOF
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=sqlite
+DB_DATABASE=$DB_PATH
+DB_FOREIGN_KEYS=true
+
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+EOF
     fi
 
-    # Laravel 캐시 및 설정 정리
+    # Laravel 캐시 및 설정 초기화
     php artisan config:clear
     php artisan cache:clear
     php artisan config:cache
@@ -252,9 +225,12 @@ setup_laravel_project() {
     php artisan migrate --force
 }
 
+
 # Main function to execute all configuration steps
 main() {
     install_packages
+    install_composer
+    install_laravel
     secure_mysql_installation
     configure_vsftpd
     configure_firewall
