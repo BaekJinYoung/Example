@@ -71,9 +71,9 @@ install_packages() {
     fi
 
     # Add Composer vendor bin directory to PATH
-    echo "export COMPOSER_ALLOW_PLUGINS=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+    echo "COMPOSER_ALLOW_PLUGINS=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
     echo "COMPOSER_ALLOW_SUPERUSER=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
-    echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+    echo 'PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc ~/.bash_profile > /dev/null
     source ~/.bashrc
 
 
