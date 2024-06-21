@@ -216,7 +216,9 @@ DB_FOREIGN_KEYS=true
 CACHE_DRIVER=file
 QUEUE_CONNECTION=sync
 EOF
-fi
+chmod u+rw .env
+    fi
+
 
     # Laravel 캐시 및 설정 초기화
     php artisan config:clear
