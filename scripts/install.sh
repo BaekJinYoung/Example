@@ -229,6 +229,10 @@ setup_laravel_project() {
     # Composer 종속성 설치
     composer install
 
+    sudo apt-get update
+    sudo apt-get install php8.2-sqlite3
+    sudo systemctl restart php8.2-fpm
+
     # SQLite 데이터베이스 파일 생성
     if [ ! -f "$DB_PATH" ]; then
         mkdir -p "$(dirname "$DB_PATH")"
