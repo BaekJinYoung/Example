@@ -176,7 +176,7 @@ main() {
 }
 
 # Execute main function
-main
+main "$MYSQL_ROOT_PASSWORD"
 
 
 
