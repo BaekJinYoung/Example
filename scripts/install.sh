@@ -17,16 +17,6 @@ install_packages() {
     sudo add-apt-repository ppa:ondrej/nginx -y
     sudo apt-get update --assume-yes
 
-    # Install nginx, zip, unzip if not installed
-    for package in nginx zip unzip; do
-        if ! is_installed "$package"; then
-            sudo apt-get --assume-yes install "$package" || {
-                echo "Failed to install $package. Aborting." >&2
-                exit 1
-            }
-        fi
-    done
-
     is_installed() {
         dpkg -l | grep -q "$1"
     }
@@ -80,8 +70,8 @@ install_packages() {
     fi
 
     # Add Composer vendor bin directory to PATH
-    echo "export COMPOSER_ALLOW_SUPERUSER=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
-    echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc > /dev/null
+    echo "export COMPOSER_ALLOW_PLUGINS=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+    echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc ~/.bash_profile > /dev/null
     source ~/.bashrc
 
 
