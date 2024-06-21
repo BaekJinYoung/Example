@@ -83,4 +83,8 @@ jobs:
             # 파일 권한 설정
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type f -exec chmod 644 {} \;
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type d -exec chmod 755 {} \;
-            #
+
+            echo "COMPOSER_ALLOW_PLUGINS=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+            echo "COMPOSER_ALLOW_SUPERUSER=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+            echo 'PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+            source ~/.bashrc

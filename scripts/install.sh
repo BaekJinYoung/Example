@@ -71,10 +71,7 @@ install_packages() {
     fi
 
     # Add Composer vendor bin directory to PATH
-    echo "COMPOSER_ALLOW_PLUGINS=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
-    echo "COMPOSER_ALLOW_SUPERUSER=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
-    echo 'PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc ~/.bash_profile > /dev/null
-    source ~/.bashrc
+
 
 
     # Check if Composer is installed, move it to system path
@@ -113,7 +110,6 @@ y
 y
 EOF
         touch /root/.mysql_secure_installed
-    fi
 
     # MySQL에 root로 접속하여 사용자 관리 스크립트 실행
     sudo mysql -u root -p"$MYSQL_ROOT_PASSWORD" <<MYSQL_SCRIPT
@@ -123,6 +119,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EXIT;
 MYSQL_SCRIPT
+    fi
 
     # MySQL 서비스 재시작
     sudo systemctl restart mysql
