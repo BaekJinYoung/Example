@@ -77,9 +77,6 @@ jobs:
             # install.sh 실행
             sudo -u ${{ secrets.SERVER_USER }} bash /home/${{ secrets.SERVER_USER }}/install.sh
 
-            # 웹 서버 사용자로 소유자 변경
-            sudo chown -R www-data:www-data /home/${{ secrets.SERVER_USER }}/laravel
-
             # 파일 권한 설정
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type f -exec chmod 644 {} \;
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type d -exec chmod 755 {} \;
