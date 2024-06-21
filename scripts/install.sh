@@ -19,14 +19,6 @@ install_packages() {
         git
         unzip
         nginx
-        php-fpm
-        php-mysql
-        php-mbstring
-        php-xml
-        php-bcmath
-        php-json
-        php-zip
-        php-curl
         mysql-server-8.0
         mysql-client-8.0
         software-properties-common
@@ -45,6 +37,63 @@ install_packages() {
                         }
         fi
     done
+
+    # Add additional repositories and install specific PHP version and Composer
+    sudo add-apt-repository ppa:ondrej/php -y
+    sudo add-apt-repository ppa:ondrej/nginx -y
+    sudo apt-get update --assume-yes
+
+    # Install nginx, zip, unzip if not installed
+    for package in nginx zip unzip; do
+        if ! is_installed "$package"; then
+            sudo apt-get --assume-yes install "$package" || {
+                echo "Failed to install $package. Aborting." >&2
+                exit 1
+            }
+        fi
+    done
+
+    # Install PHP 8.2 and necessary PHP extensions
+    sudo apt-get --assume-yes install \
+        php8.2 \
+        php8.2-cli \
+        php8.2-fpm \
+        php8.2-mysql \
+        php8.2-xml \
+        php8.2-mbstring \
+        php8.2-curl \
+        php8.2-zip \
+        php8.2-gd \
+        php8.2-bcmath || {
+            echo "Failed to install PHP 8.2 and extensions. Aborting." >&2
+            exit 1
+        }
+
+    # Update package lists again
+    sudo apt-get update --assume-yes
+
+    # Install Composer
+    if ! command -v composer &> /dev/null; then
+        curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+    fi
+
+    # Add Composer vendor bin directory to PATH
+    export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+
+    # Check if Composer is installed, move it to system path
+    if [ ! -f /usr/local/bin/composer ]; then
+        sudo mv ~/composer.phar /usr/local/bin/composer
+    fi
+
+    # Install Laravel globally if not already installed
+    if ! command -v laravel &> /dev/null; then
+        sudo composer global require laravel/installer
+    fi
+
+    # Create symbolic link for Laravel CLI
+    if [ ! -L /usr/bin/laravel ]; then
+        sudo ln -s /root/.config/composer/vendor/bin/laravel /usr/bin/laravel
+    fi
 
     # 변경 사항 반영을 위해 systemd 데몬 재로드
     sudo systemctl daemon-reload
