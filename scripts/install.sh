@@ -104,6 +104,7 @@ secure_mysql_installation() {
 
     if [ ! -f /root/.mysql_secure_installed ]; then
         mysql_secure_installation <<EOF
+
 $MYSQL_ROOT_PASSWORD
 n
 y
