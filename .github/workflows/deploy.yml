@@ -85,15 +85,15 @@ jobs:
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type d -exec chmod 755 {} \;
 
             cat << 'EOF' >> ~/.bashrc
-            export COMPOSER_ALLOW_PLUGINS=1
-            export COMPOSER_ALLOW_SUPERUSER=1
-            export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+            COMPOSER_ALLOW_PLUGINS=1
+            COMPOSER_ALLOW_SUPERUSER=1
+            PATH="$PATH:$HOME/.config/composer/vendor/bin"
             EOF
 
             cat << 'EOF' >> ~/.bash_profile
-            export COMPOSER_ALLOW_PLUGINS=1
-            export COMPOSER_ALLOW_SUPERUSER=1
-            export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+            COMPOSER_ALLOW_PLUGINS=1
+            COMPOSER_ALLOW_SUPERUSER=1
+            PATH="$PATH:$HOME/.config/composer/vendor/bin"
             EOF
 
             source ~/.bashrc
