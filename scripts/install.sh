@@ -102,18 +102,28 @@ secure_mysql_installation() {
     sudo chmod -R 755 /var/lib/mysql
     sudo chmod -R 644 /var/lib/mysql/*
 
-    # Check if MySQL root password is already set
-    if ! sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1" &> /dev/null; then
-        # Set MySQL root password
-        sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" <<-EOF
-ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-DROP USER IF EXISTS 'root'@'localhost';
-CREATE USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
+    if [ ! -f /root/.mysql_secure_installed ]; then
+        mysql_secure_installation <<EOF
+$MYSQL_ROOT_PASSWORD
+n
+y
+y
+y
+y
 EOF
+        touch /root/.mysql_secure_installed
     fi
 
+    # MySQL에 root로 접속하여 사용자 관리 스크립트 실행
+    sudo mysql -u root -p"$MYSQL_ROOT_PASSWORD" <<MYSQL_SCRIPT
+DROP USER IF EXISTS root@localhost;
+CREATE USER root@localhost IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EXIT;
+MYSQL_SCRIPT
+
+    # MySQL 서비스 재시작
     sudo systemctl restart mysql
 }
 
