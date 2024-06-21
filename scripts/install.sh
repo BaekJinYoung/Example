@@ -59,6 +59,7 @@ install_packages() {
         php8.2-curl \
         php8.2-zip \
         php8.2-gd \
+        php8.2-sqlite3 \
         php8.2-bcmath || {
             echo "Failed to install PHP 8.2 and extensions. Aborting." >&2
             exit 1
@@ -228,10 +229,6 @@ setup_laravel_project() {
 
     # Composer 종속성 설치
     composer install
-
-    sudo apt-get update
-    sudo apt-get install php8.2-sqlite3
-    sudo systemctl restart php8.2-fpm
 
     DB_PATH="$LARAVEL_PROJECT_PATH/database/database.sqlite"
 
