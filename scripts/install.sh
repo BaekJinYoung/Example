@@ -164,6 +164,7 @@ EOL
     sudo systemctl restart nginx
 }
 
+
 # Main function to execute all configuration steps
 main() {
     install_packages
@@ -176,5 +177,6 @@ main() {
 
 # Execute main function
 main
+
 
 
