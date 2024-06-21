@@ -197,8 +197,8 @@ setup_laravel_project() {
     fi
 
     # .env 파일 설정 확인 및 생성
-    if [ ! -f .env ]; then
-        cat > .env <<EOF
+if [ ! -f .env ]; then
+    cat <<EOF > .env
 APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=
@@ -209,12 +209,14 @@ LOG_CHANNEL=stack
 
 DB_CONNECTION=sqlite
 DB_DATABASE=$DB_PATH
+DB_USERNAME=root
+DB_PASSWORD=$MYSQL_ROOT_PASSWORD
 DB_FOREIGN_KEYS=true
 
 CACHE_DRIVER=file
 QUEUE_CONNECTION=sync
 EOF
-    fi
+fi
 
     # Laravel 캐시 및 설정 초기화
     php artisan config:clear
