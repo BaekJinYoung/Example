@@ -83,13 +83,11 @@ jobs:
 
             cat << 'EOF' >> ~/.bashrc
             COMPOSER_ALLOW_PLUGINS=1
-            COMPOSER_ALLOW_SUPERUSER=1
             PATH="$PATH:$HOME/.config/composer/vendor/bin"
             EOF
 
             cat << 'EOF' >> ~/.bash_profile
             COMPOSER_ALLOW_PLUGINS=1
-            COMPOSER_ALLOW_SUPERUSER=1
             PATH="$PATH:$HOME/.config/composer/vendor/bin"
             EOF
 
