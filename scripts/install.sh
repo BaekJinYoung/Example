@@ -12,6 +12,21 @@ MYSQL_ROOT_PASSWORD=$1
 
 install_packages() {
 
+    # Add additional repositories and install specific PHP version and Composer
+    sudo add-apt-repository ppa:ondrej/php -y
+    sudo add-apt-repository ppa:ondrej/nginx -y
+    sudo apt-get update --assume-yes
+
+    # Install nginx, zip, unzip if not installed
+    for package in nginx zip unzip; do
+        if ! is_installed "$package"; then
+            sudo apt-get --assume-yes install "$package" || {
+                echo "Failed to install $package. Aborting." >&2
+                exit 1
+            }
+        fi
+    done
+
     is_installed() {
         dpkg -l | grep -q "$1"
     }
@@ -37,21 +52,6 @@ install_packages() {
                             echo "Failed to install $package. Aborting." >&2
                             exit 1
                         }
-        fi
-    done
-
-    # Add additional repositories and install specific PHP version and Composer
-    sudo add-apt-repository ppa:ondrej/php8.0 -y
-    sudo add-apt-repository ppa:ondrej/nginx-mainline -y
-    sudo apt-get update --assume-yes
-
-    # Install nginx, zip, unzip if not installed
-    for package in nginx zip unzip; do
-        if ! is_installed "$package"; then
-            sudo apt-get --assume-yes install "$package" || {
-                echo "Failed to install $package. Aborting." >&2
-                exit 1
-            }
         fi
     done
 
