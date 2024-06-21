@@ -41,7 +41,7 @@ install_packages() {
     done
 
     # Add additional repositories and install specific PHP version and Composer
-    sudo add-apt-repository ppa:ondrej/php8.0 -y
+    sudo add-apt-repository ppa:ondrej/php8.2 -y
     sudo add-apt-repository ppa:ondrej/nginx-mainline -y
     sudo apt-get update --assume-yes
 
