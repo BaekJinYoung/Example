@@ -56,6 +56,8 @@ jobs:
 
             export MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
             bash /home/${{ secrets.SERVER_USER }}/install.sh "$MYSQL_ROOT_PASSWORD"
+            export LARAVEL_PROJECT_PATH=/home/${{ secrets.SERVER_USER }}/laravel
+            bash /home/${{ secrets.SERVER_USER }}/install.sh "LARAVEL_PROJECT_PATH"
 
             # 필요한 패키지 설치
             sudo apt-get update
@@ -81,15 +83,4 @@ jobs:
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type f -exec chmod 644 {} \;
             sudo find /home/${{ secrets.SERVER_USER }}/laravel -type d -exec chmod 755 {} \;
 
-            cat << 'EOF' >> ~/.bashrc
-            COMPOSER_ALLOW_PLUGINS=1
-            PATH="$PATH:$HOME/.config/composer/vendor/bin"
-            EOF
 
-            cat << 'EOF' >> ~/.bash_profile
-            COMPOSER_ALLOW_PLUGINS=1
-            PATH="$PATH:$HOME/.config/composer/vendor/bin"
-            EOF
-
-            source ~/.bashrc
-            source ~/.bash_profile

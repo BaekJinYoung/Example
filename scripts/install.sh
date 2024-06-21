@@ -7,6 +7,8 @@ sudo apt-get update --assume-yes
 sudo apt-get upgrade --assume-yes
 
 MYSQL_ROOT_PASSWORD=$1
+LARAVEL_PROJECT_PATH=$2
+DB_PATH="$LARAVEL_PROJECT_PATH/database/database.sqlite"
 
 # Update and install necessary packages
 
@@ -68,11 +70,10 @@ install_packages() {
     # Install Composer
     if ! command -v composer &> /dev/null; then
         curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+        echo 'PATH="$HOME/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc
+        echo 'COMPOSER_ALLOW_PLUGINS=1' >> ~/.bashrc
+        source ~/.bashrc
     fi
-
-    # Add Composer vendor bin directory to PATH
-
-
 
     # Check if Composer is installed, move it to system path
     if [ ! -f /usr/local/bin/composer ]; then
@@ -221,6 +222,32 @@ EOL
     sudo systemctl restart nginx
 }
 
+# Laravel 프로젝트 설정 함수
+setup_laravel_project() {
+    cd "$LARAVEL_PROJECT_PATH"
+
+    # Composer 종속성 설치
+    composer install
+
+    # SQLite 데이터베이스 파일 생성
+    if [ ! -f "$DB_PATH" ]; then
+        mkdir -p "$(dirname "$DB_PATH")"
+        touch "$DB_PATH"
+    fi
+
+    # .env 파일 설정 확인
+    if ! grep -q "DB_CONNECTION=sqlite" .env; then
+        echo -e "\nDB_CONNECTION=sqlite\nDB_DATABASE=$DB_PATH" >> .env
+    fi
+
+    # Laravel 캐시 및 설정 정리
+    php artisan config:clear
+    php artisan cache:clear
+    php artisan config:cache
+
+    # 데이터베이스 마이그레이션
+    php artisan migrate
+}
 
 # Main function to execute all configuration steps
 main() {
@@ -230,6 +257,7 @@ main() {
     configure_firewall
     install_ssl_cert
     configure_php_nginx
+    setup_laravel_project
 }
 
 # Execute main function
