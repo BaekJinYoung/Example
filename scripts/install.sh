@@ -9,11 +9,13 @@ sudo apt-get upgrade --assume-yes
 MYSQL_ROOT_PASSWORD=$1
 
 # Update and install necessary packages
-is_installed() {
-    dpkg -l | grep -q "$1"
-}
 
 install_packages() {
+
+    is_installed() {
+        dpkg -l | grep -q "$1"
+    }
+
     # 필요한 패키지 목록
     packages=(
         git
@@ -78,7 +80,10 @@ install_packages() {
     fi
 
     # Add Composer vendor bin directory to PATH
-    export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+    echo "export COMPOSER_ALLOW_SUPERUSER=1" | tee -a ~/.bashrc ~/.bash_profile > /dev/null
+    echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' | tee -a ~/.bashrc > /dev/null
+    source ~/.bashrc
+
 
     # Check if Composer is installed, move it to system path
     if [ ! -f /usr/local/bin/composer ]; then
@@ -105,14 +110,17 @@ secure_mysql_installation() {
     sudo chmod -R 755 /var/lib/mysql
     sudo chmod -R 644 /var/lib/mysql/*
 
-    # MySQL root 비밀번호 설정 및 보안 설정
-    sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -S /var/run/mysqld/mysqld.sock <<-EOF
+    # Check if MySQL root password is already set
+    if ! sudo mysql -u root -e "SELECT 1" &> /dev/null; then
+        # Set MySQL root password
+        sudo mysql -u root <<-EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 DROP USER IF EXISTS 'root'@'localhost';
 CREATE USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EOF
+    fi
 
     sudo systemctl restart mysql
 }
