@@ -25,6 +25,7 @@ install_packages() {
     packages=(
         git
         unzip
+        zip
         nginx
         mysql-server-8.0
         mysql-client-8.0
