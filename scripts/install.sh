@@ -65,6 +65,8 @@ y
 EOF
         touch /root/.mysql_secure_installed
 
+
+FLUSH PRIVILEGES;
     # MySQL에 root로 접속하여 사용자 관리 스크립트 실행
     sudo mysql -u root -p"$MYSQL_ROOT_PASSWORD" <<MYSQL_SCRIPT
 DROP USER IF EXISTS root@localhost;
@@ -175,51 +177,51 @@ EOL
     sudo systemctl restart nginx
 }
 
-# Laravel 프로젝트 설정
-setup_laravel_project() {
-    cd "$LARAVEL_PROJECT_PATH"
-
-    # Composer 종속성 설치
-    composer install --no-plugins --no-scripts --ignore-platform-reqs
-
-    # SQLite 데이터베이스 파일 생성
-    if [ ! -f "$DB_PATH" ]; then
-        mkdir -p "$(dirname "$DB_PATH")"
-        touch "$DB_PATH"
-    fi
-
-    # .env 파일 설정 확인 및 생성
-if [ ! -f .env ]; then
-    cat <<EOF > .env
-APP_NAME=Laravel
-APP_ENV=local
-APP_KEY=
-APP_DEBUG=true
-APP_URL=http://localhost
-
-LOG_CHANNEL=stack
-
-DB_CONNECTION=sqlite
-DB_DATABASE=$DB_PATH
-DB_USERNAME=root
-DB_PASSWORD=$MYSQL_ROOT_PASSWORD
-DB_FOREIGN_KEYS=true
-
-CACHE_DRIVER=file
-QUEUE_CONNECTION=sync
-EOF
-chmod u+rw .env
-    fi
-
-
-    # Laravel 캐시 및 설정 초기화
-    php artisan config:clear
-    php artisan cache:clear
-    php artisan config:cache
-
-    # 데이터베이스 마이그레이션
-    php artisan migrate --force
-}
+## Laravel 프로젝트 설정
+#setup_laravel_project() {
+#    cd "$LARAVEL_PROJECT_PATH"
+#
+#    # Composer 종속성 설치
+#    composer install --no-plugins --no-scripts --ignore-platform-reqs
+#
+#    # SQLite 데이터베이스 파일 생성
+#    if [ ! -f "$DB_PATH" ]; then
+#        mkdir -p "$(dirname "$DB_PATH")"
+#        touch "$DB_PATH"
+#    fi
+#
+#    # .env 파일 설정 확인 및 생성
+#if [ ! -f .env ]; then
+#    cat <<EOF > .env
+#APP_NAME=Laravel
+#APP_ENV=local
+#APP_KEY=
+#APP_DEBUG=true
+#APP_URL=http://localhost
+#
+#LOG_CHANNEL=stack
+#
+#DB_CONNECTION=sqlite
+#DB_DATABASE=$DB_PATH
+#DB_USERNAME=root
+#DB_PASSWORD=$MYSQL_ROOT_PASSWORD
+#DB_FOREIGN_KEYS=true
+#
+#CACHE_DRIVER=file
+#QUEUE_CONNECTION=sync
+#EOF
+#chmod u+rw .env
+#    fi
+#
+#
+#    # Laravel 캐시 및 설정 초기화
+#    php artisan config:clear
+#    php artisan cache:clear
+#    php artisan config:cache
+#
+#    # 데이터베이스 마이그레이션
+#    php artisan migrate --force
+#}
 
 
 # Main function to execute all configuration steps
