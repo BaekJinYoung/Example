@@ -29,9 +29,11 @@ install_laravel() {
 
 # 필수 패키지 설치 함수
 install_packages() {
-    sudo apt-get update
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:ondrej/php
+    sudo apt update
+
     sudo apt-get install -y \
-        software-properties-common \
         curl \
         git \
         unzip \
@@ -39,17 +41,7 @@ install_packages() {
         nginx \
         mysql-server \
         mysql-client \
-        php8.2 \
-        php8.2-cli \
-        php8.2-fpm \
-        php8.2-mysql \
-        php8.2-xml \
-        php8.2-mbstring \
-        php8.2-curl \
-        php8.2-zip \
-        php8.2-gd \
-        php8.2-bcmath \
-        php8.2-sqlite3 \
+        php8.2-cli php8.2-fpm php8.2-mysql php8.2-xml php8.2-mbstring php8.2-curl php8.2-zip php8.2-gd php8.2-bcmath php8.2-sqlite3 \
         vsftpd \
         certbot \
         python3-certbot-nginx
